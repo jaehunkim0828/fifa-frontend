@@ -1,0 +1,31 @@
+
+
+.playerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .searchbar {
+    height: 10vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 20rem;
+
+    .input {
+      border: none;
+      background-color: #BDE6F1;
+      padding: 1rem;
+    }
+
+    .button {
+      border-radius: 10px;
+      border: none;
+      background-color: #4B5D67;
+      color: #BDF2D5;
+      padding: 1rem;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

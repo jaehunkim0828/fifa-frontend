@@ -1,0 +1,44 @@
+
+.thumb {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #4B5D67;
+    position: relative;
+    margin: 1.5rem;
+    padding: 1rem;
+    transition: transform 200ms ease-in;
+    &:hover {
+        transform: scale(1.05);
+    } 
+
+    .main {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .info {
+            display: flex;
+        }
+        .btn {
+            position: relative;
+            width: 2rem;
+            height: 2rem;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+        }
+    }
+
+    .season {
+        display: flex;
+    }
+
+    .graph {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+
+        .select {
+            width: 10rem;
+        }
+    }
+}
