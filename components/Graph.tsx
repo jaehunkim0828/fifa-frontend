@@ -1,4 +1,4 @@
-import { Bar } from 'react-chartjs-2';
+import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -7,96 +7,26 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js';
+} from "chart.js";
 
 ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
 );
-import style from '../styles/graph.module.scss';
+import style from "../styles/graph.module.scss";
+import { GraphProps } from "@type/graph.type";
+import { options1, step1, step2 } from "@data/graph.data";
 
-
-
-export default function Graph(
-  {name, status}: {
-     name: string, 
-     status: {
-      matchCount: number,
-      assist: number,
-      block: number,
-      dribble: number,
-      dribbleSuccess: number,
-      dribbleTry: number,
-      effectiveShoot: number,
-      goal: number,
-      passSuccess: number,
-      passTry: number,
-      shoot: number,
-      tackle: number,
-     }
-  }) {
-  const options1 = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top' as const,
-      },
-      title: {
-        display: true,
-        text: `1경기당 평균 ${name} 선수의 그래프`,
-      },
-    },
-  };
-
-  const labels1 = ['드리블 거리', '드리블 성공', '드리블 시도', '패스 성공', '패스 시도'];
-  const labels2 = ['슛 시도', '유효슛', '골', '도움', '태클', '블락'];
-
-  const step1 = {
-      labels: labels1,
-      datasets: [
-        {
-          label: name,
-          data: [
-            status.dribble,
-            status.dribbleSuccess,
-            status.dribbleTry,
-            status.passSuccess,
-            status.passTry,
-          ],
-          borderColor: 'rgb(255, 99, 132)',
-          backgroundColor: 'rgba(255, 99, 132, 0.5)',
-        },
-      ],
-    };
-
-    const step2 = {
-      labels: labels2,
-      datasets: [
-        {
-          label: name,
-          data: [
-            status.shoot,
-            status.effectiveShoot,
-            status.goal,
-            status.assist,
-            status.tackle,
-            status.block,
-          ],
-          borderColor: 'rgb(255, 99, 132)',
-          backgroundColor: 'rgba(255, 99, 132, 0.5)',
-        },
-      ],
-    };
-
+export default function Graph({ name, status }: GraphProps) {
   return (
     <div className={style.graph}>
-      <Bar options={options1} data={step1} />
-      <Bar data={step2}/>
+      <Bar options={options1} data={step1(name, status)} />
+      <Bar data={step2(name, status)} />
       <div>{`총 경기 수: ${status.matchCount}`}</div>
     </div>
-  )
+  );
 }
