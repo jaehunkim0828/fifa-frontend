@@ -1,44 +1,84 @@
-import Image from 'next/image';
-import React, { useState, memo } from 'react';
+import React, { useState, useRef } from "react";
 
-import { getMethod } from '../http';
-import useInput from '../hooks/useInput';
-import style from '../styles/player.module.scss';
-import PlayerThumb from './PlayerThumb';
+import { getMethod } from "../services/http";
+import useInput from "../hooks/useInput";
+import style from "../styles/player.module.scss";
+import PlayerThumb from "./PlayerThumb";
+import ComparedGraph from "./ComparedGraph";
+import useThumb from "../hooks/useThumb";
+import { PlayerInfo } from "@type/player.type";
+import PlayerService from "@services/player.api";
 
 export default function Player() {
-    const [player, setPlayer] = useInput('');
-    const [playersInfo, setPlayerInfo] = useState<any[]>([]);
+  const playerService = new PlayerService();
 
-    const onChangePlayer = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setPlayer(event);
+  const graphRef = useRef<HTMLDivElement>(null);
+
+  const [player, setPlayer] = useInput("");
+  const [playersInfo, setPlayerInfo] = useState<PlayerInfo[]>([]);
+  const [comparedThumb, setComparedThumb] = useThumb([]);
+
+  const onChangePlayer = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPlayer(event);
+  };
+
+  const submit = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    const data = await playerService.getPlayersByName(player);
+
+    setPlayerInfo(data === "" ? [] : data);
+  };
+
+  const handleClickBackground = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === graphRef.current) {
+      setComparedThumb({});
     }
+  };
 
-    const submit = async (e: React.SyntheticEvent) => {
-        e.preventDefault();
-        const data = await getMethod(`player/spid/${player}`);
-        
-        setPlayerInfo(data === '' ? [] : data);
-    };
-
-    return (
-        <div className={style.playerContainer}>
-            <form className={style.searchbar} onSubmit={async(e: React.SyntheticEvent) => submit(e)}>
-                <input 
-                    value={player} 
-                    placeholder='선수이름'
-                    onChange={onChangePlayer}
-                    className={style.input}
-                />
-                <button className={style.button} type='submit'>플레이정보 얻기</button>
-            </form>
-            <div>
-                {playersInfo.map((e: {name: string, id: string ,season: { classname: string, seasonImg: string, id: number }}, i) => (
-                <div key={i}>
-                    <PlayerThumb spid={e.id} name={e.name} classname={e.season.classname} id={e.season.id} seasonImg={e.season.seasonImg} />
-                </div>
-                ))}
-            </div>
+  return (
+    <div className={style.playerContainer}>
+      {comparedThumb.length === 2 && (
+        <div
+          className={style.playerBackground}
+          ref={graphRef}
+          onClick={handleClickBackground}
+        >
+          <div className={style.comparedGraph}>
+            <ComparedGraph
+              player1={comparedThumb[0]}
+              player2={comparedThumb[1]}
+            />
+          </div>
         </div>
-    )
+      )}
+      <form
+        className={style.searchbar}
+        onSubmit={async (e: React.SyntheticEvent) => submit(e)}
+      >
+        <input
+          value={player}
+          placeholder="선수이름"
+          onChange={onChangePlayer}
+          className={style.input}
+        />
+        <button className={style.button} type="submit">
+          플레이정보 얻기
+        </button>
+      </form>
+      <div>
+        {playersInfo.map((player: PlayerInfo, i: number) => (
+          <div key={i}>
+            <PlayerThumb
+              comparedThumb={comparedThumb}
+              setComparedThumb={setComparedThumb}
+              spid={player.id}
+              name={player.name}
+              classname={player.season.classname}
+              seasonImg={player.season.seasonImg}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
