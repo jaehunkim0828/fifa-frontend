@@ -1,10 +1,23 @@
-
-
 .playerContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  .playerBackground {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 100;
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+    .comparedGraph {
+      background-color: white;
+      z-index: 101;
+    }
+  }
   .searchbar {
     height: 10vh;
     display: flex;
@@ -14,15 +27,15 @@
 
     .input {
       border: none;
-      background-color: #BDE6F1;
+      background-color: #bde6f1;
       padding: 1rem;
     }
 
     .button {
       border-radius: 10px;
       border: none;
-      background-color: #4B5D67;
-      color: #BDF2D5;
+      background-color: #4b5d67;
+      color: #bdf2d5;
       padding: 1rem;
       align-items: center;
       justify-content: center;
