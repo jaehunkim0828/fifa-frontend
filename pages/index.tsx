@@ -1,19 +1,30 @@
-import type { NextPage } from 'next';
-import Image from 'next/image';
-import { useState } from 'react';
+import type { NextPage } from "next";
 
-import { getMethod } from '../http';
-import useInput from '../hooks/useInput';
-import style from '../styles/Home.module.scss';
-import Player from '../components/Player';
+import style from "../styles/Home.module.scss";
+import Player from "../components/Player";
+import Seo from "@components/Seo";
 
-const Home: NextPage = () => {
-
+const Home = ({ result }: { result: string }) => {
+  console.log(result);
   return (
-    <div className={style.homeContainer}>
-      <Player />
-    </div>
-  )
-}
+    <>
+      <Seo title={"Home"} />
+      <div className={style.homeContainer}>
+        <Player />
+      </div>
+    </>
+  );
+};
 
-export default Home
+export default Home;
+
+export async function getServerSideProps() {
+  // 여기서 axios를 사용해주면 개꿀
+
+  const result = "hello";
+  return {
+    props: {
+      result,
+    },
+  };
+}
