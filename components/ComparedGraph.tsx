@@ -17,7 +17,7 @@ import { getMethod } from "@services/http";
 import { Thumb } from "@type/playerThumb.type";
 import { ComparedGraphProps, PlayerStatus } from "@type/comparedGraph.type";
 import { options, options1, step1, step2 } from "@data/comparedGraph.data";
-import ComparedGraphService from "@services/comparedGraph";
+import ComparedGraphService from "@services/comparedGraph.api";
 
 ChartJS.register(
   CategoryScale,
