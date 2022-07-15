@@ -103,7 +103,7 @@ export default memo(function PlayerThumb({
               onChange={(e: any) => showPlayerGraph(e.value)}
             />
           </div>
-          <Graph spid={spid} name={name} status={status} />
+          <Graph name={name} status={status} />
         </div>
       )}
     </div>

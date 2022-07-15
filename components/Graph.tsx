@@ -24,7 +24,7 @@ import { options1, step1, step2 } from "@data/graph.data";
 export default function Graph({ name, status }: GraphProps) {
   return (
     <div className={style.graph}>
-      <Bar options={options1} data={step1(name, status)} />
+      <Bar options={options1(name)} data={step1(name, status)} />
       <Bar data={step2(name, status)} />
       <div>{`총 경기 수: ${status.matchCount}`}</div>
     </div>
