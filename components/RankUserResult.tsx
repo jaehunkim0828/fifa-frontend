@@ -3,11 +3,7 @@ import style from "../styles/rank.module.scss";
 import { postMethod } from "../services/http";
 import { position } from "../position";
 import date from "../helpers/date";
-import {
-  PlayerRank,
-  RankDetail,
-  RankUserResultProps,
-} from "@type/rankUserResult.type";
+import { RankDetail, RankUserResultProps } from "@type/rankUserResult.type";
 
 export default function RankUserResult({ spid, name }: RankUserResultProps) {
   const [detail, setDedetail] = useState<RankDetail[]>([]);
