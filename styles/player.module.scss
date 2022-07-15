@@ -16,6 +16,8 @@
     .comparedGraph {
       background-color: white;
       z-index: 101;
+      width: 30rem;
+      padding: 2%;
     }
   }
   .searchbar {
@@ -40,5 +42,12 @@
       align-items: center;
       justify-content: center;
     }
+  }
+
+  .players {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
   }
 }
