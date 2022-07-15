@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 
-import { getMethod } from "../services/http";
 import useInput from "../hooks/useInput";
 import style from "../styles/player.module.scss";
 import PlayerThumb from "./PlayerThumb";
@@ -65,7 +64,7 @@ export default function Player() {
           플레이정보 얻기
         </button>
       </form>
-      <div>
+      <div className={style.players}>
         {playersInfo.map((player: PlayerInfo, i: number) => (
           <div key={i}>
             <PlayerThumb

@@ -13,8 +13,6 @@ import Image from "next/image";
 import Select from "react-select";
 
 import style from "../styles/graph.module.scss";
-import { getMethod } from "@services/http";
-import { Thumb } from "@type/playerThumb.type";
 import { ComparedGraphProps, PlayerStatus } from "@type/comparedGraph.type";
 import { options, options1, step1, step2 } from "@data/comparedGraph.data";
 import ComparedGraphService from "@services/comparedGraph.api";
