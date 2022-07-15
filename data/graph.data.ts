@@ -1,6 +1,6 @@
 import { PlayerRank } from "@type/rankUserResult.type";
 
-export const options1 = {
+export const options1 = (name: string) => ({
   responsive: true,
   plugins: {
     legend: {
@@ -11,7 +11,7 @@ export const options1 = {
       text: `1경기당 평균 ${name} 선수의 그래프`,
     },
   },
-};
+});
 
 export const labels1 = [
   "드리블 거리",
