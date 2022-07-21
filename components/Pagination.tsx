@@ -1,22 +1,18 @@
 import style from "../styles/pagination.module.scss";
 import { useEffect, useState } from "react";
+import { PaginationProps } from "@type/pagination.type";
 
 export default function Pagination({
   totalCount,
   count,
   getCurrentPage,
-}: {
-  totalCount: number;
-  count: number;
-  getCurrentPage: (cur_page: number) => Promise<void>;
-}) {
-  const [curPage, setCurpage] = useState(1);
+}: PaginationProps) {
+  // const [curPage, setCurpage] = useState(1);
   const [skip, setSkip] = useState(0);
 
   const handlePaginationNumbers = () => {
     let range: number = count;
 
-    console.log(skip);
     if (Math.floor(Math.floor(totalCount / count) / count) <= skip) {
       range = Math.ceil(((skip + 1) * count ** 2 - totalCount) / count);
     }
