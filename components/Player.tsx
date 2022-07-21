@@ -3,7 +3,7 @@ import React, { useState, useRef } from "react";
 import useInput from "../hooks/useInput";
 import style from "../styles/player.module.scss";
 import PlayerThumb from "./PlayerThumb";
-import ComparedGraph from "./ComparedGraph";
+import ComparedGraph from "./comparedGraph/ComparedGraph";
 import useThumb from "../hooks/useThumb";
 import { PlayerInfo } from "@type/player.type";
 import PlayerService from "@services/player.api";
