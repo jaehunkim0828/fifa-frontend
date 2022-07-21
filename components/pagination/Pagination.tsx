@@ -13,7 +13,9 @@ export default function Pagination({
   const handlePaginationNumbers = () => {
     let range: number = count;
 
-    if (Math.floor(Math.floor(totalCount / count) / count) <= skip) {
+    if (Math.floor(totalCount / count) === 0) {
+      range = Math.ceil(((skip + 1) * count ** 2 - totalCount) / count);
+    } else if (Math.floor(Math.floor(totalCount / count) / count) <= skip) {
       range = Math.ceil(((skip + 1) * count ** 2 - totalCount) / count);
     }
 
