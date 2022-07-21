@@ -23,7 +23,7 @@ export default function Rank({ playerRanks, totalCount, count }: any) {
   };
 
   return (
-    <div className={style.homeContainer}>
+    <div className={style.rankContainer}>
       <div className={style.playerRanks}>
         {ranks.map(
           ({ id, name, season: { className, seasonImg } }: PlayerRank, i) => {
