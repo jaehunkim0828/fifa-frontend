@@ -1,6 +1,6 @@
 import style from "../styles/search.module.scss";
-import Player from "../components/Player";
-import Seo from "@components/Seo";
+import Player from "../components/player/Player";
+import Seo from "@components/rest/Seo";
 import { getMethod } from "@services/http";
 
 const Search = () => {

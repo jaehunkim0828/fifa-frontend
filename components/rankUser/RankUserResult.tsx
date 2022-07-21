@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import style from "../styles/rank.module.scss";
-import { postMethod } from "../services/http";
-import { position } from "../position";
-import date from "../helpers/date";
+import { postMethod } from "../../services/http";
+import { position } from "../../position";
+import date from "../../helpers/date";
 import { RankDetail, RankUserResultProps } from "@type/rankUserResult.type";
 
 export default function RankUserResult({ spid, name }: RankUserResultProps) {

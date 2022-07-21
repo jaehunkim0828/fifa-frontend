@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React from "react";
-import Nav from "./Nav";
+import Nav from "../nav/Nav";
 
 export interface LayoutProps {
   children: React.ReactNode;

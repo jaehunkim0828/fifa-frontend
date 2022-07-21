@@ -1,4 +1,4 @@
-import style from "../styles/pagination.module.scss";
+import style from "./pagination.module.scss";
 import { useEffect, useState } from "react";
 import { PaginationProps } from "@type/pagination.type";
 

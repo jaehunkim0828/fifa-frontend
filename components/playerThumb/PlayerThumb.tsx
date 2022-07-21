@@ -3,18 +3,18 @@ import Image from "next/image";
 import { useEffect, useState, memo, useRef } from "react";
 import Select from "react-select";
 
-import style from "../styles/playerThumb.module.scss";
+import style from "./playerThumb.module.scss";
 import Graph from "@components/graph/Graph";
-import up from "../public/images/up.png";
-import down from "../public/images/down.png";
+import up from "../../public/images/up.png";
+import down from "../../public/images/down.png";
 import ThumbService from "@services/playerThumb.api";
 import { PlayerThumbProps } from "@type/playerThumb.type";
 import {
   seleteOptions,
   thumbstyle,
   initialStatus,
-} from "../data/playerThumb.data";
-import useStats from "../hooks/useRank";
+} from "../../data/playerThumb.data";
+import useStats from "../../hooks/useRank";
 
 export default memo(function PlayerThumb({
   comparedThumb,
@@ -45,21 +45,12 @@ export default memo(function PlayerThumb({
   };
 
   const openGraph = async (value: number) => {
-    try {
-      setLoding(true);
-      await thumbService.create(spid, name);
-      const totalPlayerData = await thumbService.getMyTotalRankByPo(
-        spid,
-        value
-      );
-      setGraph(true);
-      setStatus(totalPlayerData);
-      setLoding(false);
-    } catch (err) {
-      setLoding(false);
-      window.alert("데이터를 받아오는 과정에서 에러가 생겼습니다.");
-      if (err instanceof Error) console.log(err);
-    }
+    setLoding(true);
+    await thumbService.create(spid, name);
+    const totalPlayerData = await thumbService.getMyTotalRankByPo(spid, value);
+    setGraph(true);
+    setStatus(totalPlayerData);
+    setLoding(false);
   };
   const closeGraph = () => {
     setLoding(false);

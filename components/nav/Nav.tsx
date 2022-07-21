@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 
-import style from "../styles/nav.module.scss";
+import style from "./nav.module.scss";
 
 export default function Nav() {
   const router = useRouter();

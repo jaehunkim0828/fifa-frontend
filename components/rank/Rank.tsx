@@ -2,8 +2,8 @@ import { useState } from "react";
 
 import useThumb from "@hooks/useThumb";
 import style from "./rank.module.scss";
-import PlayerThumb from "@components/PlayerThumb";
-import Pagination from "@components/Pagination";
+import PlayerThumb from "@components/playerThumb/PlayerThumb";
+import Pagination from "@components/pagination/Pagination";
 import RankService from "@services/rank.api";
 import { PlayerRank } from "@type/Home.type";
 
