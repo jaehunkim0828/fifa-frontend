@@ -4,7 +4,7 @@ import { useEffect, useState, memo, useRef } from "react";
 import Select from "react-select";
 
 import style from "../styles/playerThumb.module.scss";
-import Graph from "@components/Graph";
+import Graph from "@components/graph/Graph";
 import up from "../public/images/up.png";
 import down from "../public/images/down.png";
 import ThumbService from "@services/playerThumb.api";
@@ -45,12 +45,21 @@ export default memo(function PlayerThumb({
   };
 
   const openGraph = async (value: number) => {
-    setLoding(true);
-    await thumbService.create(spid, name);
-    const totalPlayerData = await thumbService.getMyTotalRankByPo(spid, value);
-    setGraph(true);
-    setStatus(totalPlayerData);
-    setLoding(false);
+    try {
+      setLoding(true);
+      await thumbService.create(spid, name);
+      const totalPlayerData = await thumbService.getMyTotalRankByPo(
+        spid,
+        value
+      );
+      setGraph(true);
+      setStatus(totalPlayerData);
+      setLoding(false);
+    } catch (err) {
+      setLoding(false);
+      window.alert("데이터를 받아오는 과정에서 에러가 생겼습니다.");
+      if (err instanceof Error) console.log(err);
+    }
   };
   const closeGraph = () => {
     setLoding(false);

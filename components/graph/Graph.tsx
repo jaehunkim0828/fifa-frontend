@@ -17,7 +17,7 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-import style from "../styles/graph.module.scss";
+import style from "./graph.module.scss";
 import { GraphProps } from "@type/graph.type";
 import { options1, step1, step2 } from "@data/graph.data";
 
