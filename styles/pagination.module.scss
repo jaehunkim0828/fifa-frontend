@@ -1,0 +1,18 @@
+.pagination {
+  display: flex;
+
+  .numbers {
+    display: flex;
+  }
+  .number {
+    background-color: gray;
+    outline: none;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    width: 2rem;
+    height: 2rem;
+    color: white;
+    margin: 0 0.5rem;
+  }
+}
