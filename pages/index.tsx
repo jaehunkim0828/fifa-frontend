@@ -14,7 +14,7 @@ export default function Home({ playerRanks, totalCount, count }: HomeProps) {
 
 export async function getServerSideProps() {
   // 여기서 axios를 사용해주면 개꿀
-  const count = 12;
+  const count = 9;
   const getFirstPage = async () => {
     return await getMethod(`rank/all?current_page=1&count=${count}`);
   };
