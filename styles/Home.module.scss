@@ -1,3 +1,12 @@
 .homeContainer {
-  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+  .playerRanks {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
