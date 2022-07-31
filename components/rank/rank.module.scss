@@ -1,9 +1,12 @@
 .rankContainer {
   display: flex;
-  justify-content: center;
+  margin: 3rem 0;
   align-items: center;
   width: 100%;
   flex-direction: column;
+  position: relative;
+  height: 100vh;
+
   .playerRanks {
     width: 80%;
     display: flex;
