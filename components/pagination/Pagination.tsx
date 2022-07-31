@@ -1,14 +1,33 @@
+import { useState } from "react";
+import Image from "next/image";
+
 import style from "./pagination.module.scss";
-import { useEffect, useState } from "react";
 import { PaginationProps } from "@type/pagination.type";
+import left from "../../public/images/left_arrow.png";
+import right from "../../public/images/right_arrow.png";
+import PaginationService from "@services/rank.api";
+import { PlayerRank } from "@type/rankUserResult.type";
+import pnData from "@data/pagination.json";
 
 export default function Pagination({
   totalCount,
   count,
-  getCurrentPage,
+  setRanks,
 }: PaginationProps) {
-  // const [curPage, setCurpage] = useState(1);
+  const [curPage, setCurpage] = useState(1);
   const [skip, setSkip] = useState(0);
+
+  const paginationService = new PaginationService();
+
+  const getCurrentPage = async (cur_page: number) => {
+    let c = count;
+    const ranksData: PlayerRank[] = await paginationService.getCurrentPage(
+      cur_page,
+      c
+    );
+    setRanks(ranksData);
+    setCurpage(cur_page);
+  };
 
   const handlePaginationNumbers = () => {
     let range: number = count;
@@ -27,14 +46,19 @@ export default function Pagination({
   };
 
   const changePages = (route: "back" | "front") => {
-    route === "back" ? setSkip(prev => prev - 1) : setSkip(prev => prev + 1);
+    let next = route === "back" ? -1 : 1;
+    let reNumber = (Math.ceil(curPage / count) + next) * count - 8;
+
+    getCurrentPage(reNumber);
+    setCurpage(reNumber);
+    setSkip(prev => prev + next);
   };
 
   return (
     <div className={style.pagination}>
       {skip > 0 && (
         <div className={style.number} onClick={() => changePages("back")}>
-          이전
+          <Image src={left} layout="responsive" alt="none" />
         </div>
       )}
       <div className={style.numbers}>
@@ -42,6 +66,7 @@ export default function Pagination({
           return (
             <button
               onClick={() => getCurrentPage(number)}
+              style={curPage === number ? pnData.currentStyle : {}}
               className={style.number}
               key={i}
             >
@@ -52,7 +77,13 @@ export default function Pagination({
       </div>
       {totalCount > (skip + 1) * count ** 2 && (
         <div className={style.number} onClick={() => changePages("front")}>
-          이후
+          <Image
+            src={right}
+            width="100%"
+            height="100%"
+            layout="responsive"
+            alt="none"
+          />
         </div>
       )}
     </div>

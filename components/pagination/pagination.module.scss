@@ -1,18 +1,21 @@
 .pagination {
   display: flex;
+  position: absolute;
+  bottom: 0;
 
   .numbers {
     display: flex;
   }
   .number {
-    background-color: gray;
+    border-radius: 50%;
+    border: 1.5px solid black;
     outline: none;
     cursor: pointer;
-    border-radius: 5px;
-    border: none;
     width: 2rem;
     height: 2rem;
-    color: white;
+    color: black;
     margin: 0 0.5rem;
+    padding: 0.3rem;
+    background: transparent;
   }
 }
