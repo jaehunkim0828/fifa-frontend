@@ -49,9 +49,6 @@ export default class PlayerThumb {
       createDate,
     });
   }
-  public async getMyTotalRankByPo(spid: string, value: number) {
-    return getMethod(`rank/potential?spid=${spid}&po=${value}`);
-  }
 
   public async create(spid: string, name: string) {
     const data: { data: any[] } = await this.findRankBySpid(spid);
@@ -96,10 +93,10 @@ export default class PlayerThumb {
           tackle,
         });
 
-        console.log(playerRankResult.data);
+        // console.log(playerRankResult.data);
       } catch (e) {
         if (e instanceof Error) {
-          console.error(e);
+          // console.error(e);
         }
       }
     });
