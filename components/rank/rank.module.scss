@@ -1,24 +1,49 @@
 .rankContainer {
   display: flex;
   align-items: center;
-  width: 100%;
+  min-width: 340px;
+  width: calc(100%);
   flex-direction: column;
+  align-items: center;
   position: relative;
   height: 90%;
   justify-content: space-between;
 
-  .playerRanks {
+  .playerRanksWapper {
     width: 80%;
     display: flex;
-    flex-wrap: wrap;
     overflow: scroll;
+    align-items: center;
+    margin: 3rem 0;
+
+    .detail {
+      width: 50%;
+      border: 1px solid black;
+      height: 100%;
+    }
+
+    .playerRanks {
+      width: 50%;
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .rankContainer {
+    .playerRanksWapper {
+      .playerRanks {
+        grid-template-columns: 50% 50%;
+      }
+    }
   }
 }
 
 @media (max-width: 650px) {
   .rankContainer {
-    .playerRanks {
-      margin-bottom: 1rem;
+    .playerRanksWapper {
+      .playerRanks {
+        margin-bottom: 1rem;
+      }
     }
   }
 }

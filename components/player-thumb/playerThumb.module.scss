@@ -1,0 +1,59 @@
+@keyframes slidein {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
+.thumb {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 0 0.2rem;
+  width: 20rem;
+  transition: transform 200ms ease-in;
+  border: 1px solid rgb(88, 88, 88);
+  margin: 0.2rem 0;
+  cursor: pointer;
+
+  .main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    .info {
+      display: flex;
+      align-items: center;
+
+      .seasonImg {
+        width: 1.1rem;
+        height: 0.8rem;
+        margin-right: 10px;
+      }
+      .name {
+        font-size: 1rem;
+      }
+    }
+    .btn {
+      position: relative;
+      width: 1.5em;
+      height: 1.5em;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+    }
+    .season {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+}
+
+@media (max-width: 650px) {
+  .thumb {
+    width: 80%;
+  }
+}
