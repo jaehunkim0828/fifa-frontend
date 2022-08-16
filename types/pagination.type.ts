@@ -1,7 +1,9 @@
+import { PlayerInfo } from "./player.type";
 import { PlayerRank } from "./rankUserResult.type";
 
 export interface PaginationProps {
   totalCount: number;
   count: number;
-  setRanks: (any: PlayerRank[]) => void;
+  setRanks: React.Dispatch<PlayerInfo[]>;
+  player?: string;
 }

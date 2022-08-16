@@ -7,7 +7,7 @@ export interface PlayerRank {
   name: string;
   id: string;
   season: {
-    className: string;
+    classname: string;
     seasonImg: string;
   };
 }
