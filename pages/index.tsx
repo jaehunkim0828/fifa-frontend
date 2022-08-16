@@ -1,32 +1,13 @@
 import Seo from "@components/rest/Seo";
-import { getMethod } from "@services/http";
-import Rank from "@components/rank/Rank";
-import { HomeProps } from "@type/Home.type";
+import StartSearch from "@components/startSearch/StartSearch";
 
-export default function Home({ playerRanks, totalCount, count }: HomeProps) {
+const Search = () => {
   return (
     <>
-      <Seo title={"Home"} />
-      <Rank playerRanks={playerRanks} totalCount={totalCount} count={count} />
+      <Seo title={"Search"} />
+      <StartSearch />
     </>
   );
-}
+};
 
-export async function getServerSideProps() {
-  const count = 9;
-  const getFirstPage = async () => {
-    return await getMethod(`rank/all?current_page=1&count=${count}`);
-  };
-
-  const countTotalRankPlayer = async () => {
-    return await getMethod("rank/player/count");
-  };
-
-  return {
-    props: {
-      playerRanks: await getFirstPage(),
-      totalCount: await countTotalRankPlayer(),
-      count,
-    },
-  };
-}
+export default Search;
