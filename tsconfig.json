@@ -17,6 +17,7 @@
     "incremental": true,
     "baseUrl": "./",
     "paths": {
+      "@store/*": ["store/*"],
       "@type/*": ["types/*"],
       "@services/*": ["services/*"],
       "@utils/*": ["utils/*"],
