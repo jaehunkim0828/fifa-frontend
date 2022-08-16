@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
 import {
@@ -53,7 +54,6 @@ export default function ComparedGraph({
       setStatus([player1Data, player2Data]);
     };
     showPlayersData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [player1.spid, player2.spid]);
 
   return (

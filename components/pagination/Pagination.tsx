@@ -1,18 +1,19 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import Image from "next/image";
 
 import style from "./pagination.module.scss";
 import { PaginationProps } from "@type/pagination.type";
 import left from "../../public/images/left_arrow.png";
 import right from "../../public/images/right_arrow.png";
-import PaginationService from "@services/rank.api";
-import { PlayerRank } from "@type/rankUserResult.type";
+import PaginationService from "@services/pagination.api";
 import pnData from "@data/pagination.json";
+import { PlayerInfo } from "@type/player.type";
 
-export default function Pagination({
+export default memo(function Pagination({
   totalCount,
   count,
   setRanks,
+  player,
 }: PaginationProps) {
   const [curPage, setCurpage] = useState(1);
   const [skip, setSkip] = useState(0);
@@ -21,24 +22,27 @@ export default function Pagination({
 
   const getCurrentPage = async (cur_page: number) => {
     let c = count;
-    const ranksData: PlayerRank[] = await paginationService.getCurrentPage(
+    const ranksData: PlayerInfo[] = await paginationService.getCurrentPage(
       cur_page,
-      c
+      c,
+      player
     );
+
     setRanks(ranksData);
-    setCurpage(cur_page);
+    setCurpage(+cur_page);
   };
 
   const handlePaginationNumbers = () => {
     let range: number = count;
 
-    if (Math.floor(totalCount / count) === 0) {
-      range = Math.ceil(((skip + 1) * count ** 2 - totalCount) / count);
+    if (Math.floor(Math.floor(totalCount / count) / count) === 0) {
+      range = Math.ceil(totalCount / count);
     } else if (Math.floor(Math.floor(totalCount / count) / count) <= skip) {
       range = Math.ceil(((skip + 1) * count ** 2 - totalCount) / count);
     }
 
-    return Array(range)
+    console.log(range);
+    return Array(+range)
       .fill(skip * count)
       .map((v, i) => {
         return v + i + 1;
@@ -88,4 +92,4 @@ export default function Pagination({
       )}
     </div>
   );
-}
+});
