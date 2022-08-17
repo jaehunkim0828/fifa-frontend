@@ -69,3 +69,10 @@ interface RankerPlayerStatDTO {
   shoot: string;
   tackle: string;
 }
+
+export type PlayerStatses = {
+  [key in string]: {
+    status: Stats;
+    name: string;
+  };
+};

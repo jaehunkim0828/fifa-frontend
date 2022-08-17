@@ -1,6 +1,15 @@
-import { PlayerRank } from "@type/rankUserResult.type";
+import { GraphData, PlayerRank } from "@type/rankUserResult.type";
 
-export const options1 = (name: string) => ({
+const colors = [
+  "#E99497",
+  "#F3C583",
+  "#E8E46E",
+  "#B3E283",
+  "#513252",
+  "#7A4069",
+];
+
+export const options1 = (players: GraphData[]) => ({
   responsive: true,
   plugins: {
     legend: {
@@ -8,7 +17,9 @@ export const options1 = (name: string) => ({
     },
     title: {
       display: true,
-      text: `1경기당 평균 ${name} 선수의 그래프`,
+      text: `1경기당 평균 ${players
+        .map(player => player.name)
+        .join(", ")} 선수의 그래프`,
     },
   },
 });
@@ -22,39 +33,40 @@ export const labels1 = [
 ];
 export const labels2 = ["슛 시도", "유효슛", "골", "도움", "태클", "블락"];
 
-export const step1 = (name: string, status: PlayerRank) => ({
+export const step1 = (data: GraphData[]) => ({
   labels: labels1,
-  datasets: [
-    {
-      label: name,
+  datasets: data.map((player: GraphData, i: number) => {
+    return {
+      label: `${i + 1}. ${player.name}`,
       data: [
-        status.dribble,
-        status.dribbleSuccess,
-        status.dribbleTry,
-        status.passSuccess,
-        status.passTry,
+        player.status.dribble,
+        player.status.dribbleSuccess,
+        player.status.dribbleTry,
+        player.status.passSuccess,
+        player.status.passTry,
       ],
-      borderColor: "rgb(255, 99, 132)",
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
-    },
-  ],
+      borderColor: colors[i],
+      backgroundColor: colors[i],
+    };
+  }),
 });
 
-export const step2 = (name: string, status: PlayerRank) => ({
+export const step2 = (data: GraphData[]) => ({
   labels: labels2,
-  datasets: [
-    {
-      label: name,
+  datasets: data.map((player: GraphData, i: number) => {
+    console.log(colors[i]);
+    return {
+      label: `${i + 1}. ${player.name}`,
       data: [
-        status.shoot,
-        status.effectiveShoot,
-        status.goal,
-        status.assist,
-        status.tackle,
-        status.block,
+        player.status.shoot,
+        player.status.effectiveShoot,
+        player.status.goal,
+        player.status.assist,
+        player.status.tackle,
+        player.status.block,
       ],
-      borderColor: "rgb(255, 99, 132)",
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
-    },
-  ],
+      borderColor: `rgb(${255 - i * 10}, 99, 132)`,
+      backgroundColor: colors[i],
+    };
+  }),
 });

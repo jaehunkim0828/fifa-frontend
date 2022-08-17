@@ -6,34 +6,33 @@ import style from "./rank.module.scss";
 import Pagination from "@components/pagination/Pagination";
 import ThumbService from "@services/playerThumb.api";
 import useStats from "@hooks/useRank";
-import { initialStatus, seleteOptions } from "@data/playerThumb.data";
+import { seleteOptions } from "@data/playerThumb.data";
 import { useAppSelector } from "@store/index";
 import PlayerInformation from "@components/player-information/PlayerInformation";
 import RankService from "@services/rank.api";
 import { useAppDispatch } from "@store/index";
 import { resetSpidValue } from "@store/slices/spidSlice";
+import { PlayerStatses } from "@type/playerThumb.type";
 
 export default function Rank({ playerRanks, totalCount, count }: any) {
   const rankService = new RankService();
-  const {
-    value: { spid, name },
-  } = useAppSelector(state => state.spid);
+  const { value: players } = useAppSelector(state => state.spid);
   const dispatch = useAppDispatch();
 
-  const [comparedThumb, setComparedThumb] = useThumb([]);
   const [ranks, setRanks] = useState(playerRanks);
-  const [status, setStatus] = useStats(initialStatus);
+  const [statuses, setStatuses] = useStats({});
   const showPlayerGraph = async (position: number) => {
-    const totalPlayerData = await rankService.getMyTotalRankByPo(
-      spid,
-      position
-    );
-    setStatus(totalPlayerData);
+    const totalPlayerData: PlayerStatses = {};
+    for (const player in players) {
+      const status = await rankService.getMyTotalRankByPo(player, position);
+      totalPlayerData[player] = { name: players[player], status };
+    }
+    setStatuses(totalPlayerData);
   };
 
   useEffect(() => {
     showPlayerGraph(50);
-  }, [setStatus, spid]);
+  }, [players]);
 
   useEffect(() => {
     return () => {
@@ -44,14 +43,10 @@ export default function Rank({ playerRanks, totalCount, count }: any) {
   return (
     <div className={style.rankContainer}>
       <PlayerInformation
-        spid={spid}
+        statses={statuses}
         seleteOptions={seleteOptions}
         showPlayerGraph={showPlayerGraph}
-        name={name}
-        status={status}
         ranks={ranks}
-        comparedThumb={comparedThumb}
-        setComparedThumb={setComparedThumb}
       />
       <Pagination totalCount={totalCount} count={count} setRanks={setRanks} />
     </div>

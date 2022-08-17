@@ -4,22 +4,19 @@ import { PlayerInformationProps } from "@type/playerInformation";
 import style from "./playerInformation.module.scss";
 
 export default function PlayerInformation({
-  spid,
+  statses,
   seleteOptions,
   showPlayerGraph,
-  name,
-  status,
   ranks,
 }: PlayerInformationProps) {
   return (
     <div className={style.playerRanksWapper}>
       <div className={style.detail}>
-        {spid !== "" ? (
+        {Object.keys(statses).length !== 0 ? (
           <Detail
             seleteOptions={seleteOptions}
             showPlayerGraph={showPlayerGraph}
-            name={name}
-            status={status}
+            statses={statses}
           />
         ) : (
           <></>

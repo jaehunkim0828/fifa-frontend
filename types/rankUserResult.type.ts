@@ -23,3 +23,9 @@ export interface RankDetail {
   spPosition: number;
   status: PlayerRank;
 }
+
+export interface GraphData {
+  name: string;
+  status: PlayerRank;
+  spid: string;
+}

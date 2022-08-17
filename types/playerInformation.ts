@@ -1,14 +1,13 @@
-import { CompareThumb, PlayerInfo } from "./player.type";
-import { Stats, Thumb } from "./playerThumb.type";
+import { PlayerInfo } from "./player.type";
+import { PlayerStatses } from "./playerThumb.type";
 
 export interface PlayerInformationProps {
-  spid: string;
   seleteOptions: {
     value: number;
     label: string;
   }[];
   showPlayerGraph: (value: number) => void;
-  name: string;
-  status: Stats;
+
+  statses: PlayerStatses;
   ranks: PlayerInfo[];
 }

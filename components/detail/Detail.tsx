@@ -7,8 +7,7 @@ import { DetailProps } from "@type/detail.type";
 export default function Detail({
   seleteOptions,
   showPlayerGraph,
-  name,
-  status,
+  statses,
 }: DetailProps) {
   return (
     <div className={style.playerContainer}>
@@ -20,7 +19,7 @@ export default function Detail({
             onChange={(e: any) => showPlayerGraph(e.value)}
           />
         </div>
-        <Graph name={name} status={status} />
+        <Graph statses={statses} />
       </div>
     </div>
   );

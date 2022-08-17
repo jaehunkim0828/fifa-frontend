@@ -10,20 +10,25 @@ export default function Search() {
   const count = 9;
 
   const [info, setInfo] = useState([]);
-
   const { search: name } = router.query as {
     search: string;
   };
 
   useEffect(() => {
-    const playerService = new PlayerService();
+    if (name) {
+      const playerService = new PlayerService();
 
-    const getPlayerInfo = async () => {
-      const data = await playerService.getPlayersByName(name, 0, 9);
-      setInfo(data === "" ? [] : data);
-    };
+      const getPlayerInfo = async () => {
+        const data = await playerService.getPlayersByName(name, 0, 9);
+        if (data.length === 0) {
+          window.alert("찾는 선수가 없습니다. 다시 검색해주세요");
+          router.push("/");
+        }
+        setInfo(data === "" ? [] : data);
+      };
 
-    getPlayerInfo();
+      getPlayerInfo();
+    }
   }, [name]);
 
   return (

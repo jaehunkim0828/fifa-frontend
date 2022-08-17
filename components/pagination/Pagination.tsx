@@ -41,7 +41,6 @@ export default memo(function Pagination({
       range = Math.ceil(((skip + 1) * count ** 2 - totalCount) / count);
     }
 
-    console.log(range);
     return Array(+range)
       .fill(skip * count)
       .map((v, i) => {

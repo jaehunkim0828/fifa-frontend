@@ -5,14 +5,13 @@ interface Status {
   name: string;
 }
 interface CommonState {
-  value: Status;
+  value: {
+    [key in string]: string;
+  };
 }
 
 const initialState: CommonState = {
-  value: {
-    spid: "",
-    name: "",
-  },
+  value: {},
 };
 
 const spidSlice = createSlice({
@@ -22,17 +21,22 @@ const spidSlice = createSlice({
     // reducer
     setSpidValue: {
       reducer: (state, action: PayloadAction<Status>) => {
-        state.value = action.payload;
+        if (state.value[action.payload.spid]) {
+          delete state.value[action.payload.spid];
+          return;
+        }
+
+        state.value = {
+          ...state.value,
+          [action.payload.spid]: action.payload.name,
+        };
       },
       prepare: (text: Status) => ({
         payload: text,
       }),
     },
-    resetSpidValue(state, action: PayloadAction) {
-      state.value = {
-        spid: "",
-        name: "",
-      };
+    resetSpidValue(state) {
+      state.value = {};
     },
   },
 });

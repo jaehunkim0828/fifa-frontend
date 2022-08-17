@@ -9,13 +9,14 @@ import { PlayerInfo, PlayerProps } from "@type/player.type";
 import style from "./allPlayer.module.scss";
 import ComparedGraph from "../compared-graph/ComparedGraph";
 import PlayerInformation from "@components/player-information/PlayerInformation";
-import { initialStatus, seleteOptions } from "@data/playerThumb.data";
+import { seleteOptions } from "@data/playerThumb.data";
 import AllPlayerService from "@services/allPlayer.api";
 import useStats from "@hooks/useRank";
 import { useAppSelector } from "@store/index";
 import { RootState } from "@store/index";
 import Pagination from "@components/pagination/Pagination";
 import { resetSpidValue } from "@store/slices/spidSlice";
+import { PlayerStatses } from "@type/playerThumb.type";
 
 export default memo(function AllPlayer({
   playersInitial,
@@ -29,15 +30,11 @@ export default memo(function AllPlayer({
 
   const playerName = router.query.search as string | undefined;
 
-  const graphRef = useRef<HTMLDivElement>(null);
-
-  const {
-    value: { spid, name },
-  } = useAppSelector((state: RootState) => state.spid);
+  const { value: players } = useAppSelector((state: RootState) => state.spid);
 
   const [player, setPlayer] = useInput("");
   const [playersInfo, setPlayerInfo] = useState<PlayerInfo[]>([]);
-  const [status, setStatus] = useStats(initialStatus);
+  const [statuses, setStatuses] = useStats({});
   const [totalCount, setCount] = useState(0);
 
   const onChangePlayer = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,11 +59,15 @@ export default memo(function AllPlayer({
   };
 
   const showPlayerGraph = async (position: number) => {
-    const totalPlayerData = await allPlayerService.getMyTotalRankByPo(
-      spid,
-      position
-    );
-    setStatus(totalPlayerData);
+    const totalPlayerData: PlayerStatses = {};
+    for (const player in players) {
+      const status = await allPlayerService.getMyTotalRankByPo(
+        player,
+        position
+      );
+      totalPlayerData[player] = { name: players[player], status };
+    }
+    setStatuses(totalPlayerData);
   };
 
   useEffect(() => {
@@ -84,7 +85,7 @@ export default memo(function AllPlayer({
 
   useEffect(() => {
     showPlayerGraph(50);
-  }, [spid]);
+  }, [players]);
 
   return (
     <div className={style.playerContainer}>
@@ -103,11 +104,9 @@ export default memo(function AllPlayer({
         </button>
       </form>
       <PlayerInformation
-        spid={spid}
+        statses={statuses}
         seleteOptions={seleteOptions}
         showPlayerGraph={showPlayerGraph}
-        name={name}
-        status={status}
         ranks={playersInfo}
       />
       {count && (

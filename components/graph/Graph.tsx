@@ -20,13 +20,39 @@ ChartJS.register(
 import style from "./graph.module.scss";
 import { GraphProps } from "@type/graph.type";
 import { options1, step1, step2 } from "@data/graph.data";
+import { useEffect, useState } from "react";
+import { GraphData } from "@type/rankUserResult.type";
+import { initialStatus } from "@data/playerThumb.data";
 
-export default function Graph({ name, status }: GraphProps) {
+export default function Graph({ statses }: GraphProps) {
+  const [players, setPlayers] = useState<GraphData[]>([
+    { name: "", status: initialStatus, spid: "" },
+  ]);
+
+  useEffect(() => {
+    const result: GraphData[] = [];
+    for (const spid in statses) {
+      result.push({
+        spid,
+        name: statses[spid].name,
+        status: statses[spid].status,
+      });
+    }
+    setPlayers(result);
+  }, [statses]);
+
   return (
     <div className={style.graph}>
-      <Bar options={options1(name)} data={step1(name, status)} />
-      <Bar data={step2(name, status)} />
-      <div>{`총 경기 수: ${status.matchCount}`}</div>
+      <Bar options={options1(players)} data={step1(players)} />
+      <Bar data={step2(players)} />
+      {players.map((player, i: number) => {
+        return (
+          <div key={i}>{`${i + 1}. ${player.name}의 경기 수: ${
+            player.status.matchCount
+          }`}</div>
+        );
+      })}
+      {/* <div>{`총 경기 수: ${statses[0].matchCount}`}</div> */}
     </div>
   );
 }
