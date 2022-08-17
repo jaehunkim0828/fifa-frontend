@@ -3,7 +3,6 @@ import React, { useState, useRef, useEffect, memo } from "react";
 import { useRouter } from "next/router";
 
 import useInput from "@hooks/useInput";
-import useThumb from "@hooks/useThumb";
 import { useAppDispatch } from "@store/index";
 import PlayerService from "@services/player.api";
 import { PlayerInfo, PlayerProps } from "@type/player.type";
@@ -39,7 +38,6 @@ export default memo(function AllPlayer({
   const [player, setPlayer] = useInput("");
   const [playersInfo, setPlayerInfo] = useState<PlayerInfo[]>([]);
   const [status, setStatus] = useStats(initialStatus);
-  const [comparedThumb, setComparedThumb] = useThumb([]);
   const [totalCount, setCount] = useState(0);
 
   const onChangePlayer = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,12 +59,6 @@ export default memo(function AllPlayer({
     router.push({
       pathname: `/search/${player}`,
     });
-  };
-
-  const handleClickBackground = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.target === graphRef.current) {
-      setComparedThumb({});
-    }
   };
 
   const showPlayerGraph = async (position: number) => {
@@ -96,20 +88,6 @@ export default memo(function AllPlayer({
 
   return (
     <div className={style.playerContainer}>
-      {comparedThumb.length === 2 && (
-        <div
-          className={style.playerBackground}
-          ref={graphRef}
-          onClick={handleClickBackground}
-        >
-          <div className={style.comparedGraph}>
-            <ComparedGraph
-              player1={comparedThumb[0]}
-              player2={comparedThumb[1]}
-            />
-          </div>
-        </div>
-      )}
       <form
         className={style.searchbar}
         onSubmit={async (e: React.SyntheticEvent) => submit(e)}
@@ -131,8 +109,6 @@ export default memo(function AllPlayer({
         name={name}
         status={status}
         ranks={playersInfo}
-        comparedThumb={comparedThumb}
-        setComparedThumb={setComparedThumb}
       />
       {count && (
         <Pagination

@@ -42,8 +42,6 @@ export class RankInput {
 }
 
 export interface PlayerThumbProps {
-  comparedThumb: any[];
-  setComparedThumb: (event: CompareThumb) => void;
   spid: string;
   name: string;
   seasonImg: string;

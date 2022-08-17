@@ -11,6 +11,4 @@ export interface PlayerInformationProps {
   name: string;
   status: Stats;
   ranks: PlayerInfo[];
-  comparedThumb: Thumb[] | [];
-  setComparedThumb: (event: CompareThumb) => void;
 }

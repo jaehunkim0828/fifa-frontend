@@ -10,8 +10,6 @@ export default function PlayerInformation({
   name,
   status,
   ranks,
-  comparedThumb,
-  setComparedThumb,
 }: PlayerInformationProps) {
   return (
     <div className={style.playerRanksWapper}>
@@ -28,11 +26,7 @@ export default function PlayerInformation({
         )}
       </div>
       <div className={style.playerRanks}>
-        <PlayerList
-          players={ranks}
-          comparedThumb={comparedThumb}
-          setComparedThumb={setComparedThumb}
-        />
+        <PlayerList players={ranks} />
       </div>
     </div>
   );

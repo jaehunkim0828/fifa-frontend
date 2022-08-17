@@ -10,8 +10,6 @@ import { PlayerThumbProps } from "@type/playerThumb.type";
 import { thumbstyle } from "../../data/playerThumb.data";
 
 export default memo(function PlayerThumb({
-  comparedThumb,
-  setComparedThumb,
   spid,
   name,
   seasonImg,
@@ -30,11 +28,11 @@ export default memo(function PlayerThumb({
     if (e.target.value === "on") {
       e.target.checked = true;
       e.target.value = "off";
-      setComparedThumb({ spid, name, seasonImg });
+      // setComparedThumb({ spid, name, seasonImg });
     } else {
       e.target.checked = false;
       e.target.value = "on";
-      setComparedThumb({});
+      // setComparedThumb({});
     }
   };
 
@@ -56,10 +54,6 @@ export default memo(function PlayerThumb({
   const closeGraph = () => {
     setGraph(false);
   };
-
-  useEffect(() => {
-    if (!comparedThumb.length) setThumb(false);
-  }, [comparedThumb]);
 
   return (
     <div

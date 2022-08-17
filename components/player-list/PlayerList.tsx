@@ -3,11 +3,7 @@ import { PlayerInfo } from "@type/player.type";
 import { PlayerListProps } from "@type/playerList.type";
 import style from "./playerList.module.scss";
 
-export default function PlayerList({
-  players,
-  comparedThumb,
-  setComparedThumb,
-}: PlayerListProps) {
+export default function PlayerList({ players }: PlayerListProps) {
   return (
     <div className={style.playerList}>
       {players.map(
@@ -19,8 +15,6 @@ export default function PlayerList({
             <PlayerThumb
               key={i}
               spid={id}
-              comparedThumb={comparedThumb}
-              setComparedThumb={setComparedThumb}
               name={name}
               seasonImg={seasonImg}
               classname={classname}
