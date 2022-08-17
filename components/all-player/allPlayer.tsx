@@ -7,7 +7,6 @@ import { useAppDispatch } from "@store/index";
 import PlayerService from "@services/player.api";
 import { PlayerInfo, PlayerProps } from "@type/player.type";
 import style from "./allPlayer.module.scss";
-import ComparedGraph from "../compared-graph/ComparedGraph";
 import PlayerInformation from "@components/player-information/PlayerInformation";
 import { seleteOptions } from "@data/playerThumb.data";
 import AllPlayerService from "@services/allPlayer.api";
