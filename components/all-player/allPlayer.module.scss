@@ -25,29 +25,6 @@
       padding: 2%;
     }
   }
-  .searchbar {
-    margin: 1rem 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 15rem;
-
-    .input {
-      border: none;
-      background-color: #bde6f1;
-      padding: 1rem;
-    }
-
-    .button {
-      border-radius: 10px;
-      border: none;
-      background-color: #4b5d67;
-      color: #bdf2d5;
-      padding: 1rem;
-      align-items: center;
-      justify-content: center;
-    }
-  }
 
   .players {
     display: flex;

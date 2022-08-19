@@ -16,6 +16,7 @@ import { RootState } from "@store/index";
 import Pagination from "@components/pagination/Pagination";
 import { resetSpidValue } from "@store/slices/spidSlice";
 import { PlayerStatses } from "@type/playerThumb.type";
+import SearchBar from "@components/search-bar/SearchBar";
 
 export default memo(function AllPlayer({
   playersInitial,
@@ -42,6 +43,10 @@ export default memo(function AllPlayer({
 
   const submit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
+
+    if (!player.trim().length) {
+      return;
+    }
 
     if (current_page && count) {
       const data = await playerService.getPlayersByName(
@@ -88,20 +93,11 @@ export default memo(function AllPlayer({
 
   return (
     <div className={style.playerContainer}>
-      <form
-        className={style.searchbar}
-        onSubmit={async (e: React.SyntheticEvent) => submit(e)}
-      >
-        <input
-          value={player}
-          placeholder="선수이름"
-          onChange={onChangePlayer}
-          className={style.input}
-        />
-        <button className={style.button} type="submit">
-          검색
-        </button>
-      </form>
+      <SearchBar
+        player={player}
+        onChangePlayer={onChangePlayer}
+        submit={submit}
+      />
       <PlayerInformation
         statses={statuses}
         seleteOptions={seleteOptions}

@@ -1,0 +1,53 @@
+.searchbar {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #eeeeee;
+  border-radius: 25px;
+  width: 15rem;
+  padding: 15px 10px 15px 15px;
+  box-shadow: 0 1px 3px rgb(23 23 23 / 24%);
+
+  &:hover {
+    background-color: #c6c6c6;
+    box-shadow: 0 4px 12px rgb(23 23 23 / 30%);
+  }
+
+  .input {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    flex: 1;
+    color: #3f3f3f;
+  }
+
+  .clean {
+    height: 100%;
+    display: flex;
+    .cleanBtn {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      width: 30px;
+      height: 100%;
+      filter: invert(50%) sepia(11%) saturate(204%) hue-rotate(165deg)
+        brightness(93%) contrast(92%);
+    }
+    .span {
+      border-left: 1px solid #5f6368;
+      height: 100%;
+    }
+  }
+
+  .button {
+    border-radius: 10px;
+    border: none;
+    background-color: transparent;
+    filter: invert(47%) sepia(0%) saturate(4066%) hue-rotate(260deg)
+      brightness(75%) contrast(75%);
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+  }
+}
