@@ -46,6 +46,8 @@ export interface PlayerThumbProps {
   name: string;
   seasonImg: string;
   classname: string;
+  checkedList: Array<string>;
+  setList: Dispatch<SetStateAction<string[]>>;
 }
 
 export interface Ability {

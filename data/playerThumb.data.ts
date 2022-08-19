@@ -32,7 +32,6 @@ export const seleteOptions = [
 ];
 
 export const thumbstyle = {
-  transform: "scale(1.05)",
   borderColor: "tomato",
 };
 

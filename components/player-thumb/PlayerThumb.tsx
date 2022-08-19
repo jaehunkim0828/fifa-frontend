@@ -13,6 +13,8 @@ export default memo(function PlayerThumb({
   spid,
   name,
   seasonImg,
+  checkedList,
+  setList,
 }: PlayerThumbProps) {
   const dispatch = useAppDispatch();
   const thumbService = new ThumbService();
@@ -22,25 +24,20 @@ export default memo(function PlayerThumb({
   } = useAppSelector(state => state.spid);
 
   const [graph, setGraph] = useState<boolean>(false);
-  const [thumb, setThumb] = useState<boolean>(false);
-
-  const onClickThumb = (e: any) => {
-    if (e.target.value === "on") {
-      e.target.checked = true;
-      e.target.value = "off";
-      // setComparedThumb({ spid, name, seasonImg });
-    } else {
-      e.target.checked = false;
-      e.target.value = "on";
-      // setComparedThumb({});
-    }
-  };
 
   const openGraph = async (e: any) => {
-    if (e.target.localName === "input") return;
     if (spid === id) {
       dispatch(resetSpidValue());
       return;
+    }
+
+    if (!checkedList.includes(spid)) {
+      setList(prev => [...prev, spid]);
+    } else {
+      setList(prev => {
+        prev.splice(prev.indexOf(spid), 1);
+        return prev;
+      });
     }
     dispatch(
       setSpidValue({
@@ -48,6 +45,8 @@ export default memo(function PlayerThumb({
         name,
       })
     );
+
+    console.log(checkedList);
     await thumbService.create(spid, name);
   };
 
@@ -58,7 +57,7 @@ export default memo(function PlayerThumb({
   return (
     <div
       className={style.thumb}
-      style={thumb ? thumbstyle : {}}
+      style={checkedList.includes(spid) ? thumbstyle : {}}
       onClick={e => (!graph ? openGraph(e) : closeGraph())}
     >
       <div className={style.main}>
@@ -70,7 +69,6 @@ export default memo(function PlayerThumb({
             </div>
           </div>
         </div>
-        <input className={style.btn} type="radio" onClick={onClickThumb} />
       </div>
     </div>
   );
