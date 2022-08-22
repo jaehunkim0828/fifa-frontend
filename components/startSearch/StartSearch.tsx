@@ -19,7 +19,7 @@ export default function StartSearch() {
   };
 
   const onChangePlayer = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPlayer(event);
+    setPlayer(event.target.value);
   };
 
   return (

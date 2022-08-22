@@ -6,9 +6,12 @@ import Clean from "@public/images/clean.svg";
 
 export default function SearchBar({
   player,
+  setPlayer,
   onChangePlayer,
   submit,
 }: SearchBarProps) {
+  const clean = () => {};
+
   return (
     <form
       className={style.searchbar}
@@ -22,7 +25,11 @@ export default function SearchBar({
       />
       {player.length ? (
         <div className={style.clean}>
-          <button className={style.cleanBtn}>
+          <button
+            className={style.cleanBtn}
+            type="button"
+            onClick={() => setPlayer("")}
+          >
             <Image src={Clean} alt="none" layout="responsive" />
           </button>
           <span className={style.span}></span>

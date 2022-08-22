@@ -37,8 +37,12 @@ export default memo(function AllPlayer({
   const [statuses, setStatuses] = useStats({});
   const [totalCount, setCount] = useState(0);
 
-  const onChangePlayer = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPlayer(event);
+  const onChangePlayer = ({
+    target: { value },
+  }: {
+    target: { value: string };
+  }) => {
+    setPlayer(value);
   };
 
   const submit = async (e: React.SyntheticEvent) => {
@@ -57,6 +61,7 @@ export default memo(function AllPlayer({
       setPlayerInfo(data === "" ? [] : data);
     }
 
+    setPlayer("");
     router.push({
       pathname: `/search/${player}`,
     });
@@ -95,6 +100,7 @@ export default memo(function AllPlayer({
     <div className={style.playerContainer}>
       <SearchBar
         player={player}
+        setPlayer={setPlayer}
         onChangePlayer={onChangePlayer}
         submit={submit}
       />
