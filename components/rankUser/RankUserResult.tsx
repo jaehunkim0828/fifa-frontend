@@ -66,7 +66,7 @@ export default function RankUserResult({ spid, name }: RankUserResultProps) {
     };
 
     rankInfo();
-  }, [spid]);
+  }, [name, spid]);
 
   return (
     <div className={style.rankContainer}>
