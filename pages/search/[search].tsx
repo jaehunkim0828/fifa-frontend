@@ -23,13 +23,14 @@ export default function Search() {
         if (data.length === 0) {
           window.alert("찾는 선수가 없습니다. 다시 검색해주세요");
           router.push("/");
+          return;
         }
         setInfo(data === "" ? [] : data);
       };
 
       getPlayerInfo();
     }
-  }, [name]);
+  }, [name, router]);
 
   return (
     <>
