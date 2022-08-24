@@ -45,8 +45,6 @@ export default memo(function PlayerThumb({
         name,
       })
     );
-
-    console.log(checkedList);
     await thumbService.create(spid, name);
   };
 
