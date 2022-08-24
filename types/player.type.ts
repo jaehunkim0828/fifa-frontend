@@ -11,7 +11,7 @@ export interface PlayerInfo {
 }
 
 export interface PlayerProps {
-  playersInitial?: Array<PlayerInfo>;
+  playersInitial: Array<PlayerInfo>;
   count?: number;
   current_page?: number;
   players?: any;
