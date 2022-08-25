@@ -2,10 +2,10 @@
 
 ## 프로젝트 시작하기 - Frontend
 ``` shell
-$ yarn / npm install <-- npm 설치
-$ yarn dev <-- development 환경
-$ yarn build <-- 프로젝트 빌드
-$ yarn start <-- production 환경
+$ yarn / npm install // npm 설치
+$ yarn dev // development 환경
+$ yarn build // 프로젝트 빌드
+$ yarn start // production 환경
 ```
 
 
