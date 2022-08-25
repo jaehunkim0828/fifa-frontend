@@ -7,6 +7,7 @@ $ yarn dev // development 환경
 $ yarn build // 프로젝트 빌드
 $ yarn start // production 환경
 ```
+Port: 3000
 
 
 ## 1. 목표 세우기
