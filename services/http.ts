@@ -2,6 +2,10 @@ import axios from "axios";
 
 const url = "http://3.37.55.226:8080";
 
+/**get 요청
+ * @argument path: string ('player/')
+ * @argument params: object ({ spid: 2581004010 })
+ */
 export const getMethod = async (path: string, params?: object) => {
   const data = await axios.get(`${url}/${path}`, {
     params: { ...params },
