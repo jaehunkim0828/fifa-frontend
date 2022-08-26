@@ -18,7 +18,11 @@ const initialState = {};
 // 저장소 만들기
 const store1 = configureStore({
   reducer: rootReducer,
-  middleware: middleware => middleware().concat(logger),
+  middleware: middleware => {
+    if (process.env.NODE_ENV !== "production")
+      return middleware().concat(logger);
+    return middleware();
+  },
   devTools: process.env.NODE_ENV !== "production",
   preloadedState: initialState,
   enhancers: defaultEnhancers => [...defaultEnhancers],
