@@ -54,7 +54,6 @@ export const step1 = (data: GraphData[]) => ({
 export const step2 = (data: GraphData[]) => ({
   labels: labels2,
   datasets: data.map((player: GraphData, i: number) => {
-    console.log(colors[i]);
     return {
       label: `${i + 1}. ${player.name}`,
       data: [
