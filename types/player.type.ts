@@ -1,3 +1,5 @@
+import { PositionStatus } from "./playerThumb.type";
+
 export interface CompareThumb {
   spid?: string;
   name?: string;
@@ -8,6 +10,7 @@ export interface PlayerInfo {
   name: string;
   id: string;
   season: { classname: string; seasonImg: string; id: number };
+  position: { desc: PositionStatus } | null;
 }
 
 export interface PlayerProps {

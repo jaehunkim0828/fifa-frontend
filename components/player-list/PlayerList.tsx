@@ -11,7 +11,7 @@ export default function PlayerList({ players }: PlayerListProps) {
     <div className={style.playerList}>
       {players.map(
         (
-          { id, name, season: { classname, seasonImg } }: PlayerInfo,
+          { id, name, season: { classname, seasonImg }, position }: PlayerInfo,
           i: number
         ) => {
           return (
@@ -19,6 +19,7 @@ export default function PlayerList({ players }: PlayerListProps) {
               key={i}
               spid={id}
               name={name}
+              position={position?.desc}
               seasonImg={seasonImg}
               classname={classname}
               checkedList={checkedList}

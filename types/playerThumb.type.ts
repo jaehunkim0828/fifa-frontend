@@ -1,5 +1,37 @@
 import { Dispatch, SetStateAction } from "react";
-import { CompareThumb } from "./player.type";
+
+export enum PositionStatus {
+  TOTAL,
+  GK,
+  SW,
+  RWB,
+  RB,
+  RCB,
+  CB,
+  LCB,
+  LB,
+  LWB,
+  RDM,
+  CDM,
+  LDM,
+  RM,
+  RCM,
+  CM,
+  LCM,
+  LM,
+  RAM,
+  CAM,
+  LAM,
+  RF,
+  CF,
+  LF,
+  RW,
+  RS,
+  ST,
+  LS,
+  LW,
+  SUB,
+}
 
 export interface Thumb {
   spid: number;
@@ -48,6 +80,7 @@ export interface PlayerThumbProps {
   classname: string;
   checkedList: Array<string>;
   setList: Dispatch<SetStateAction<string[]>>;
+  position?: PositionStatus;
 }
 
 export interface Ability {
