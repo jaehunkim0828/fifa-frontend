@@ -40,10 +40,6 @@ export default function Make() {
     setPlayers(prev => [...players]);
   };
 
-  useEffect(() => {
-    console.log(json);
-  }, [json]);
-
   return (
     <div>
       <form>
