@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import { useEffect, useState, memo, useRef } from "react";
+import { memo } from "react";
 import { useAppSelector } from "@store/index";
-
 import { useAppDispatch } from "@store/index";
 import { setSpidValue, resetSpidValue } from "@store/slices/spidSlice";
 import style from "./playerThumb.module.scss";
@@ -64,9 +63,9 @@ export default memo(function PlayerThumb({
             <div className={style.info}>
               <img src={seasonImg} className={style.seasonImg} alt="seaon" />
               <p className={style.name}>{name}</p>
+              <span>메인: </span>
+              <span>{position ?? "미정"}</span>
             </div>
-            <span>메인 포지션: </span>
-            <span>{position ?? "미정"}</span>
           </div>
         </div>
       </div>
