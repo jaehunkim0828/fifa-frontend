@@ -6,7 +6,7 @@ import style from "./rank.module.scss";
 import Pagination from "@components/pagination/Pagination";
 import ThumbService from "@services/playerThumb.api";
 import useStats from "@hooks/useRank";
-import { seleteOptions } from "@data/playerThumb.data";
+import json from "@data/playerThumb.json";
 import { useAppSelector } from "@store/index";
 import PlayerInformation from "@components/player-information/PlayerInformation";
 import RankService from "@services/rank.api";
@@ -44,7 +44,7 @@ export default function Rank({ playerRanks, totalCount, count }: any) {
     <div className={style.rankContainer}>
       <PlayerInformation
         statses={statuses}
-        seleteOptions={seleteOptions}
+        seleteOptions={json.seleteOptions}
         showPlayerGraph={showPlayerGraph}
         ranks={ranks}
       />

@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+import { Position } from "./player.type";
 
 export enum PositionStatus {
   TOTAL,
@@ -31,6 +32,14 @@ export enum PositionStatus {
   LS,
   LW,
   SUB,
+}
+
+export enum PositionPart {
+  GK = "GK",
+  DF = "DF",
+  MF = "MF",
+  FW = "FW",
+  SUB = "SUB",
 }
 
 export interface Thumb {
@@ -80,7 +89,7 @@ export interface PlayerThumbProps {
   classname: string;
   checkedList: Array<string>;
   setList: Dispatch<SetStateAction<string[]>>;
-  position?: PositionStatus;
+  position?: Position;
 }
 
 export interface Ability {

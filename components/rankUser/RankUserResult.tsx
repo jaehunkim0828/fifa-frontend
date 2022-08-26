@@ -36,7 +36,7 @@ export default function RankUserResult({ spid, name }: RankUserResultProps) {
             },
           } = e;
 
-          const playerRankResult = await postMethod("rank/potential", {
+          await postMethod("rank/potential", {
             spid: spId,
             position: spPosition,
             name,
@@ -54,13 +54,11 @@ export default function RankUserResult({ spid, name }: RankUserResultProps) {
             tackle,
             createDate,
           });
-          console.log(playerRankResult.data);
         } catch (e) {
           console.log(e);
         }
       });
       setDedetail(prev => {
-        console.log(data.data);
         return [...prev, ...data.data];
       });
     };

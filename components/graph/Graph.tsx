@@ -22,11 +22,11 @@ import { GraphProps } from "@type/graph.type";
 import { options1, step1, step2 } from "@data/graph.data";
 import { useEffect, useState } from "react";
 import { GraphData } from "@type/rankUserResult.type";
-import { initialStatus } from "@data/playerThumb.json";
+import json from "@data/playerThumb.json";
 
 export default function Graph({ statses }: GraphProps) {
   const [players, setPlayers] = useState<GraphData[]>([
-    { name: "", status: initialStatus, spid: "" },
+    { name: "", status: json.initialStatus, spid: "" },
   ]);
 
   useEffect(() => {

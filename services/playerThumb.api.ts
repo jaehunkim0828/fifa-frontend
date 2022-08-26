@@ -101,7 +101,6 @@ export default class PlayerThumb {
   }
 
   public async updatePoOfPlayer(spid: string) {
-    const result = await getMethod(`player/add/position/${spid}`);
-    console.log(result);
+    await getMethod(`player/add/position/${spid}`);
   }
 }

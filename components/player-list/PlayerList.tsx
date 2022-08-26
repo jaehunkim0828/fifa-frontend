@@ -19,7 +19,7 @@ export default function PlayerList({ players }: PlayerListProps) {
               key={i}
               spid={id}
               name={name}
-              position={position?.desc}
+              position={position}
               seasonImg={seasonImg}
               classname={classname}
               checkedList={checkedList}
