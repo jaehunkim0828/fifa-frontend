@@ -7,7 +7,7 @@ import { setSpidValue, resetSpidValue } from "@store/slices/spidSlice";
 import style from "./playerThumb.module.scss";
 import ThumbService from "@services/playerThumb.api";
 import { PlayerThumbProps } from "@type/playerThumb.type";
-import { thumbstyle } from "../../data/playerThumb.data";
+import { thumbstyle } from "@data/playerThumb.json";
 
 export default memo(function PlayerThumb({
   spid,
@@ -15,9 +15,12 @@ export default memo(function PlayerThumb({
   seasonImg,
   checkedList,
   setList,
+  position,
 }: PlayerThumbProps) {
   const dispatch = useAppDispatch();
   const thumbService = new ThumbService();
+
+  // const postionColor = { color: };
 
   const {
     value: { spid: id },
@@ -62,6 +65,8 @@ export default memo(function PlayerThumb({
               <img src={seasonImg} className={style.seasonImg} alt="seaon" />
               <p className={style.name}>{name}</p>
             </div>
+            <span>메인 포지션: </span>
+            <span>{position ?? "미정"}</span>
           </div>
         </div>
       </div>

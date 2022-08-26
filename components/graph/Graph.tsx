@@ -22,7 +22,7 @@ import { GraphProps } from "@type/graph.type";
 import { options1, step1, step2 } from "@data/graph.data";
 import { useEffect, useState } from "react";
 import { GraphData } from "@type/rankUserResult.type";
-import { initialStatus } from "@data/playerThumb.data";
+import { initialStatus } from "@data/playerThumb.json";
 
 export default function Graph({ statses }: GraphProps) {
   const [players, setPlayers] = useState<GraphData[]>([
@@ -52,7 +52,6 @@ export default function Graph({ statses }: GraphProps) {
           }`}</div>
         );
       })}
-      {/* <div>{`총 경기 수: ${statses[0].matchCount}`}</div> */}
     </div>
   );
 }

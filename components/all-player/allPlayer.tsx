@@ -8,7 +8,7 @@ import PlayerService from "@services/player.api";
 import { PlayerInfo, PlayerProps } from "@type/player.type";
 import style from "./allPlayer.module.scss";
 import PlayerInformation from "@components/player-information/PlayerInformation";
-import { seleteOptions } from "@data/playerThumb.data";
+import { seleteOptions } from "@data/playerThumb.json";
 import AllPlayerService from "@services/allPlayer.api";
 import useStats from "@hooks/useRank";
 import { useAppSelector } from "@store/index";
