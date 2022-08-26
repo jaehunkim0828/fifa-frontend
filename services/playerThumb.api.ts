@@ -74,7 +74,7 @@ export default class PlayerThumb {
           },
         } = e;
 
-        const playerRankResult = await this.createRank({
+        await this.createRank({
           spid: spId,
           position: spPosition,
           createDate,
@@ -92,13 +92,16 @@ export default class PlayerThumb {
           shoot,
           tackle,
         });
-
-        // console.log(playerRankResult.data);
       } catch (e) {
         if (e instanceof Error) {
-          // console.error(e);
+          console.error(e);
         }
       }
     });
+  }
+
+  public async updatePoOfPlayer(spid: string) {
+    const result = await getMethod(`player/add/position/${spid}`);
+    console.log(result);
   }
 }

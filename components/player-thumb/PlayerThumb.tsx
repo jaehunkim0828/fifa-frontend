@@ -23,17 +23,19 @@ export default memo(function PlayerThumb({
     value: { spid: id },
   } = useAppSelector(state => state.spid);
 
-  const [graph, setGraph] = useState<boolean>(false);
-
-  const openGraph = async (e: any) => {
+  const openGraph = async () => {
     if (spid === id) {
       dispatch(resetSpidValue());
       return;
     }
 
     if (!checkedList.includes(spid)) {
+      // open
       setList(prev => [...prev, spid]);
+      await thumbService.create(spid, name);
+      await thumbService.updatePoOfPlayer(spid);
     } else {
+      //close
       setList(prev => {
         prev.splice(prev.indexOf(spid), 1);
         return prev;
@@ -45,18 +47,13 @@ export default memo(function PlayerThumb({
         name,
       })
     );
-    await thumbService.create(spid, name);
-  };
-
-  const closeGraph = () => {
-    setGraph(false);
   };
 
   return (
     <div
       className={style.thumb}
       style={checkedList.includes(spid) ? thumbstyle : {}}
-      onClick={e => (!graph ? openGraph(e) : closeGraph())}
+      onClick={openGraph}
     >
       <div className={style.main}>
         <div className={style.content}>
