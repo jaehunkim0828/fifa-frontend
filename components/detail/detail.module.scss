@@ -1,14 +1,16 @@
 .playerContainer {
-  padding: 3rem 0;
+  padding: 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 1px solid black;
 
   .graph {
+    max-width: 25rem;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    width: 30rem;
 
     .select {
       width: 10rem;

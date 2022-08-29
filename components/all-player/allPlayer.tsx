@@ -14,7 +14,7 @@ import useStats from "@hooks/useRank";
 import { useAppSelector } from "@store/index";
 import { RootState } from "@store/index";
 import Pagination from "@components/pagination/Pagination";
-import { resetSpidValue } from "@store/slices/spidSlice";
+import { resetSpidValue, setSpidValue } from "@store/slices/spidSlice";
 import { PlayerStatses } from "@type/playerThumb.type";
 import SearchBar from "@components/search-bar/SearchBar";
 
@@ -79,6 +79,16 @@ export default memo(function AllPlayer({
     setStatuses(totalPlayerData);
   };
 
+  const getDefaultPlayer = async () => {
+    const { id, name } = playersInitial[0];
+    dispatch(
+      setSpidValue({
+        spid: id,
+        name,
+      })
+    );
+  };
+
   useEffect(() => {
     const getTotalCount = async () => {
       const data = await allPlayerService.totalPlayerCount(playerName ?? "");
@@ -87,6 +97,7 @@ export default memo(function AllPlayer({
 
     getTotalCount();
     setPlayerInfo(playersInitial ?? []);
+    getDefaultPlayer();
     return () => {
       dispatch(resetSpidValue());
     };

@@ -19,8 +19,7 @@ const initialState = {};
 const store1 = configureStore({
   reducer: rootReducer,
   middleware: middleware => {
-    if (process.env.NODE_ENV !== "production")
-      return middleware().concat(logger);
+    if (process.env.NODE_ENV !== "production") return middleware();
     return middleware();
   },
   devTools: process.env.NODE_ENV !== "production",

@@ -4,15 +4,20 @@
   overflow: scroll;
   align-items: center;
   margin: 3rem 0;
-  height: 100%;
 
   .detail {
     width: 50%;
-    border: 1px solid black;
     height: 100%;
+    justify-content: center;
   }
 
   .playerRanks {
     width: 50%;
+  }
+}
+
+@media (max-width: 1248px) {
+  .playerRanksWapper {
+    width: 1000px;
   }
 }

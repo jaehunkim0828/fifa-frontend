@@ -1,5 +1,4 @@
 import Seo from "@components/rest/Seo";
-import { getMethod } from "@services/http";
 import Rank from "@components/rank/Rank";
 import { HomeProps } from "@type/Home.type";
 import RankService from "@services/rank.api";

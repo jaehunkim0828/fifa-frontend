@@ -11,7 +11,7 @@ import { useAppSelector } from "@store/index";
 import PlayerInformation from "@components/player-information/PlayerInformation";
 import RankService from "@services/rank.api";
 import { useAppDispatch } from "@store/index";
-import { resetSpidValue } from "@store/slices/spidSlice";
+import { resetSpidValue, setSpidValue } from "@store/slices/spidSlice";
 import { PlayerStatses } from "@type/playerThumb.type";
 
 export default function Rank({ playerRanks, totalCount, count }: any) {
@@ -30,15 +30,26 @@ export default function Rank({ playerRanks, totalCount, count }: any) {
     setStatuses(totalPlayerData);
   };
 
-  useEffect(() => {
-    showPlayerGraph(50);
-  }, [players]);
+  const getDefaultPlayer = async () => {
+    const { id, name } = playerRanks[0];
+    dispatch(
+      setSpidValue({
+        spid: id,
+        name,
+      })
+    );
+  };
 
   useEffect(() => {
+    getDefaultPlayer();
     return () => {
       dispatch(resetSpidValue());
     };
-  }, []);
+  }, [playerRanks]);
+
+  useEffect(() => {
+    showPlayerGraph(50);
+  }, [players]);
 
   return (
     <div className={style.rankContainer}>

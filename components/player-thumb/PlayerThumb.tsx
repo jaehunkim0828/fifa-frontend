@@ -12,12 +12,10 @@ export default memo(function PlayerThumb({
   spid,
   name,
   seasonImg,
-  checkedList,
-  setList,
   position,
 }: PlayerThumbProps) {
-  const dispatch = useAppDispatch();
   const thumbService = new ThumbService();
+  const dispatch = useAppDispatch();
 
   const selectPostionColor = (part?: string) => {
     switch (part) {
@@ -41,40 +39,26 @@ export default memo(function PlayerThumb({
     fontWeight: "bold",
   };
 
-  const {
-    value: { spid: id },
-  } = useAppSelector(state => state.spid);
+  const { value } = useAppSelector(state => state.spid);
 
   const openGraph = async () => {
-    if (spid === id) {
-      dispatch(resetSpidValue());
-      return;
-    }
-
-    if (!checkedList.includes(spid)) {
-      // open
-      setList(prev => [...prev, spid]);
-      await thumbService.create(spid, name);
-      await thumbService.updatePoOfPlayer(spid);
-    } else {
-      //close
-      setList(prev => {
-        prev.splice(prev.indexOf(spid), 1);
-        return prev;
-      });
-    }
     dispatch(
       setSpidValue({
         spid,
         name,
       })
     );
+
+    if (!value[spid]) {
+      await thumbService.create(spid, name);
+      await thumbService.updatePoOfPlayer(spid);
+    }
   };
 
   return (
     <div
       className={style.thumb}
-      style={checkedList.includes(spid) ? json.thumbstyle : {}}
+      style={value[spid] ? json.thumbstyle : {}}
       onClick={openGraph}
     >
       <div className={style.main}>

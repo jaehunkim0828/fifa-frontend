@@ -1,12 +1,16 @@
+import { useAppDispatch } from "@store/index";
+import { resetSpidValue } from "@store/slices/spidSlice";
 import { useRouter } from "next/router";
 
 import style from "./nav.module.scss";
 
 export default function Nav() {
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
   const routing = (path: string) => {
     router.push(`${path}`);
+    dispatch(resetSpidValue());
   };
 
   return (
