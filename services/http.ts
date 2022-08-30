@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = `http://${process.env.NEXT_PUBLIC_PRIVATE_IP}:8080`;
+const url = `http://${process.env.NEXT_PUBLIC_PUBLIC_IP}:8080`;
 
 /**get 요청
  * @argument path: string ('player/')
