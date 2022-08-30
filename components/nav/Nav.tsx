@@ -9,7 +9,7 @@ export default function Nav() {
   const dispatch = useAppDispatch();
 
   const routing = (path: string) => {
-    router.push(`${path}`);
+    router.replace(`${path}`);
     dispatch(resetSpidValue());
   };
 
