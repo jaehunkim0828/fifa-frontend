@@ -1,3 +1,17 @@
 .graph {
   width: 100%;
+
+  .who {
+    display: flex;
+    align-items: center;
+
+    div {
+      margin-right: 1rem;
+    }
+
+    img {
+      width: 1.8rem;
+      height: 1.2rem;
+    }
+  }
 }

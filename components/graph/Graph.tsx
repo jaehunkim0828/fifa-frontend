@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -19,15 +20,23 @@ ChartJS.register(
 );
 import style from "./graph.module.scss";
 import { GraphProps } from "@type/graph.type";
-import { options1, step1, step2 } from "@data/graph.data";
+import { colors, options1, step1, step2 } from "@data/graph.data";
 import { useEffect, useState } from "react";
 import { GraphData } from "@type/rankUserResult.type";
 import json from "@data/playerThumb.json";
 
 export default function Graph({ statses }: GraphProps) {
   const [players, setPlayers] = useState<GraphData[]>([
-    { name: "", status: json.initialStatus, spid: "" },
+    { name: "", status: json.initialStatus, spid: "", seasonImg: "/" },
   ]);
+
+  const playerColor = (index: number) => {
+    return {
+      backgroundColor: colors[index],
+      width: "2rem",
+      height: "1rem",
+    };
+  };
 
   useEffect(() => {
     const result: GraphData[] = [];
@@ -36,6 +45,7 @@ export default function Graph({ statses }: GraphProps) {
         spid,
         name: statses[spid].name,
         status: statses[spid].status,
+        seasonImg: statses[spid].seasonImg,
       });
     }
     setPlayers(result);
@@ -47,9 +57,11 @@ export default function Graph({ statses }: GraphProps) {
       <Bar data={step2(players)} />
       {players.map((player, i: number) => {
         return (
-          <div key={i}>{`${i + 1}. ${player.name}의 경기 수: ${
-            player.status.matchCount
-          }`}</div>
+          <div key={i} className={style.who}>
+            <div style={playerColor(i)}></div>
+            <img src={player.seasonImg} alt="none" />
+            <span>{`${player.name}의 경기 수: ${player.status.matchCount}`}</span>
+          </div>
         );
       })}
     </div>

@@ -116,5 +116,6 @@ export type PlayerStatses = {
   [key in string]: {
     status: Stats;
     name: string;
+    seasonImg: string;
   };
 };

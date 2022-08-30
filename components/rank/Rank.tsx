@@ -25,7 +25,11 @@ export default function Rank({ playerRanks, totalCount, count }: any) {
     const totalPlayerData: PlayerStatses = {};
     for (const player in players) {
       const status = await rankService.getMyTotalRankByPo(player, position);
-      totalPlayerData[player] = { name: players[player], status };
+      totalPlayerData[player] = {
+        name: players[player],
+        status,
+        seasonImg: status.seasonImg,
+      };
     }
     setStatuses(totalPlayerData);
   };
@@ -42,9 +46,6 @@ export default function Rank({ playerRanks, totalCount, count }: any) {
 
   useEffect(() => {
     getDefaultPlayer();
-    return () => {
-      dispatch(resetSpidValue());
-    };
   }, [playerRanks]);
 
   useEffect(() => {

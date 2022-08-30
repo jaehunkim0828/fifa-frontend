@@ -62,9 +62,10 @@ export default memo(function AllPlayer({
     }
 
     setPlayer("");
-    router.push({
+    router.replace({
       pathname: `/search/${player}`,
     });
+    dispatch(resetSpidValue());
   };
 
   const showPlayerGraph = async (position: number) => {
@@ -74,19 +75,25 @@ export default memo(function AllPlayer({
         player,
         position
       );
-      totalPlayerData[player] = { name: players[player], status };
+      totalPlayerData[player] = {
+        name: players[player],
+        status,
+        seasonImg: status.seasonImg,
+      };
     }
     setStatuses(totalPlayerData);
   };
 
   const getDefaultPlayer = async () => {
-    const { id, name } = playersInitial[0];
-    dispatch(
-      setSpidValue({
-        spid: id,
-        name,
-      })
-    );
+    if (playersInitial[0]?.name) {
+      const { id, name } = playersInitial[0];
+      dispatch(
+        setSpidValue({
+          spid: id,
+          name,
+        })
+      );
+    }
   };
 
   useEffect(() => {
@@ -98,9 +105,6 @@ export default memo(function AllPlayer({
     getTotalCount();
     setPlayerInfo(playersInitial ?? []);
     getDefaultPlayer();
-    return () => {
-      dispatch(resetSpidValue());
-    };
   }, [playersInitial]);
 
   useEffect(() => {

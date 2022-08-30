@@ -1,6 +1,6 @@
-import { GraphData, PlayerRank } from "@type/rankUserResult.type";
+import { GraphData } from "@type/rankUserResult.type";
 
-const colors = [
+export const colors = [
   "#E99497",
   "#F3C583",
   "#E8E46E",
@@ -12,14 +12,13 @@ const colors = [
 export const options1 = (players: GraphData[]) => ({
   responsive: true,
   plugins: {
-    legend: {
-      position: "top" as const,
-    },
     title: {
       display: true,
-      text: `1경기당 평균 ${players
-        .map(player => player.name)
-        .join(", ")} 선수의 그래프`,
+      text: `1경기당 평균 선수의 그래프`,
+    },
+    legend: {
+      position: "top" as const,
+      display: false,
     },
   },
 });

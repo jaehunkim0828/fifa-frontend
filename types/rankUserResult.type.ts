@@ -28,4 +28,5 @@ export interface GraphData {
   name: string;
   status: PlayerRank;
   spid: string;
+  seasonImg: string;
 }
