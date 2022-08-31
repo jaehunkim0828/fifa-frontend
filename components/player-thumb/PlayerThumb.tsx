@@ -42,17 +42,17 @@ export default memo(function PlayerThumb({
   const { value } = useAppSelector(state => state.spid);
 
   const openGraph = async () => {
+    if (!value[spid]) {
+      await thumbService.create(spid, name);
+      await thumbService.updatePoOfPlayer(spid);
+    }
+
     dispatch(
       setSpidValue({
         spid,
         name,
       })
     );
-
-    if (!value[spid]) {
-      await thumbService.create(spid, name);
-      await thumbService.updatePoOfPlayer(spid);
-    }
   };
 
   return (

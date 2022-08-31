@@ -17,6 +17,7 @@ import Pagination from "@components/pagination/Pagination";
 import { resetSpidValue, setSpidValue } from "@store/slices/spidSlice";
 import { PlayerStatses } from "@type/playerThumb.type";
 import SearchBar from "@components/search-bar/SearchBar";
+import ThumbService from "@services/playerThumb.api";
 
 export default memo(function AllPlayer({
   playersInitial,
@@ -25,6 +26,8 @@ export default memo(function AllPlayer({
 }: PlayerProps) {
   const allPlayerService = new AllPlayerService();
   const playerService = new PlayerService();
+  const thumbService = new ThumbService();
+
   const router = useRouter();
   const dispatch = useAppDispatch();
 
@@ -84,9 +87,10 @@ export default memo(function AllPlayer({
     setStatuses(totalPlayerData);
   };
 
-  const getDefaultPlayer = async () => {
-    if (playersInitial[0]?.name) {
-      const { id, name } = playersInitial[0];
+  const getDefaultPlayer = async (id: string, name: string) => {
+    if (name) {
+      await thumbService.create(id, name);
+      await thumbService.updatePoOfPlayer(id);
       dispatch(
         setSpidValue({
           spid: id,
@@ -104,7 +108,7 @@ export default memo(function AllPlayer({
 
     getTotalCount();
     setPlayerInfo(playersInitial ?? []);
-    getDefaultPlayer();
+    getDefaultPlayer(playersInitial[0]?.id, playersInitial[0]?.name);
   }, [playersInitial]);
 
   useEffect(() => {
