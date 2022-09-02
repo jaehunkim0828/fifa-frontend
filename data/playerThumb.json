@@ -47,5 +47,6 @@
     "passTry": 0,
     "shoot": 0,
     "tackle": 0
-  }
+  },
+  "positionColor": ["#FFD93D", "#6BCB77", "#4D96FF", "#FF6B6B", "#2C3333"]
 }
