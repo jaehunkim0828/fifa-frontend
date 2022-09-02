@@ -15,7 +15,7 @@ import { useAppSelector } from "@store/index";
 import { RootState } from "@store/index";
 import Pagination from "@components/pagination/Pagination";
 import { resetSpidValue, setSpidValue } from "@store/slices/spidSlice";
-import { PlayerStatses } from "@type/playerThumb.type";
+import { PlayerStats } from "@type/playerThumb.type";
 import SearchBar from "@components/search-bar/SearchBar";
 import ThumbService from "@services/playerThumb.api";
 
@@ -37,7 +37,7 @@ export default memo(function AllPlayer({
 
   const [player, setPlayer] = useInput("");
   const [playersInfo, setPlayerInfo] = useState<PlayerInfo[]>([]);
-  const [statuses, setStatuses] = useStats({});
+  const [stats, setStats] = useStats({});
   const [totalCount, setCount] = useState(0);
 
   const onChangePlayer = ({
@@ -72,7 +72,7 @@ export default memo(function AllPlayer({
   };
 
   const showPlayerGraph = async (position: number) => {
-    const totalPlayerData: PlayerStatses = {};
+    const totalPlayerData: PlayerStats = {};
     for (const player in players) {
       const status = await allPlayerService.getMyTotalRankByPo(
         player,
@@ -84,7 +84,7 @@ export default memo(function AllPlayer({
         seasonImg: status.seasonImg,
       };
     }
-    setStatuses(totalPlayerData);
+    setStats(totalPlayerData);
   };
 
   const getDefaultPlayer = async (id: string, name: string) => {
@@ -124,7 +124,7 @@ export default memo(function AllPlayer({
         submit={submit}
       />
       <PlayerInformation
-        statses={statuses}
+        stats={stats}
         seleteOptions={json.seleteOptions}
         showPlayerGraph={showPlayerGraph}
         ranks={playersInfo}

@@ -25,7 +25,7 @@ import { useEffect, useState } from "react";
 import { GraphData } from "@type/rankUserResult.type";
 import json from "@data/playerThumb.json";
 
-export default function Graph({ statses }: GraphProps) {
+export default function Graph({ stats }: GraphProps) {
   const [players, setPlayers] = useState<GraphData[]>([
     { name: "", status: json.initialStatus, spid: "", seasonImg: "/" },
   ]);
@@ -40,16 +40,16 @@ export default function Graph({ statses }: GraphProps) {
 
   useEffect(() => {
     const result: GraphData[] = [];
-    for (const spid in statses) {
+    for (const spid in stats) {
       result.push({
         spid,
-        name: statses[spid].name,
-        status: statses[spid].status,
-        seasonImg: statses[spid].seasonImg,
+        name: stats[spid].name,
+        status: stats[spid].status,
+        seasonImg: stats[spid].seasonImg,
       });
     }
     setPlayers(result);
-  }, [statses]);
+  }, [stats]);
 
   return (
     <div className={style.graph}>

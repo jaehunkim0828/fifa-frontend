@@ -1,11 +1,11 @@
-import { PlayerStatses, Stats } from "../types/playerThumb.type";
+import { PlayerStats, Stats } from "../types/playerThumb.type";
 import { useState, useCallback } from "react";
 
 export default function useStats(
-  initialState: PlayerStatses
-): [PlayerStatses, (statses: PlayerStatses) => void] {
+  initialState: PlayerStats
+): [PlayerStats, (statses: PlayerStats) => void] {
   const [status, setStatus] = useState(initialState);
-  const onChange = useCallback((statses: PlayerStatses) => {
+  const onChange = useCallback((statses: PlayerStats) => {
     setStatus(statses);
   }, []);
   return [status, onChange];

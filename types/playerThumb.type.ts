@@ -113,7 +113,7 @@ interface RankerPlayerStatDTO {
   tackle: string;
 }
 
-export type PlayerStatses = {
+export type PlayerStats = {
   [key in string]: {
     status: Stats;
     name: string;

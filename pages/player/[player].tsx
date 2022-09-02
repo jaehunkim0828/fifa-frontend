@@ -1,22 +1,14 @@
-import PlayerService from "@services/player.api";
-import { PositionPart, Stats } from "@type/playerThumb.type";
-import { useRouter } from "next/router";
+import Seo from "@components/rest/Seo";
+import SinglePlayer from "@components/single-player/SinglePlayer";
+import { PlayterDetailProps, PrevPlayerDetail } from "@type/playerDetailPage";
+import SinglePlayerService from "@services/singlePlayer.api";
 
 export default function PlayerDetail({
-  states,
+  stats,
   name,
   part,
   average,
-}: {
-  states: Stats;
-  name: string;
-  part: string;
-  average: Stats;
-}) {
-  console.log(states);
-  console.log(name);
-  console.log(part);
-  console.log(average);
+}: PlayterDetailProps) {
   /* 
     필요한 데이터
     1. 이름 -> o
@@ -26,22 +18,25 @@ export default function PlayerDetail({
     5. 등급
   */
 
-  return <div>{}</div>;
+  return (
+    <>
+      <Seo title={name} />
+      <SinglePlayer stats={stats} name={name} part={part} average={average} />
+    </>
+  );
 }
 
 export const getServerSideProps = async ({
   query: { spid, player, part },
-}: {
-  query: { spid: string; player: string; part: PositionPart };
-}) => {
-  const playerServcie = new PlayerService();
+}: PrevPlayerDetail) => {
+  const singlePlayerService = new SinglePlayerService();
 
-  const states = await playerServcie.getMyTotalRankByPo(spid, 50);
-  const average = await playerServcie.getAverageStates(part);
+  const stats = await singlePlayerService.getMyTotalRankByPo(spid, 50);
+  const average = await singlePlayerService.getAveragestats(part);
 
   return {
     props: {
-      states,
+      stats,
       name: player,
       part,
       average,

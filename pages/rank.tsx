@@ -1,12 +1,16 @@
 import Seo from "@components/rest/Seo";
 import Rank from "@components/rank/Rank";
-import { HomeProps } from "@type/Home.type";
+import { RankPageProps } from "@type/rankPage.type";
 import RankService from "@services/rank.api";
 
-export default function Home({ playerRanks, totalCount, count }: HomeProps) {
+export default function RankPage({
+  playerRanks,
+  totalCount,
+  count,
+}: RankPageProps) {
   return (
     <>
-      <Seo title={"Home"} />
+      <Seo title={"Rank"} />
       <Rank playerRanks={playerRanks} totalCount={totalCount} count={count} />
     </>
   );

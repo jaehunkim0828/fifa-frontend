@@ -1,5 +1,5 @@
 import { PlayerInfo } from "./player.type";
-import { PlayerStatses } from "./playerThumb.type";
+import { PlayerStats } from "./playerThumb.type";
 
 export interface PlayerInformationProps {
   seleteOptions: {
@@ -8,6 +8,6 @@ export interface PlayerInformationProps {
   }[];
   showPlayerGraph: (value: number) => void;
 
-  statses: PlayerStatses;
+  stats: PlayerStats;
   ranks: PlayerInfo[];
 }

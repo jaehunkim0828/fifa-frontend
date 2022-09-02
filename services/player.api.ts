@@ -13,12 +13,4 @@ export default class PlayerService {
       )}?current_page=${current_page}&count=${count}`
     );
   }
-
-  public async getMyTotalRankByPo(spid: string, value: number) {
-    return getMethod(`rank/potential?spid=${spid}&po=${value}`);
-  }
-
-  public async getAverageStates(part: PositionPart) {
-    return getMethod(`position/average/${part}`);
-  }
 }

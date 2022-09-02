@@ -12,7 +12,7 @@ import PlayerInformation from "@components/player-information/PlayerInformation"
 import RankService from "@services/rank.api";
 import { useAppDispatch } from "@store/index";
 import { resetSpidValue, setSpidValue } from "@store/slices/spidSlice";
-import { PlayerStatses } from "@type/playerThumb.type";
+import { PlayerStats } from "@type/playerThumb.type";
 
 export default function Rank({ playerRanks, totalCount, count }: any) {
   const rankService = new RankService();
@@ -20,9 +20,9 @@ export default function Rank({ playerRanks, totalCount, count }: any) {
   const dispatch = useAppDispatch();
 
   const [ranks, setRanks] = useState(playerRanks);
-  const [statuses, setStatuses] = useStats({});
+  const [stats, setStats] = useStats({});
   const showPlayerGraph = async (position: number) => {
-    const totalPlayerData: PlayerStatses = {};
+    const totalPlayerData: PlayerStats = {};
     for (const player in players) {
       const status = await rankService.getMyTotalRankByPo(player, position);
       totalPlayerData[player] = {
@@ -31,7 +31,7 @@ export default function Rank({ playerRanks, totalCount, count }: any) {
         seasonImg: status.seasonImg,
       };
     }
-    setStatuses(totalPlayerData);
+    setStats(totalPlayerData);
   };
 
   const getDefaultPlayer = async () => {
@@ -55,7 +55,7 @@ export default function Rank({ playerRanks, totalCount, count }: any) {
   return (
     <div className={style.rankContainer}>
       <PlayerInformation
-        statses={statuses}
+        stats={stats}
         seleteOptions={json.seleteOptions}
         showPlayerGraph={showPlayerGraph}
         ranks={ranks}

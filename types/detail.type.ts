@@ -1,4 +1,4 @@
-import { PlayerStatses, Stats } from "./playerThumb.type";
+import { PlayerStats, Stats } from "./playerThumb.type";
 
 export interface DetailProps {
   seleteOptions: {
@@ -6,5 +6,5 @@ export interface DetailProps {
     label: string;
   }[];
   showPlayerGraph: (value: number) => void;
-  statses: PlayerStatses;
+  stats: PlayerStats;
 }
