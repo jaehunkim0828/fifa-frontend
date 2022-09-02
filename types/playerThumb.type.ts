@@ -61,6 +61,7 @@ export interface Stats {
   passTry: number;
   shoot: number;
   tackle: number;
+  seasonImg?: string;
 }
 
 export class RankInput {

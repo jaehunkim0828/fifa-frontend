@@ -101,6 +101,10 @@ export default class PlayerThumb {
   }
 
   public async updatePoOfPlayer(spid: string) {
-    await getMethod(`player/add/position/${spid}`);
+    return await getMethod(`player/add/position/${spid}`);
+  }
+
+  public async findPartByPlayer(spid: string) {
+    return await getMethod(`position/part/${spid}`);
   }
 }
