@@ -2,11 +2,13 @@
 import { memo } from "react";
 import { useAppSelector } from "@store/index";
 import { useAppDispatch } from "@store/index";
-import { setSpidValue, resetSpidValue } from "@store/slices/spidSlice";
+import { setSpidValue } from "@store/slices/spidSlice";
 import style from "./playerThumb.module.scss";
 import ThumbService from "@services/playerThumb.api";
 import { PlayerThumbProps, PositionPart } from "@type/playerThumb.type";
 import json from "@data/playerThumb.json";
+import { postionColor } from "@data/playerThumb.data";
+import { useRouter } from "next/router";
 
 export default memo(function PlayerThumb({
   spid,
@@ -16,28 +18,7 @@ export default memo(function PlayerThumb({
 }: PlayerThumbProps) {
   const thumbService = new ThumbService();
   const dispatch = useAppDispatch();
-
-  const selectPostionColor = (part?: string) => {
-    switch (part) {
-      case PositionPart.GK:
-        return "#FFD93D";
-      case PositionPart.MF:
-        return "#6BCB77";
-      case PositionPart.DF:
-        return "#4D96FF";
-      case PositionPart.FW:
-        return "#FF6B6B";
-      case PositionPart.SUB:
-        return "#2C3333";
-      default:
-        return "gray";
-    }
-  };
-
-  const postionColor = {
-    color: selectPostionColor(position?.part),
-    fontWeight: "bold",
-  };
+  const router = useRouter();
 
   const { value } = useAppSelector(state => state.spid);
 
@@ -55,22 +36,42 @@ export default memo(function PlayerThumb({
     );
   };
 
+  const showDetail = async (spid: string, name: string) => {
+    await thumbService.create(spid, name);
+    await thumbService.updatePoOfPlayer(spid);
+    const part = await thumbService.findPartByPlayer(spid);
+
+    router.push({
+      pathname: `/player/${name}`,
+      query: {
+        spid,
+        part,
+      },
+    });
+  };
+
   return (
     <div
-      className={style.thumb}
       style={value[spid] ? json.thumbstyle : {}}
-      onClick={openGraph}
+      className={style.thumbContainer}
     >
-      <div className={style.main}>
-        <div className={style.info}>
-          <img src={seasonImg} className={style.seasonImg} alt="seaon" />
-          <p className={style.name}>{name}</p>
-        </div>
-        <div>
-          <span>메인: </span>
-          <span style={postionColor}>{position?.desc ?? "미정"}</span>
+      <div className={style.thumb} onClick={openGraph}>
+        <div className={style.main}>
+          <div className={style.info}>
+            <img src={seasonImg} className={style.seasonImg} alt="seaon" />
+            <p className={style.name}>{name}</p>
+          </div>
+          <div>
+            <span>메인: </span>
+            <span style={postionColor(position?.part)}>
+              {position?.desc ?? "미정"}
+            </span>
+          </div>
         </div>
       </div>
+      <button onClick={() => showDetail(spid, name)} className={style.detail}>
+        상세정보
+      </button>
     </div>
   );
 });
