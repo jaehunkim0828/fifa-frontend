@@ -1,19 +1,24 @@
 import axios from "axios";
 
-const url = `http://43.200.109.133:8080`;
+export const backUrl = `http://${process.env.NEXT_PUBLIC_PUBLIC_IP}:${process.env.NEXT_PUBLIC_BACK_PORT}`;
+export const frontUrl = `http://${process.env.NEXT_PUBLIC_PUBLIC_IP}:${process.env.NEXT_PUBLIC_FRONT_PORT}`;
 
 /**get 요청
  * @argument path: string ('player/')
  * @argument params: object ({ spid: 2581004010 })
  */
 export const getMethod = async (path: string, params?: object) => {
-  const data = await axios.get(`${url}/${path}`, {
+  const data = await axios.get(`${backUrl}/${path}`, {
     params: { ...params },
   });
 
   return data.data;
 };
 
+/** post 메소드
+ * @argument path: '/'
+ * @argument body: { spid: '00000000' }
+ */
 export const postMethod = async (path: string, body: object): Promise<any> => {
   let axiosConfig = {
     headers: {
@@ -21,6 +26,6 @@ export const postMethod = async (path: string, body: object): Promise<any> => {
       "Access-Control-Allow-Origin": "*",
     },
   };
-  const data = await axios.post(`${url}/${path}`, body, axiosConfig);
+  const data = await axios.post(`${backUrl}/${path}`, body, axiosConfig);
   return data;
 };

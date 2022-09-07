@@ -2,7 +2,7 @@
 import { memo } from "react";
 import { useAppSelector } from "@store/index";
 import { useAppDispatch } from "@store/index";
-import { setSpidValue } from "@store/slices/spidSlice";
+import { resetSpidValue, setSpidValue } from "@store/slices/spidSlice";
 import style from "./playerThumb.module.scss";
 import ThumbService from "@services/playerThumb.api";
 import { PlayerThumbProps, PositionPart } from "@type/playerThumb.type";
@@ -39,13 +39,15 @@ export default memo(function PlayerThumb({
   const showDetail = async (spid: string, name: string) => {
     await thumbService.create(spid, name);
     await thumbService.updatePoOfPlayer(spid);
-    const part = await thumbService.findPartByPlayer(spid);
+    const position = await thumbService.findPartByPlayer(spid);
+    dispatch(resetSpidValue());
 
     router.push({
       pathname: `/player/${name}`,
       query: {
         spid,
-        part,
+        part: position.part,
+        desc: position.desc,
       },
     });
   };

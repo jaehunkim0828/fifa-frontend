@@ -15,7 +15,7 @@ import { useAppSelector } from "@store/index";
 import { RootState } from "@store/index";
 import Pagination from "@components/pagination/Pagination";
 import { resetSpidValue, setSpidValue } from "@store/slices/spidSlice";
-import { PlayerStats } from "@type/playerThumb.type";
+import { PlayerStats, PositionStatus } from "@type/playerThumb.type";
 import SearchBar from "@components/search-bar/SearchBar";
 import ThumbService from "@services/playerThumb.api";
 
@@ -112,7 +112,7 @@ export default memo(function AllPlayer({
   }, [playersInitial]);
 
   useEffect(() => {
-    showPlayerGraph(50);
+    showPlayerGraph(PositionStatus.TOTAL);
   }, [players]);
 
   return (

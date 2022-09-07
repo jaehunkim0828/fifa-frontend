@@ -1,0 +1,18 @@
+.singlePlayerContainer {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  padding: 5rem;
+  justify-content: center;
+
+  .singlePlayerWapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 60rem;
+
+    .graphContainer {
+      width: 30rem;
+    }
+  }
+}

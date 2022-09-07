@@ -1,4 +1,4 @@
-export interface HomeProps {
+export interface RankPageProps {
   totalCount: number;
   playerRanks: PlayerRank[];
   count: number;

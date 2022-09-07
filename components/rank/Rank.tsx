@@ -12,7 +12,7 @@ import PlayerInformation from "@components/player-information/PlayerInformation"
 import RankService from "@services/rank.api";
 import { useAppDispatch } from "@store/index";
 import { resetSpidValue, setSpidValue } from "@store/slices/spidSlice";
-import { PlayerStats } from "@type/playerThumb.type";
+import { PlayerStats, PositionStatus } from "@type/playerThumb.type";
 
 export default function Rank({ playerRanks, totalCount, count }: any) {
   const rankService = new RankService();
@@ -49,7 +49,7 @@ export default function Rank({ playerRanks, totalCount, count }: any) {
   }, [playerRanks]);
 
   useEffect(() => {
-    showPlayerGraph(50);
+    showPlayerGraph(PositionStatus.TOTAL);
   }, [players]);
 
   return (

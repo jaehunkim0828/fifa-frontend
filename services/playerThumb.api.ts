@@ -3,13 +3,6 @@ import { Ability, RankInput } from "@type/playerThumb.type";
 
 // class로 묶기
 export default class PlayerThumb {
-  public async findRankBySpid(spid: string) {
-    return await postMethod("rank", {
-      matchtype: 50,
-      spid,
-    });
-  }
-
   public async createRank(rankInput: RankInput) {
     const {
       spid,
@@ -100,11 +93,18 @@ export default class PlayerThumb {
     });
   }
 
-  public async updatePoOfPlayer(spid: string) {
-    return await getMethod(`player/add/position/${spid}`);
-  }
-
   public async findPartByPlayer(spid: string) {
     return await getMethod(`position/part/${spid}`);
+  }
+
+  public async findRankBySpid(spid: string) {
+    return await postMethod("rank", {
+      matchtype: 50,
+      spid,
+    });
+  }
+
+  public async updatePoOfPlayer(spid: string) {
+    return await postMethod(`player/add/position`, { spid });
   }
 }

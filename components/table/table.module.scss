@@ -1,0 +1,25 @@
+.tableContainer {
+  border-collapse: collapse;
+  width: 20rem;
+  height: auto;
+
+  th,
+  td {
+    border: 1px solid black;
+    height: 3rem;
+  }
+
+  tbody {
+    td {
+      text-align: center;
+
+      &:not(:last-of-type) {
+        background-color: #277bc0;
+      }
+    }
+
+    &:first-child {
+      height: 140px;
+    }
+  }
+}
