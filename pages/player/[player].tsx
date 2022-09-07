@@ -18,15 +18,6 @@ export default function PlayerDetail({
   spid,
   desc,
 }: PlayterDetailProps) {
-  /* 
-    필요한 데이터
-    1. 이름 -> o
-    2. 스텟 -> o
-    3. 평균 값 -> o
-    4. 이미지
-    5. 등급 -> 직접 계산
-  */
-
   const playerStats = (
     name: string,
     stats: Stats,
