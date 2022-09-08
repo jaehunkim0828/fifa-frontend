@@ -24,7 +24,7 @@ export default memo(function PlayerThumb({
 
   const openGraph = async () => {
     if (!value[spid]) {
-      await thumbService.create(spid, name);
+      thumbService.create(spid, name);
       await thumbService.updatePoOfPlayer(spid);
     }
 
