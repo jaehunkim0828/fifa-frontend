@@ -37,7 +37,7 @@ export default memo(function PlayerThumb({
   };
 
   const showDetail = async (spid: string, name: string) => {
-    await thumbService.create(spid, name);
+    thumbService.create(spid, name);
     await thumbService.updatePoOfPlayer(spid);
     const position = await thumbService.findPartByPlayer(spid);
     dispatch(resetSpidValue());
