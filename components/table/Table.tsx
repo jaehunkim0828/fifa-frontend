@@ -1,3 +1,4 @@
+import { publicImage } from "@helpers/image";
 import { CircularProgress } from "@mui/material";
 import { TableProps } from "@type/table.type";
 import Image from "next/image";
@@ -31,7 +32,11 @@ export default function Table(props: TableProps) {
         <tr>
           <td>시즌</td>
           <td>
-            <Image src={seasonImg} alt="seeson" width="30" height="24" />
+            {seasonImg ? (
+              <Image src={seasonImg} alt="seeson" width="30" height="24" />
+            ) : (
+              <CircularProgress />
+            )}
           </td>
         </tr>
         <tr>
