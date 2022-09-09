@@ -16,6 +16,16 @@
       &:not(:last-of-type) {
         background-color: #277bc0;
       }
+
+      span {
+        &:first-child {
+          font-weight: bold;
+        }
+        &:last-child {
+          color: gray;
+          font-size: 0.8rem;
+        }
+      }
     }
 
     &:first-child {
