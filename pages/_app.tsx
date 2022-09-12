@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 }
 
-export const getInitialProps = async (appContext: AppContext) => {
+MyApp.getInitialProps = async (appContext: AppContext) => {
   // calls page's `getInitialProps` and fills `appProps.pageProps`
   const appProps = await App.getInitialProps(appContext);
 
