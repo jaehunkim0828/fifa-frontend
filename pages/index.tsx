@@ -1,13 +1,10 @@
 import Layout from "@components/rest/Layout";
-import Seo from "@components/rest/Seo";
 import StartSearch from "@components/start-search/StartSearch";
-import { useEffect, useState } from "react";
+import { AppContext } from "next/app";
+import { useEffect } from "react";
+import { isMobile } from "react-device-detect";
 
 const Search = ({ isMobile }: any) => {
-  const style = {
-    display: "none",
-  };
-
   return (
     <Layout page="search" isMobile={isMobile}>
       <StartSearch />
