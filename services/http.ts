@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const backUrl = `https://${process.env.NEXT_PUBLIC_PUBLIC_IP}:${process.env.NEXT_PUBLIC_BACK_PORT}`;
+export const backUrl = `http://${process.env.NEXT_PUBLIC_PUBLIC_IP}:${process.env.NEXT_PUBLIC_BACK_PORT}`;
 export const frontUrl = `https://${process.env.NEXT_PUBLIC_PUBLIC_IP}:${process.env.NEXT_PUBLIC_FRONT_PORT}`;
 
 /**get 요청
