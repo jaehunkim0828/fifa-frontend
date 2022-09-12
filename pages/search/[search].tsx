@@ -6,14 +6,10 @@ import { useEffect, useState } from "react";
 import PlayerService from "@services/player.api";
 import { GetServerSideProps } from "next";
 import { PlayerInfo } from "@type/player.type";
+import Layout from "@components/rest/Layout";
+import { searchProps } from "@type/search.type";
 
-export default function Search({
-  name,
-  player,
-}: {
-  name: string;
-  player: PlayerInfo[];
-}) {
+export default function Search({ name, player, isMobile }: searchProps) {
   const router = useRouter();
   const count = 9;
 
@@ -26,12 +22,9 @@ export default function Search({
   }, [name, player, router]);
 
   return (
-    <>
-      <Seo title={name} />
-      <div>
-        <AllPlayer playersInitial={player} count={count} current_page={0} />
-      </div>
-    </>
+    <Layout page={name} isMobile={isMobile}>
+      <AllPlayer playersInitial={player} count={count} current_page={0} />
+    </Layout>
   );
 }
 

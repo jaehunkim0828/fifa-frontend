@@ -16,4 +16,5 @@ export interface PlayterDetailProps {
   average: Stats;
   spid: string;
   desc: string;
+  isMobile: boolean;
 }

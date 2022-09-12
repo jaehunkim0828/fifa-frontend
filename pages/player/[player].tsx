@@ -3,11 +3,12 @@ import SinglePlayer from "@components/single-player/SinglePlayer";
 import { PlayterDetailProps, PrevPlayerDetail } from "@type/playerDetailPage";
 import { PlayerStats, PositionPart, Stats } from "@type/playerThumb.type";
 import { publicImage } from "@helpers/image";
+import Layout from "@components/rest/Layout";
 
 export default function PlayerDetail({
   name,
   part,
-
+  isMobile,
   spid,
   desc,
 }: PlayterDetailProps) {
@@ -30,10 +31,9 @@ export default function PlayerDetail({
   });
 
   return (
-    <>
-      <Seo title={name} />
+    <Layout page={name} isMobile={isMobile}>
       <SinglePlayer name={name} part={part} desc={desc} spid={spid} />
-    </>
+    </Layout>
   );
 }
 

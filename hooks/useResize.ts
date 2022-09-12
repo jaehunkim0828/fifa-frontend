@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export function useResize(): number {
+export default function useResize(): number {
   const [windowSize, setWindowSize] = useState<number>(0);
   useEffect(() => {
     function handleResize() {

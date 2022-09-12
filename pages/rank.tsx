@@ -2,16 +2,20 @@ import Seo from "@components/rest/Seo";
 import Rank from "@components/rank/Rank";
 import { RankPageProps } from "@type/rankPage.type";
 import RankService from "@services/rank.api";
+import Layout from "@components/rest/Layout";
+import { isMobile } from "react-device-detect";
 
 export default function RankPage({
   playerRanks,
   totalCount,
   count,
+  isMobile,
 }: RankPageProps) {
   return (
     <>
-      <Seo title={"Rank"} />
-      <Rank playerRanks={playerRanks} totalCount={totalCount} count={count} />
+      <Layout page="Rank" isMobile={isMobile}>
+        <Rank playerRanks={playerRanks} totalCount={totalCount} count={count} />
+      </Layout>
     </>
   );
 }

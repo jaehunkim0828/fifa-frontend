@@ -1,12 +1,17 @@
+import Layout from "@components/rest/Layout";
 import Seo from "@components/rest/Seo";
-import StartSearch from "@components/startSearch/StartSearch";
+import StartSearch from "@components/start-search/StartSearch";
+import { useEffect, useState } from "react";
 
-const Search = () => {
+const Search = ({ isMobile }: any) => {
+  const style = {
+    display: "none",
+  };
+
   return (
-    <>
-      <Seo title={"Search"} />
+    <Layout page="search" isMobile={isMobile}>
       <StartSearch />
-    </>
+    </Layout>
   );
 };
 

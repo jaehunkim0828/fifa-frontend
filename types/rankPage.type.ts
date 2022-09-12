@@ -2,6 +2,7 @@ export interface RankPageProps {
   totalCount: number;
   playerRanks: PlayerRank[];
   count: number;
+  isMobile: boolean;
 }
 export interface PlayerRank {
   name: string;
