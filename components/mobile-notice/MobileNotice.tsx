@@ -10,6 +10,7 @@ export default function MobileNotice() {
 
       alert("주소가 복사되었습니다");
     } catch (err) {
+      console.log(err);
       alert("복사 실패!");
     }
   };
@@ -17,7 +18,7 @@ export default function MobileNotice() {
   return (
     <div className={style.mobileNoticeContainer}>
       <div className={style.noticeImg}>
-        <Image src={notice} alt="긴급공지" layout="responsive" />
+        <Image src={notice} alt="긴급공지" layout="responsive" priority />
       </div>
       <strong>PC버전으로 접속해주세요</strong>
       <span>현재 모바일버전을 업데이트중입니다.</span>
