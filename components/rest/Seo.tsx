@@ -9,10 +9,6 @@ export default function Seo({ title }: SeoProps) {
     <>
       <Head>
         <title>{`${title} | FIFA 데이터 분석실`}</title>
-        <meta
-          httpEquiv="Content-Security-Policy"
-          content="upgrade-insecure-requests"
-        ></meta>
       </Head>
     </>
   );
