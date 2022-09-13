@@ -1,7 +1,7 @@
 import axios from "axios";
 
-export const backUrl = `https://${process.env.NEXT_PUBLIC_PUBLIC_IP}`;
-export const frontUrl = `https://${process.env.NEXT_PUBLIC_PUBLIC_IP}`;
+export const backUrl = `https://${process.env.NEXT_PUBLIC_BACK_DOMAIN}`;
+export const frontUrl = `https://${process.env.NEXT_PUBLIC_FRONT_DOMAIN}`;
 
 /**get 요청
  * @argument path: string ('player/')

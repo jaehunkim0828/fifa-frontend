@@ -4,7 +4,7 @@ const nextConfig = {
   images: {
     domains: [
       "ssl.nexon.com",
-      process.env.NEXT_PUBLIC_PUBLIC_IP,
+      process.env.NEXT_PUBLIC_FRONT_DOMAIN,
       "fo4.dn.nexoncdn.co.kr",
     ],
   },
