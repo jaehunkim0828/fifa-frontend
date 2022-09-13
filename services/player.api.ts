@@ -1,5 +1,4 @@
-import { PositionPart } from "@type/playerThumb.type";
-import { getMethod, postMethod } from "./http";
+import { getMethod } from "./http";
 
 export default class PlayerService {
   public async getPlayersByName(
