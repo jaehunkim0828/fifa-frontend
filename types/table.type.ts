@@ -28,4 +28,5 @@ export interface TableProps {
   desc: string;
   seasonImg: string;
   power: Power;
+  price: string;
 }

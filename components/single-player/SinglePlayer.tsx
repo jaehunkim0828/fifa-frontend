@@ -1,3 +1,4 @@
+import { Skeleton } from "@mui/material";
 import Graph from "@components/graph/Graph";
 import { SinglePlayerProps } from "@type/singlePlayer.type";
 import { useEffect, useState } from "react";
@@ -39,6 +40,8 @@ export default function SinglePlayer(props: SinglePlayerProps) {
     assist: { score: 0, grade: Grade.C },
     defense: { score: 0, grade: Grade.C },
   });
+
+  const [price, setPrice] = useState("");
 
   const calculatePower = (stats: Stats, average: Stats) => {
     // 공격: 슛시도, 유효슛, 골
@@ -177,7 +180,13 @@ export default function SinglePlayer(props: SinglePlayerProps) {
       setImage(result);
     };
 
+    const getPrice = async (spid: string) => {
+      const p = await singlePlayerService.getPlayerPrice(spid);
+      setPrice(p);
+    };
+
     getPlayerImage(spid);
+    getPrice(spid);
   }, [name, part, spid]);
 
   return (
@@ -192,6 +201,7 @@ export default function SinglePlayer(props: SinglePlayerProps) {
             image={image}
             seasonImg={playerStats[name]?.seasonImg}
             power={power}
+            price={price}
           />
         </div>
         <div className={style.graphContainer}>

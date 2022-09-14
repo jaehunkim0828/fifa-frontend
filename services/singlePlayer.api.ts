@@ -13,4 +13,8 @@ export default class SinglePlayerService {
   public async getPlayerImageUrl(spid: string) {
     return getMethod(`player/image/${spid}`);
   }
+
+  public async getPlayerPrice(spid: string) {
+    return getMethod(`player/price/${spid}`);
+  }
 }

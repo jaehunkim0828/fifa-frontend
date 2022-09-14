@@ -1,12 +1,12 @@
-import { CircularProgress } from "@mui/material";
-import { Stats } from "@type/playerThumb.type";
+import { CircularProgress, Skeleton } from "@mui/material";
 import { TableProps } from "@type/table.type";
 import Image from "next/image";
 
 import style from "./table.module.scss";
 
 export default function Table(props: TableProps) {
-  const { name, isImgLoding, image, part, desc, seasonImg, power } = props;
+  const { name, isImgLoding, image, part, desc, seasonImg, power, price } =
+    props;
   return (
     <table className={style.tableContainer}>
       <thead>
@@ -25,6 +25,26 @@ export default function Table(props: TableProps) {
               <Image src={image} alt="none" width="150px" height="150px" />
             ) : (
               <CircularProgress />
+            )}
+          </td>
+        </tr>
+        <tr>
+          <td colSpan={2}>
+            {price === "" ? (
+              <Skeleton
+                variant="rounded"
+                sx={{
+                  fontSize: "1rem",
+                  width: "10rem",
+                  height: "1.5rem",
+                  margin: "auto",
+                }}
+              />
+            ) : (
+              <>
+                <strong>{price}</strong>
+                <span>(1+ 기준)</span>
+              </>
             )}
           </td>
         </tr>
