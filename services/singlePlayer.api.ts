@@ -15,6 +15,6 @@ export default class SinglePlayerService {
   }
 
   public async getPlayerPrice(spid: string) {
-    return getMethod(`player/price/${spid}`);
+    return getMethod(`value?spid=${spid}&rating=1`);
   }
 }
