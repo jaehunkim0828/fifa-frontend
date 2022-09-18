@@ -22,6 +22,16 @@ export default function Make() {
     console.log(p);
   };
 
+  const addPlayer = async () => {
+    try {
+      await getMethod(`add/season`);
+      await getMethod(`add/newPlayer`);
+      alert("생성 완료");
+    } catch (err) {
+      alert("생성중 문제생김");
+    }
+  };
+
   const choosePlayer = (name: string, spid: number, img: string) => {
     setJson((prev: any) => ({
       selectedPlayer: [...prev.selectedPlayer, { name, spid, img }],
@@ -83,6 +93,10 @@ export default function Make() {
       </div>
       <button onClick={makeFile}>json 파일 생성하기</button>
       <div>{isOpen ? JSON.stringify(json) : ""}</div>
+
+      <button onClick={addPlayer}>
+        database에 새로운 시즌 선수들 추가하기
+      </button>
     </div>
   );
 }
