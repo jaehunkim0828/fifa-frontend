@@ -1,10 +1,17 @@
 import Layout from "@components/rest/Layout";
 import StartSearch from "@components/start-search/StartSearch";
-import { AppContext } from "next/app";
-import { useEffect } from "react";
-import { isMobile } from "react-device-detect";
+import { getMethod } from "@services/http";
+import { useEffect, useState } from "react";
 
 const Search = ({ isMobile }: any) => {
+  useEffect(() => {
+    const welcomeSend = async () => {
+      await getMethod("add/welcome");
+    };
+
+    welcomeSend();
+  }, []);
+
   return (
     <Layout page="search" isMobile={isMobile}>
       <StartSearch />
