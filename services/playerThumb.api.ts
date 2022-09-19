@@ -105,6 +105,6 @@ export default class PlayerThumb {
   }
 
   public async updatePoOfPlayer(spid: string) {
-    return await postMethod(`player/add/position`, { spid });
+    return await postMethod(`position/update`, { spid });
   }
 }
