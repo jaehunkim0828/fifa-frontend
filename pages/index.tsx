@@ -6,7 +6,9 @@ import { useEffect, useState } from "react";
 const Search = ({ isMobile }: any) => {
   useEffect(() => {
     const welcomeSend = async () => {
-      await getMethod("add/welcome");
+      const ipData = await fetch("https://geolocation-db.com/json/");
+      const locationIp = await ipData.json();
+      await getMethod(`add/ip/${locationIp.IPv4}`);
     };
 
     welcomeSend();
