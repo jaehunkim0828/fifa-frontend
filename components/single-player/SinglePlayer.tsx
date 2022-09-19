@@ -177,7 +177,10 @@ export default function SinglePlayer(props: SinglePlayerProps) {
       calculatePower(stats, average);
 
       setImgLogin(false);
-      setImage(result);
+      setImage(prev => {
+        if (!result) return prev;
+        return result;
+      });
     };
 
     const getPrice = async (spid: string) => {
