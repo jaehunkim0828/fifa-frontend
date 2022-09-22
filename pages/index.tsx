@@ -1,14 +1,16 @@
 import Layout from "@components/rest/Layout";
 import StartSearch from "@components/start-search/StartSearch";
-import { getMethod } from "@services/http";
-import { useEffect, useState } from "react";
+import { postMethod } from "@services/http";
+import { useEffect } from "react";
 
 const Search = ({ isMobile }: any) => {
   useEffect(() => {
     const welcomeSend = async () => {
       const ipData = await fetch("https://geolocation-db.com/json/");
       const locationIp = await ipData.json();
-      await getMethod(`add/ip/${locationIp.IPv4}`);
+      await postMethod(`mail/connectUser`, {
+        ip: locationIp.IPv4,
+      });
     };
 
     welcomeSend();

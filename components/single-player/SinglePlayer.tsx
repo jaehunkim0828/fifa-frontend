@@ -205,10 +205,11 @@ export default function SinglePlayer(props: SinglePlayerProps) {
             seasonImg={playerStats[name]?.seasonImg}
             power={power}
             price={price}
+            spid={spid}
           />
         </div>
         <div className={style.graphContainer}>
-          <Graph stats={playerStats} />
+          <Graph stats={playerStats} isImgLoding={isImgLoding} />
         </div>
       </div>
     </div>
