@@ -19,7 +19,7 @@ export default function Detail({
             onChange={(e: any) => showPlayerGraph(e.value)}
           />
         </div>
-        <Graph stats={stats} />
+        <Graph stats={stats} seasonImg={"1"} />
       </div>
     </div>
   );
