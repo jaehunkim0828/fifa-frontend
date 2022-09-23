@@ -24,10 +24,8 @@ export interface TableProps {
   name: string;
   isImgLoding: boolean;
   image: string;
-  part: PositionPart;
   desc: string;
   seasonImg: string;
   power: Power;
-  price: string;
   spid: string;
 }

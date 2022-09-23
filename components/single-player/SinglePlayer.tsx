@@ -175,6 +175,7 @@ export default function SinglePlayer(props: SinglePlayerProps) {
     };
 
     const getPlayerImage = async (spid: string) => {
+      await createRank(spid, name);
       setImgLogin(true);
       const result = await playerService.getPlayerImageUrl(spid);
       const stats = await rankService.getMyTotalRankByPo(
@@ -192,14 +193,7 @@ export default function SinglePlayer(props: SinglePlayerProps) {
       });
     };
 
-    const getPrice = async (spid: string) => {
-      await createRank(spid, name);
-      const p = await valueService.getPlayerPrice(spid, 1);
-      setPrice(p);
-    };
-
     getPlayerImage(spid);
-    getPrice(spid);
   }, [name, part, spid]);
 
   return (
@@ -208,13 +202,11 @@ export default function SinglePlayer(props: SinglePlayerProps) {
         <div className={style.intro}>
           <Table
             name={name}
-            part={part}
             desc={desc}
             isImgLoding={isImgLoding}
             image={image}
             seasonImg={playerStats[name]?.seasonImg}
             power={power}
-            price={price}
             spid={spid}
           />
         </div>

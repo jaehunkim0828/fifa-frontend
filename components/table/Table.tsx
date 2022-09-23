@@ -12,29 +12,34 @@ import NonPerson from "@public/images/nonperson.png";
 export default function Table(props: TableProps) {
   const valueService = new ValueService();
 
-  const {
-    spid,
-    name,
-    isImgLoding,
-    image,
-    part,
-    desc,
-    seasonImg,
-    power,
-    price,
-  } = props;
+  const { spid, name, isImgLoding, image, desc, seasonImg, power } = props;
 
-  const [nowPrice, setNowPrice] = useState(price);
+  const [nowPrice, setNowPrice] = useState("");
+  const [priceDate, setPriceDate] = useState("");
 
   const changeRating = async (e: { value: number; label: string }) => {
-    console.log(e.value);
-    const bp = await valueService.getPlayerPrice(spid, e.value);
-    setNowPrice(bp);
+    const { price, date } = await valueService.getPlayerPrice(spid, e.value);
+    const nowdate = new Intl.DateTimeFormat("kr").format(
+      new Date(date.split("T")[0])
+    );
+    setPriceDate(nowdate);
+    setNowPrice(price);
   };
 
   useEffect(() => {
-    setNowPrice(price);
-  }, [price]);
+    const valueService = new ValueService();
+
+    const getPrice = async (spid: string) => {
+      const { date, price } = await valueService.getPlayerPrice(spid, 1);
+      const nowdate = new Intl.DateTimeFormat("kr").format(
+        new Date(date.split("T")[0])
+      );
+      setPriceDate(nowdate);
+      setNowPrice(price);
+    };
+
+    getPrice(spid);
+  }, [spid]);
 
   return (
     <>
@@ -89,14 +94,17 @@ export default function Table(props: TableProps) {
             </tr>
             <tr>
               <td colSpan={2}>
-                {price === "" ? (
+                {nowPrice === "" ? (
                   <>
                     <div>가격 업데이트중</div>
                     <CircularProgress />
                   </>
                 ) : (
                   <>
-                    <div>{`${nowPrice}BP`}</div>
+                    <div>
+                      {`${nowPrice}BP`}
+                      <span>{`(${priceDate}기준)`}</span>
+                    </div>
                   </>
                 )}
               </td>
@@ -106,7 +114,7 @@ export default function Table(props: TableProps) {
               <td>
                 <div>
                   <Select
-                    isDisabled={price !== "" ? false : true}
+                    isDisabled={nowPrice !== "" ? false : true}
                     instanceId={2}
                     defaultValue={json.selectOption[0]}
                     options={json.selectOption}
@@ -126,10 +134,6 @@ export default function Table(props: TableProps) {
                   height="24"
                 />
               </td>
-            </tr>
-            <tr>
-              <td>포지션</td>
-              <td>{part}</td>
             </tr>
             <tr>
               <td>메인 포지션</td>

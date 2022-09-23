@@ -87,7 +87,6 @@ export default memo(function AllPlayer({
   const getDefaultPlayer = async (id: string, name: string) => {
     if (name) {
       await rankService.create(id, name);
-      await positionService.updatePoOfPlayer(id);
       dispatch(
         setSpidValue({
           spid: id,

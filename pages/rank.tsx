@@ -23,9 +23,9 @@ export default function RankPage({
 export async function getServerSideProps() {
   const rankService = new RankService();
 
-  const count = "9";
+  const count = 9;
   const getFirstPage = async () => {
-    return await rankService.getCurrentPage("1", count);
+    return await rankService.findCurrentPage(1, count);
   };
 
   const countTotalRankPlayer = async () => {
