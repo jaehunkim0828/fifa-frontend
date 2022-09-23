@@ -7,6 +7,7 @@ import Select from "react-select";
 import json from "@data/table.json";
 import style from "./table.module.scss";
 import TableService from "@services/table.api";
+import NonPerson from "@public/images/nonperson.png";
 
 export default function Table(props: TableProps) {
   const tableService = new TableService();
@@ -83,25 +84,16 @@ export default function Table(props: TableProps) {
                 className={style.playerImage}
                 style={{ width: "150px", height: "150px" }}
               >
-                {!isImgLoding ? (
-                  <Image src={image} alt="none" width="150px" height="150px" />
-                ) : (
-                  <CircularProgress />
-                )}
+                <Image src={image} alt="none" width="150px" height="150px" />
               </td>
             </tr>
             <tr>
               <td colSpan={2}>
                 {price === "" ? (
-                  <Skeleton
-                    variant="rounded"
-                    sx={{
-                      fontSize: "1rem",
-                      width: "10rem",
-                      height: "1.5rem",
-                      margin: "auto",
-                    }}
-                  />
+                  <>
+                    <div>가격 업데이트중</div>
+                    <CircularProgress />
+                  </>
                 ) : (
                   <>
                     <div>{`${nowPrice}BP`}</div>
@@ -127,11 +119,12 @@ export default function Table(props: TableProps) {
             <tr>
               <td>시즌</td>
               <td>
-                {seasonImg ? (
-                  <Image src={seasonImg} alt="seeson" width="30" height="24" />
-                ) : (
-                  <CircularProgress />
-                )}
+                <Image
+                  src={seasonImg ?? NonPerson}
+                  alt="seeson"
+                  width="30"
+                  height="24"
+                />
               </td>
             </tr>
             <tr>
