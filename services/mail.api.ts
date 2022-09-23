@@ -1,6 +1,6 @@
 import { postMethod } from "./http";
 
-export default class InquiryService {
+export default class MailService {
   public async sendQuestion(question: string) {
     return await postMethod("mail/inquiry", {
       question,

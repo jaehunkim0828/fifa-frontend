@@ -4,12 +4,11 @@ import { useRouter } from "next/router";
 
 import useInput from "@hooks/useInput";
 import { useAppDispatch } from "@store/index";
-import PlayerService from "@services/player.api";
 import { PlayerInfo, PlayerProps } from "@type/player.type";
 import style from "./allPlayer.module.scss";
 import PlayerInformation from "@components/player-information/PlayerInformation";
 import json from "@data/playerThumb.json";
-import AllPlayerService from "@services/allPlayer.api";
+import PlayerService from "@services/player.api";
 import useStats from "@hooks/useRank";
 import { useAppSelector } from "@store/index";
 import { RootState } from "@store/index";
@@ -17,16 +16,17 @@ import Pagination from "@components/pagination/Pagination";
 import { resetSpidValue, setSpidValue } from "@store/slices/spidSlice";
 import { PlayerStats, PositionStatus } from "@type/playerThumb.type";
 import SearchBar from "@components/search-bar/SearchBar";
-import ThumbService from "@services/playerThumb.api";
+import PositionService from "@services/position.api";
+import RankService from "@services/rank.api";
 
 export default memo(function AllPlayer({
   playersInitial,
   count,
   current_page,
 }: PlayerProps) {
-  const allPlayerService = new AllPlayerService();
   const playerService = new PlayerService();
-  const thumbService = new ThumbService();
+  const positionService = new PositionService();
+  const rankService = new RankService();
 
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -74,10 +74,7 @@ export default memo(function AllPlayer({
   const showPlayerGraph = async (position: number) => {
     const totalPlayerData: PlayerStats = {};
     for (const player in players) {
-      const status = await allPlayerService.getMyTotalRankByPo(
-        player,
-        position
-      );
+      const status = await rankService.getMyTotalRankByPo(player, position);
       totalPlayerData[player] = {
         name: players[player],
         status,
@@ -89,8 +86,8 @@ export default memo(function AllPlayer({
 
   const getDefaultPlayer = async (id: string, name: string) => {
     if (name) {
-      await thumbService.create(id, name);
-      await thumbService.updatePoOfPlayer(id);
+      await rankService.create(id, name);
+      await positionService.updatePoOfPlayer(id);
       dispatch(
         setSpidValue({
           spid: id,
@@ -102,7 +99,7 @@ export default memo(function AllPlayer({
 
   useEffect(() => {
     const getTotalCount = async () => {
-      const data = await allPlayerService.totalPlayerCount(playerName ?? "");
+      const data = await playerService.totalPlayerCount(playerName ?? "");
       setCount(data);
     };
 

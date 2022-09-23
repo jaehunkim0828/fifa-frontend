@@ -5,7 +5,8 @@ import style from "./pagination.module.scss";
 import { PaginationProps } from "@type/pagination.type";
 import left from "../../public/images/left_arrow.png";
 import right from "../../public/images/right_arrow.png";
-import PaginationService from "@services/pagination.api";
+import PlayerService from "@services/player.api";
+import RankService from "@services/rank.api";
 import pnData from "@data/pagination.json";
 import { PlayerInfo } from "@type/player.type";
 
@@ -18,15 +19,13 @@ export default memo(function Pagination({
   const [curPage, setCurpage] = useState(1);
   const [skip, setSkip] = useState(0);
 
-  const paginationService = new PaginationService();
+  const playerService = new PlayerService();
+  const rankService = new RankService();
 
-  const getCurrentPage = async (cur_page: number) => {
-    let c = count;
-    const ranksData: PlayerInfo[] = await paginationService.getCurrentPage(
-      cur_page,
-      c,
-      player
-    );
+  const getCurrentPage = async (cur_page: number, c: number) => {
+    const ranksData: PlayerInfo[] = player
+      ? await playerService.findCurrentPage(player, cur_page, c)
+      : await rankService.findCurrentPage(cur_page, c);
 
     setRanks(ranksData);
     setCurpage(+cur_page);
@@ -52,7 +51,7 @@ export default memo(function Pagination({
     let next = route === "back" ? -1 : 1;
     let reNumber = (Math.ceil(curPage / count) + next) * count - 8;
 
-    getCurrentPage(reNumber);
+    getCurrentPage(reNumber, count);
     setCurpage(reNumber);
     setSkip(prev => prev + next);
   };
@@ -68,7 +67,7 @@ export default memo(function Pagination({
         {handlePaginationNumbers().map((number, i) => {
           return (
             <button
-              onClick={() => getCurrentPage(number)}
+              onClick={() => getCurrentPage(number, count)}
               style={curPage === number ? pnData.currentStyle : {}}
               className={style.number}
               key={i}

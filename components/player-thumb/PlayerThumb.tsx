@@ -4,11 +4,12 @@ import { useAppSelector } from "@store/index";
 import { useAppDispatch } from "@store/index";
 import { resetSpidValue, setSpidValue } from "@store/slices/spidSlice";
 import style from "./playerThumb.module.scss";
-import ThumbService from "@services/playerThumb.api";
+import PositionService from "@services/position.api";
 import { PlayerThumbProps, PositionPart } from "@type/playerThumb.type";
 import json from "@data/playerThumb.json";
 import { postionColor } from "@data/playerThumb.data";
 import { useRouter } from "next/router";
+import RankService from "@services/rank.api";
 
 export default memo(function PlayerThumb({
   spid,
@@ -16,7 +17,8 @@ export default memo(function PlayerThumb({
   seasonImg,
   position,
 }: PlayerThumbProps) {
-  const thumbService = new ThumbService();
+  const positionService = new PositionService();
+  const rankService = new RankService();
   const dispatch = useAppDispatch();
   const router = useRouter();
 
@@ -24,8 +26,8 @@ export default memo(function PlayerThumb({
 
   const openGraph = async () => {
     if (!value[spid]) {
-      thumbService.create(spid, name);
-      await thumbService.updatePoOfPlayer(spid);
+      rankService.create(spid, name);
+      await positionService.updatePoOfPlayer(spid);
     }
 
     dispatch(
@@ -37,9 +39,8 @@ export default memo(function PlayerThumb({
   };
 
   const showDetail = async (spid: string, name: string) => {
-    thumbService.create(spid, name);
-    await thumbService.updatePoOfPlayer(spid);
-    const position = await thumbService.findPartByPlayer(spid);
+    await positionService.updatePoOfPlayer(spid);
+    const position = await positionService.findPartByPlayer(spid);
     dispatch(resetSpidValue());
 
     router.push({

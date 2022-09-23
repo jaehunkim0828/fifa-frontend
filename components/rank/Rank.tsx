@@ -1,17 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 
-import useThumb from "@hooks/useThumb";
 import style from "./rank.module.scss";
 import Pagination from "@components/pagination/Pagination";
-import ThumbService from "@services/playerThumb.api";
 import useStats from "@hooks/useRank";
 import json from "@data/playerThumb.json";
 import { useAppSelector } from "@store/index";
 import PlayerInformation from "@components/player-information/PlayerInformation";
 import RankService from "@services/rank.api";
 import { useAppDispatch } from "@store/index";
-import { resetSpidValue, setSpidValue } from "@store/slices/spidSlice";
+import { setSpidValue } from "@store/slices/spidSlice";
 import { PlayerStats, PositionStatus } from "@type/playerThumb.type";
 
 export default function Rank({ playerRanks, totalCount, count }: any) {

@@ -1,9 +1,7 @@
-import { Skeleton } from "@mui/material";
 import Graph from "@components/graph/Graph";
 import { SinglePlayerProps } from "@type/singlePlayer.type";
 import { useEffect, useState } from "react";
 import style from "./singlePlayer.module.scss";
-import SinglePlayerService from "@services/singlePlayer.api";
 import { frontUrl } from "@services/http";
 import Table from "@components/table/Table";
 import {
@@ -14,6 +12,10 @@ import {
 } from "@type/playerThumb.type";
 import { publicImage } from "@helpers/image";
 import { Grade } from "@type/table.type";
+import PlayerService from "@services/player.api";
+import RankService from "@services/rank.api";
+import PositionService from "@services/position.api";
+import ValueService from "@services/value.api";
 
 enum StatsType {
   assist = "assist",
@@ -163,16 +165,23 @@ export default function SinglePlayer(props: SinglePlayerProps) {
   });
 
   useEffect(() => {
-    const singlePlayerService = new SinglePlayerService();
+    const playerService = new PlayerService();
+    const rankService = new RankService();
+    const positionService = new PositionService();
+    const valueService = new ValueService();
+
+    const createRank = async (spid: string, name: string) => {
+      await rankService.create(spid, name);
+    };
 
     const getPlayerImage = async (spid: string) => {
       setImgLogin(true);
-      const result = await singlePlayerService.getPlayerImageUrl(spid);
-      const stats = await singlePlayerService.getMyTotalRankByPo(
+      const result = await playerService.getPlayerImageUrl(spid);
+      const stats = await rankService.getMyTotalRankByPo(
         spid,
         PositionStatus.TOTAL
       );
-      const average = await singlePlayerService.getAveragestats(part);
+      const average = await positionService.getAveragestats(part);
       setPlayerStats(makePlayerStats(name, stats, average, part));
       calculatePower(stats, average);
 
@@ -184,7 +193,8 @@ export default function SinglePlayer(props: SinglePlayerProps) {
     };
 
     const getPrice = async (spid: string) => {
-      const p = await singlePlayerService.getPlayerPrice(spid);
+      await createRank(spid, name);
+      const p = await valueService.getPlayerPrice(spid, 1);
       setPrice(p);
     };
 

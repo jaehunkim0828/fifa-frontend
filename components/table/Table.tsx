@@ -6,11 +6,11 @@ import Select from "react-select";
 
 import json from "@data/table.json";
 import style from "./table.module.scss";
-import TableService from "@services/table.api";
+import ValueService from "@services/value.api";
 import NonPerson from "@public/images/nonperson.png";
 
 export default function Table(props: TableProps) {
-  const tableService = new TableService();
+  const valueService = new ValueService();
 
   const {
     spid,
@@ -28,7 +28,7 @@ export default function Table(props: TableProps) {
 
   const changeRating = async (e: { value: number; label: string }) => {
     console.log(e.value);
-    const bp = await tableService.getPlayerPrice(spid, e.value);
+    const bp = await valueService.getPlayerPrice(spid, e.value);
     setNowPrice(bp);
   };
 

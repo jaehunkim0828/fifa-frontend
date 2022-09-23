@@ -16,7 +16,7 @@ import style from "./inquiry.module.scss";
 import { TransitionProps } from "@mui/material/transitions/transition";
 import React from "react";
 import useInput from "@hooks/useInput";
-import InquiryService from "@services/inquiry";
+import MailService from "@services/mail.api";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -28,7 +28,7 @@ const Transition = React.forwardRef(function Transition(
 });
 
 export default function Inquiry() {
-  const inquiryService = new InquiryService();
+  const mailService = new MailService();
 
   const [open, setOpen] = useState(false);
   const [text, setText] = useInput("");
@@ -43,7 +43,7 @@ export default function Inquiry() {
 
   const sendMail = async () => {
     setOpen(false);
-    await inquiryService.sendQuestion(text);
+    await mailService.sendQuestion(text);
   };
 
   return (
