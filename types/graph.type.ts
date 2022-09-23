@@ -3,5 +3,5 @@ import { PlayerRank } from "./rankUserResult.type";
 
 export interface GraphProps {
   stats: PlayerStats;
-  isImgLoding?: boolean;
+  seasonImg: string;
 }

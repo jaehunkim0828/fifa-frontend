@@ -43,8 +43,6 @@ export default function SinglePlayer(props: SinglePlayerProps) {
     defense: { score: 0, grade: Grade.C },
   });
 
-  const [price, setPrice] = useState("");
-
   const calculatePower = (stats: Stats, average: Stats) => {
     // 공격: 슛시도, 유효슛, 골
     // 미드: 드리블 거리, 드리블 성공, 패스, 패스시도, 도움
@@ -168,7 +166,6 @@ export default function SinglePlayer(props: SinglePlayerProps) {
     const playerService = new PlayerService();
     const rankService = new RankService();
     const positionService = new PositionService();
-    const valueService = new ValueService();
 
     const createRank = async (spid: string, name: string) => {
       await rankService.create(spid, name);
@@ -203,7 +200,6 @@ export default function SinglePlayer(props: SinglePlayerProps) {
           <Table
             name={name}
             desc={desc}
-            isImgLoding={isImgLoding}
             image={image}
             seasonImg={playerStats[name]?.seasonImg}
             power={power}
@@ -211,7 +207,7 @@ export default function SinglePlayer(props: SinglePlayerProps) {
           />
         </div>
         <div className={style.graphContainer}>
-          <Graph stats={playerStats} isImgLoding={isImgLoding} />
+          <Graph stats={playerStats} seasonImg={playerStats[name]?.seasonImg} />
         </div>
       </div>
     </div>

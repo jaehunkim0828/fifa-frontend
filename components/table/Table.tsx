@@ -1,4 +1,4 @@
-import { CircularProgress, Grid, Skeleton } from "@mui/material";
+import { Box, CircularProgress, Grid, Skeleton } from "@mui/material";
 import { TableProps } from "@type/table.type";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
@@ -12,7 +12,7 @@ import NonPerson from "@public/images/nonperson.png";
 export default function Table(props: TableProps) {
   const valueService = new ValueService();
 
-  const { spid, name, isImgLoding, image, desc, seasonImg, power } = props;
+  const { spid, name, image, desc, seasonImg, power } = props;
 
   const [nowPrice, setNowPrice] = useState("");
   const [priceDate, setPriceDate] = useState("");
@@ -43,39 +43,7 @@ export default function Table(props: TableProps) {
 
   return (
     <>
-      {isImgLoding ? (
-        <Grid container width={"20rem"} spacing={"0.1rem"}>
-          <Grid item xs>
-            <Skeleton variant="rectangular" width={"20rem"} height={"3rem"} />
-          </Grid>
-          <Grid item xs>
-            <Skeleton variant="rectangular" width={"20rem"} height={"150px"} />
-          </Grid>
-          <Grid item xs>
-            <Skeleton variant="rectangular" width={"20rem"} height={"3rem"} />
-          </Grid>
-          {Array(7)
-            .fill(0)
-            .map((_, i) => (
-              <React.Fragment key={`Table: ${i}`}>
-                <Grid item>
-                  <Skeleton
-                    variant="rectangular"
-                    width={"9.9rem"}
-                    height={"3rem"}
-                  />
-                </Grid>
-                <Grid item>
-                  <Skeleton
-                    variant="rectangular"
-                    width={"9.9rem"}
-                    height={"3rem"}
-                  />
-                </Grid>
-              </React.Fragment>
-            ))}
-        </Grid>
-      ) : (
+      {seasonImg ? (
         <table className={style.tableContainer}>
           <thead>
             <tr>
@@ -162,6 +130,38 @@ export default function Table(props: TableProps) {
             </tr>
           </tbody>
         </table>
+      ) : (
+        <Grid container width={"20rem"} spacing={"0.1rem"}>
+          <Grid item xs>
+            <Skeleton variant="rectangular" width={"20rem"} height={"3rem"} />
+          </Grid>
+          <Grid item xs>
+            <Skeleton variant="rectangular" width={"20rem"} height={"150px"} />
+          </Grid>
+          <Grid item xs>
+            <Skeleton variant="rectangular" width={"20rem"} height={"3rem"} />
+          </Grid>
+          {Array(7)
+            .fill(0)
+            .map((_, i) => (
+              <React.Fragment key={`Table: ${i}`}>
+                <Grid item>
+                  <Skeleton
+                    variant="rectangular"
+                    width={"9.9rem"}
+                    height={"3rem"}
+                  />
+                </Grid>
+                <Grid item>
+                  <Skeleton
+                    variant="rectangular"
+                    width={"9.9rem"}
+                    height={"3rem"}
+                  />
+                </Grid>
+              </React.Fragment>
+            ))}
+        </Grid>
       )}
     </>
   );

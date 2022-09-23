@@ -22,7 +22,6 @@ export interface Power {
 }
 export interface TableProps {
   name: string;
-  isImgLoding: boolean;
   image: string;
   desc: string;
   seasonImg: string;

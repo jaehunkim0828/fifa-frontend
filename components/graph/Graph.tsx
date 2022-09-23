@@ -26,7 +26,7 @@ import { GraphData } from "@type/rankUserResult.type";
 import json from "@data/playerThumb.json";
 import { Box, Grid, Skeleton } from "@mui/material";
 
-export default function Graph({ stats, isImgLoding }: GraphProps) {
+export default function Graph({ stats, seasonImg }: GraphProps) {
   const [players, setPlayers] = useState<GraphData[]>([
     { name: "", status: json.initialStatus, spid: "", seasonImg: "/" },
   ]);
@@ -54,7 +54,7 @@ export default function Graph({ stats, isImgLoding }: GraphProps) {
 
   return (
     <div className={style.graph}>
-      {isImgLoding ? (
+      {!seasonImg ? (
         <Grid container spacing={0.5}>
           <Grid item xs style={{ textAlign: "center" }}>
             <Skeleton variant="text" width={"300px"} />
