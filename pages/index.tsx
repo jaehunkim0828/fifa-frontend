@@ -1,3 +1,4 @@
+import Notice from "@components/notice/Notice";
 import Layout from "@components/rest/Layout";
 import StartSearch from "@components/start-search/StartSearch";
 import { postMethod } from "@services/http";

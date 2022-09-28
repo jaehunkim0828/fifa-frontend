@@ -15,8 +15,9 @@ export default function Nav() {
 
   return (
     <div className={style.navContainer}>
-      <button onClick={() => routing("/")}>선수 검색</button>
-      <button onClick={() => routing("/rank")}>선수 데이터</button>
+      <button onClick={() => routing("/")}>홈</button>
+      <button onClick={() => routing("/rank")}>선수 저장소</button>
+      <button onClick={() => router.push("/question")}>Q&A</button>
     </div>
   );
 }

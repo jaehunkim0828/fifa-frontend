@@ -1,0 +1,74 @@
+.questionContainer {
+  width: 100%;
+  padding: 10px;
+
+  .commentContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: #f7f5f2;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+
+    .title {
+      .firstLine {
+        display: flex;
+        justify-content: space-between;
+
+        .writer {
+          display: flex;
+          justify-content: flex-start;
+
+          strong {
+            color: #3f454e;
+          }
+
+          .admin {
+            margin-left: 5px;
+
+            border-radius: 5px;
+            background-color: rgb(213, 89, 89);
+            padding: 3px;
+            font-size: 0.6rem;
+            color: white;
+            height: 20px;
+          }
+        }
+
+        .deleteBtn {
+          border: none;
+          background-color: transparent;
+          cursor: pointer;
+        }
+      }
+
+      .date {
+        font-size: 0.6rem;
+        color: rgb(140, 140, 140);
+      }
+    }
+    .content {
+      white-space: pre-wrap;
+    }
+
+    .replyBtn {
+      display: inline-block;
+      border: none;
+      cursor: pointer;
+      width: 3rem;
+      color: rgb(140, 140, 140);
+      background-color: transparent;
+      text-decoration: underline;
+    }
+  }
+
+  .addChat {
+    padding: 10px;
+    display: flex;
+    width: 100%;
+
+    .addChatList {
+      flex: 1;
+    }
+  }
+}

@@ -4,6 +4,7 @@ import { createLogger } from "redux-logger";
 import { MakeStore, createWrapper } from "next-redux-wrapper";
 
 import spidSlice from "./slices/spidSlice";
+import commentSlice from "./slices/commentSlice";
 
 // 리덕스 미들웨어
 const logger = createLogger();
@@ -11,6 +12,7 @@ const logger = createLogger();
 // 모든 reducers
 const rootReducer = combineReducers({
   spid: spidSlice.reducer,
+  comment: commentSlice.reducer,
 });
 
 const initialState = {};

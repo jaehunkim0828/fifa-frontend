@@ -28,7 +28,7 @@ export default function SearchBar({
           <button
             className={style.cleanBtn}
             type="button"
-            onClick={() => setPlayer("")}
+            onClick={() => setPlayer("player", "")}
           >
             <Image src={Clean} alt="none" layout="responsive" />
           </button>

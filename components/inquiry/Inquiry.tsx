@@ -31,19 +31,22 @@ export default function Inquiry() {
   const mailService = new MailService();
 
   const [open, setOpen] = useState(false);
-  const [text, setText] = useInput("");
+  const [text, setText] = useInput({ text: "", mail: "" });
 
   const redirectInquiry = () => {
     setOpen(true);
   };
 
-  const onChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setText(e.target.value);
+  const onChangeText = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    type: string
+  ) => {
+    setText(type, e.target.value);
   };
 
   const sendMail = async () => {
     setOpen(false);
-    await mailService.sendQuestion(text);
+    await mailService.sendQuestion(text.text, text.mail);
   };
 
   return (
@@ -67,8 +70,8 @@ export default function Inquiry() {
         <DialogTitle>문의하기</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            안녕하세요. PickFA개발자 김재훈입니다. 궁금한점이나 문의사항 있으면
-            연락주세요.
+            안녕하세요. PickFA개발자 김재훈입니다. 개인적인 문의는 여기에
+            남겨주세요. 감사합니다
           </DialogContentText>
           <TextField
             autoFocus
@@ -78,8 +81,19 @@ export default function Inquiry() {
             type="text"
             fullWidth
             variant="standard"
-            onChange={onChangeText}
-            value={text}
+            onChange={e => onChangeText(e, "text")}
+            value={text.text}
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="회신 받을 이메일"
+            type="text"
+            fullWidth
+            variant="standard"
+            onChange={e => onChangeText(e, "mail")}
+            value={text.text}
           />
         </DialogContent>
         <DialogActions>

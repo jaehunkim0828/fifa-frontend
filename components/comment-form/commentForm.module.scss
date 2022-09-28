@@ -1,0 +1,41 @@
+.form {
+  display: flex;
+  flex-direction: column;
+
+  .username {
+    width: 8rem;
+    height: 2rem;
+    background-color: #f2f2f2;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    padding: 0 10px;
+    outline: none;
+  }
+  .content {
+    padding: 5px;
+    resize: none;
+    height: 5rem;
+    background-color: #f2f2f2;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    margin-bottom: 5px;
+    overflow: visible;
+  }
+
+  .btn {
+    border: none;
+    background-color: #4b5d67;
+    border-radius: 5px;
+    color: white;
+    width: 5rem;
+    height: 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #171c1f;
+    }
+  }
+}

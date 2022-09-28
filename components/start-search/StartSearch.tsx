@@ -8,18 +8,18 @@ import useInput from "@hooks/useInput";
 export default function StartSearch() {
   const router = useRouter();
 
-  const [player, setPlayer] = useInput("");
+  const [player, setPlayer] = useInput({ player: "" });
 
   const submit = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
     router.push({
-      pathname: `/search/${player}`,
+      pathname: `/search/${player.player}`,
     });
   };
 
   const onChangePlayer = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPlayer(event.target.value);
+    setPlayer("player", event.target.value);
   };
 
   return (
@@ -34,7 +34,7 @@ export default function StartSearch() {
             <input
               className={style.input}
               onChange={onChangePlayer}
-              value={player}
+              value={player.player}
               type="sumbit"
             />
           </form>

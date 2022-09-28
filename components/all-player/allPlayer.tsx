@@ -25,7 +25,6 @@ export default memo(function AllPlayer({
   current_page,
 }: PlayerProps) {
   const playerService = new PlayerService();
-  const positionService = new PositionService();
   const rankService = new RankService();
 
   const router = useRouter();
@@ -35,7 +34,7 @@ export default memo(function AllPlayer({
 
   const { value: players } = useAppSelector((state: RootState) => state.spid);
 
-  const [player, setPlayer] = useInput("");
+  const [player, setPlayer] = useInput({ player: "" });
   const [playersInfo, setPlayerInfo] = useState<PlayerInfo[]>([]);
   const [stats, setStats] = useStats({});
   const [totalCount, setCount] = useState(0);
@@ -45,28 +44,28 @@ export default memo(function AllPlayer({
   }: {
     target: { value: string };
   }) => {
-    setPlayer(value);
+    setPlayer("player", value);
   };
 
   const submit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
 
-    if (!player.trim().length) {
+    if (!player.player.trim().length) {
       return;
     }
 
     if (current_page && count) {
       const data = await playerService.getPlayersByName(
-        player,
+        player["player"],
         current_page,
         count
       );
       setPlayerInfo(data === "" ? [] : data);
     }
 
-    setPlayer("");
+    setPlayer("player", "");
     router.replace({
-      pathname: `/search/${player}`,
+      pathname: `/search/${player.player}`,
     });
     dispatch(resetSpidValue());
   };
@@ -114,7 +113,7 @@ export default memo(function AllPlayer({
   return (
     <div className={style.playerContainer}>
       <SearchBar
-        player={player}
+        player={player.player}
         setPlayer={setPlayer}
         onChangePlayer={onChangePlayer}
         submit={submit}

@@ -13,16 +13,18 @@ export interface LayoutProps {
 export default function Layout({ page, isMobile, children }: LayoutProps) {
   const windowWidth = useResize();
 
-  const structure = {
-    width: windowWidth <= 1248 && !isMobile ? "1248px" : "100%",
-    height: "95%",
-  };
-
   return (
     <>
       <Seo title={page} />
       {!isMobile ? (
-        <div style={structure}>
+        <div
+          style={{
+            width: windowWidth <= 1248 && !isMobile ? "1248px" : "100%",
+            display: "flex",
+            flexDirection: "column",
+            height: "100%",
+          }}
+        >
           <Nav />
           <>{children}</>
         </div>

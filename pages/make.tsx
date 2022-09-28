@@ -8,7 +8,7 @@ import fs from "fs";
 
 export default function Make() {
   const [json, setJson] = useState<any>({ selectedPlayer: [] });
-  const [text, setText] = useInput("");
+  const [text, setText] = useInput({ text: "" });
   const [players, setPlayers] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -16,10 +16,9 @@ export default function Make() {
     e.preventDefault();
 
     const p = await getMethod(
-      `player/spid/${encodeURI(text)}?current_page=${"0"}&count=${"0"}`
+      `player/spid/${encodeURI(text.text)}?current_page=${"0"}&count=${"0"}`
     );
     setPlayers(p);
-    console.log(p);
   };
 
   const addPlayer = async () => {
@@ -53,7 +52,10 @@ export default function Make() {
   return (
     <div>
       <form>
-        <input value={text} onChange={e => setText(e.target.value)} />
+        <input
+          value={text.text}
+          onChange={e => setText("text", e.target.value)}
+        />
         <button onClick={onClick}>추가하기</button>
       </form>
       <div>
