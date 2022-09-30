@@ -130,7 +130,7 @@ function Comment({
           댓글
         </button>
       )}
-      {isreply && <CommentForm role={role} groupNum={groupNum} postId={1} />}
+      {isreply && <CommentForm groupNum={groupNum} postId={1} />}
     </div>
   );
 }

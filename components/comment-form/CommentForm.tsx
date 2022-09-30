@@ -5,14 +5,13 @@ import { useAppDispatch } from "@store/index";
 import { createComment } from "@store/slices/commentSlice";
 import { QuestionStatus } from "@type/question.type";
 import CommentService from "@services/comment.api";
+import { useState } from "react";
 
 export default function CommentForm({
   groupNum,
-  role,
   postId,
 }: {
   groupNum?: number;
-  role: "user" | "admin";
   postId: number;
 }) {
   const commentService = new CommentService();
@@ -21,7 +20,7 @@ export default function CommentForm({
     username: "",
     content: "",
     groupNum: groupNum ?? 0,
-    role,
+    role: "user",
     createAt: new Date(),
     addChat: [],
     hierarchy: groupNum ? 1 : 0,
@@ -57,8 +56,9 @@ export default function CommentForm({
   };
 
   useEffect(() => {
-    setQuestion("role", role);
-  }, [role, setQuestion]);
+    const browser = localStorage.getItem("role");
+    setQuestion("role", browser ?? "user");
+  }, [setQuestion]);
 
   return (
     <>

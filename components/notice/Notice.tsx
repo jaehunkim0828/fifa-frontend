@@ -34,7 +34,7 @@ export default function Notice() {
     <div className={style.questionContainer}>
       <div className={style.questionWapper}>
         <strong className={style.title}>불편한점이 있을까요?</strong>
-        <CommentForm role={role} postId={1} />
+        <CommentForm postId={1} />
         <div className={style.questionList}>
           {comment.map((quesion: QuestionStatus, i) => (
             <Question key={`question: ${i}`} question={quesion} index={i} />

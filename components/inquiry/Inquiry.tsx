@@ -93,7 +93,7 @@ export default function Inquiry() {
             fullWidth
             variant="standard"
             onChange={e => onChangeText(e, "mail")}
-            value={text.text}
+            value={text.mail}
           />
         </DialogContent>
         <DialogActions>
