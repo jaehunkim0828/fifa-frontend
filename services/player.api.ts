@@ -26,4 +26,8 @@ export default class PlayerService {
       `player/spid/${encodeURI(names)}?current_page=${cur_page}&count=${c}`
     );
   }
+
+  public async getPlayerByCr(spid: string) {
+    return await getMethod(`player/external/${spid}`);
+  }
 }

@@ -2,7 +2,7 @@
 import { memo } from "react";
 import { useAppSelector } from "@store/index";
 import { useAppDispatch } from "@store/index";
-import { resetSpidValue, setSpidValue } from "@store/slices/spidSlice";
+import { resetSpidValue, spidRequest } from "@store/slices/spidSlice";
 import style from "./playerThumb.module.scss";
 import PositionService from "@services/position.api";
 import { PlayerThumbProps, PositionPart } from "@type/playerThumb.type";
@@ -16,6 +16,7 @@ export default memo(function PlayerThumb({
   name,
   seasonImg,
   position,
+  loading,
 }: PlayerThumbProps) {
   const positionService = new PositionService();
   const rankService = new RankService();
@@ -29,12 +30,17 @@ export default memo(function PlayerThumb({
       await rankService.create(spid, name);
     }
 
-    dispatch(
-      setSpidValue({
-        spid,
-        name,
-      })
-    );
+    // 최대 3명까지
+    if (value[spid] || Object.keys(value).length < 3) {
+      dispatch(
+        spidRequest({
+          spid,
+          name,
+        })
+      );
+    } else {
+      window.alert("선수는 3명까지 비교 가능합니다.");
+    }
   };
 
   const showDetail = async (spid: string, name: string) => {
@@ -57,7 +63,7 @@ export default memo(function PlayerThumb({
       style={value[spid] ? json.thumbstyle : {}}
       className={style.thumbContainer}
     >
-      <div className={style.thumb} onClick={openGraph}>
+      <button disabled={loading} className={style.thumb} onClick={openGraph}>
         <div className={style.main}>
           <div className={style.info}>
             <img src={seasonImg} className={style.seasonImg} alt="seaon" />
@@ -70,8 +76,12 @@ export default memo(function PlayerThumb({
             </span>
           </div>
         </div>
-      </div>
-      <button onClick={() => showDetail(spid, name)} className={style.detail}>
+      </button>
+      <button
+        disabled={loading}
+        onClick={() => showDetail(spid, name)}
+        className={style.detail}
+      >
         상세정보
       </button>
     </div>

@@ -40,6 +40,7 @@ export enum PositionPart {
   MF = "MF",
   FW = "FW",
   SUB = "SUB",
+  ALL = "ALL",
 }
 
 export interface Thumb {
@@ -89,6 +90,7 @@ export interface PlayerThumbProps {
   seasonImg: string;
   classname: string;
   position?: Position;
+  loading: boolean;
 }
 
 export interface Ability {

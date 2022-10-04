@@ -3,4 +3,5 @@ import { Thumb } from "./playerThumb.type";
 
 export interface PlayerListProps {
   players: PlayerInfo[];
+  loading: boolean;
 }

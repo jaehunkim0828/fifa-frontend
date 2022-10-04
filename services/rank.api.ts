@@ -1,4 +1,4 @@
-import { Ability, RankInput } from "@type/playerThumb.type";
+import { PositionPart } from "@type/playerThumb.type";
 import { getMethod, postMethod } from "./http";
 
 export default class RankService {
@@ -8,6 +8,10 @@ export default class RankService {
       player: data.data,
       name,
     });
+  }
+
+  public async getAveragestats(part: PositionPart) {
+    return getMethod(`rank/average/${part}`);
   }
 
   public async findRankBySpid(spid: string) {
