@@ -18,7 +18,7 @@ const Search = ({ isMobile }: any) => {
   }, []);
 
   return (
-    <Layout page="search" isMobile={isMobile}>
+    <Layout page="Home" isMobile={isMobile}>
       <StartSearch />
     </Layout>
   );

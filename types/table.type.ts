@@ -1,5 +1,11 @@
 import { PlayerStats, PositionPart } from "./playerThumb.type";
 
+export interface Power {
+  attack: { score: number; grade: Grade };
+  assist: { score: number; grade: Grade };
+  defense: { score: number; grade: Grade };
+}
+
 export enum Grade {
   F = "F",
   E = "E",

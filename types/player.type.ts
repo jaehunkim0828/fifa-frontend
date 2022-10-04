@@ -1,4 +1,4 @@
-import { PositionPart, PositionStatus } from "./playerThumb.type";
+import { PositionPart, PositionStatus, Stats } from "./playerThumb.type";
 
 export interface Position {
   desc: PositionStatus;
@@ -23,4 +23,6 @@ export interface PlayerProps {
   count?: number;
   current_page?: number;
   players?: any;
+  average: { striker: Stats; midfielder: Stats; defender: Stats };
+  name: string;
 }

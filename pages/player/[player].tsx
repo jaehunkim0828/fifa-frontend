@@ -12,26 +12,8 @@ export default function PlayerDetail({
   spid,
   desc,
 }: PlayterDetailProps) {
-  const playerStats = (
-    name: string,
-    stats: Stats,
-    average: Stats,
-    part: PositionPart
-  ): PlayerStats => ({
-    [name]: {
-      status: stats,
-      name: name,
-      seasonImg: stats.seasonImg ?? "none",
-    },
-    [part]: {
-      status: average,
-      name: "평균",
-      seasonImg: publicImage(part),
-    },
-  });
-
   return (
-    <Layout page={name} isMobile={isMobile}>
+    <Layout page={`${name}의 상세정보`} isMobile={isMobile}>
       <SinglePlayer name={name} part={part} desc={desc} spid={spid} />
     </Layout>
   );

@@ -7,7 +7,6 @@ import { useAppDispatch } from "@store/index";
 import { PlayerInfo, PlayerProps } from "@type/player.type";
 import style from "./allPlayer.module.scss";
 import PlayerInformation from "@components/player-information/PlayerInformation";
-import json from "@data/playerThumb.json";
 import PlayerService from "@services/player.api";
 import useStats from "@hooks/useRank";
 import { useAppSelector } from "@store/index";
@@ -23,6 +22,8 @@ export default memo(function AllPlayer({
   playersInitial,
   count,
   current_page,
+  average,
+  name,
 }: PlayerProps) {
   const playerService = new PlayerService();
   const rankService = new RankService();
@@ -118,11 +119,12 @@ export default memo(function AllPlayer({
         onChangePlayer={onChangePlayer}
         submit={submit}
       />
+      <h1>{`검색 기록: ${name}`}</h1>
       <PlayerInformation
         stats={stats}
-        seleteOptions={json.seleteOptions}
         showPlayerGraph={showPlayerGraph}
         ranks={playersInfo}
+        average={average}
       />
       {count && (
         <Pagination

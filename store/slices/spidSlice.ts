@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface Status {
+export interface Status {
   spid: string;
   name: string;
 }
@@ -19,6 +19,7 @@ const spidSlice = createSlice({
   initialState,
   reducers: {
     // reducer
+    spidRequest(state, action: PayloadAction<Status>) {},
     setSpidValue: {
       reducer: (state, action: PayloadAction<Status>) => {
         if (state.value[action.payload.spid]) {
@@ -42,6 +43,6 @@ const spidSlice = createSlice({
 });
 
 // counter action function
-export const { setSpidValue, resetSpidValue } = spidSlice.actions;
+export const { spidRequest, setSpidValue, resetSpidValue } = spidSlice.actions;
 
 export default spidSlice;
