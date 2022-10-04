@@ -30,9 +30,9 @@ const initialState = {};
 // 저장소 만들기
 const store1 = configureStore({
   reducer: rootReducer,
-  middleware: middleware => {
+  middleware: () => {
     if (process.env.NODE_ENV !== "production") return [sagaMiddleware];
-    return middleware();
+    return [sagaMiddleware];
   },
   devTools: process.env.NODE_ENV !== "production",
   preloadedState: initialState,
