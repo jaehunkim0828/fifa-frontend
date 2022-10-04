@@ -26,7 +26,7 @@ export default function StartSearch() {
     <>
       <div className={style.searchContainer}>
         <div className={style.searchWapper}>
-          <div className={style.title}>선수 검색하기</div>
+          <div className={style.title}>PickFA</div>
           <form className={style.searchForm} onSubmit={submit}>
             <div className={style.searchImg}>
               <Image src={SearchImg} layout="responsive" alt="1" />
@@ -34,6 +34,7 @@ export default function StartSearch() {
             <input
               className={style.input}
               onChange={onChangePlayer}
+              placeholder="ex) 손흥민, 박주영"
               value={player.player}
               type="sumbit"
             />

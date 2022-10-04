@@ -17,9 +17,10 @@ export default function SearchBar({
       className={style.searchbar}
       onSubmit={async (e: React.SyntheticEvent) => submit(e)}
     >
+      <span className={style.name}>선수이름</span>
       <input
         value={player}
-        placeholder="선수이름"
+        placeholder="ex)손흥민, 박주영"
         onChange={onChangePlayer}
         className={style.input}
       />

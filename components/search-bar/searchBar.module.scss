@@ -8,10 +8,17 @@
   width: 15rem;
   padding: 15px 10px 15px 15px;
   box-shadow: 0 1px 3px rgb(23 23 23 / 24%);
+  position: relative;
 
   &:hover {
     background-color: #c6c6c6;
     box-shadow: 0 4px 12px rgb(23 23 23 / 30%);
+  }
+
+  .name {
+    position: absolute;
+    font-size: 0.7rem;
+    top: -5px;
   }
 
   .input {
