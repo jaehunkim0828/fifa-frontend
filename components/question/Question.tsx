@@ -78,7 +78,13 @@ function Comment({
             </div>
           </div>
           <button onClick={() => setIsDelete(true)} className={style.deleteBtn}>
-            <Image src={Delete} alt="" width={20} height={20} layout="fixed" />
+            <Image
+              src={Delete}
+              alt="삭제하기"
+              width={20}
+              height={20}
+              layout="fixed"
+            />
           </button>
           <Dialog
             open={isDelete}
@@ -147,7 +153,13 @@ export default memo(function Quesiton({
       <Comment comment={question} origin={true} me={index} />
       <div className={style.addChat}>
         {!!question.addChat.length && (
-          <Image src={Reply} alt="" width={30} height={30} layout="fixed" />
+          <Image
+            src={Reply}
+            alt="대댓글"
+            width={30}
+            height={30}
+            layout="fixed"
+          />
         )}
         <div className={`${style.addChatList}`}>
           {question.addChat.map((cm: CommnetStatus, i) => (

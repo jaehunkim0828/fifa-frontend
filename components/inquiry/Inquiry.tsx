@@ -56,7 +56,7 @@ export default function Inquiry() {
         width={"30px"}
         height={"30px"}
         src={Btn}
-        alt="none"
+        alt="질문 클릭 버튼"
         layout="fixed"
         onClick={redirectInquiry}
       />

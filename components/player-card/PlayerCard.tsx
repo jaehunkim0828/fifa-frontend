@@ -10,7 +10,7 @@ export default function PlayerCard({ unit }: PlayerCardProps) {
       style={{ width: `${size}px`, height: `${size * 1.6}px` }}
       className={style.standard}
     >
-      <img className={style.border} src={unit.border} alt="player-border" />
+      <img className={style.border} src={unit.border} alt="선수 테두리" />
       <div
         style={{
           fontSize: `${size * 0.1}px`,
@@ -38,7 +38,7 @@ export default function PlayerCard({ unit }: PlayerCardProps) {
           left: `${size * 0.3}px`,
         }}
         src={unit.image}
-        alt="player-image"
+        alt="선수 이미지"
         className={style.image}
       />
       <img
@@ -49,7 +49,7 @@ export default function PlayerCard({ unit }: PlayerCardProps) {
         }}
         className={style.nation}
         src={unit.nation}
-        alt="player-nation"
+        alt="선수 국가"
       />
       <img
         style={{
@@ -59,7 +59,7 @@ export default function PlayerCard({ unit }: PlayerCardProps) {
         }}
         className={style.seasonImg}
         src={unit.seasonImg}
-        alt="player-seasonImg"
+        alt="선수 시즌 이미지"
       />
       <div
         style={{

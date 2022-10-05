@@ -80,7 +80,7 @@ export default function Graph({ stats, seasonImg }: GraphProps) {
             return (
               <div key={i} className={style.who}>
                 <div style={playerColor(i)}></div>
-                <img src={player.seasonImg} alt="none" />
+                <img src={player.seasonImg} alt="선수 시즌 이미지" />
                 <span>{`${player.name}의 경기 수: ${player.status.matchCount}`}</span>
               </div>
             );

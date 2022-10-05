@@ -66,7 +66,11 @@ export default memo(function PlayerThumb({
       <button disabled={loading} className={style.thumb} onClick={openGraph}>
         <div className={style.main}>
           <div className={style.info}>
-            <img src={seasonImg} className={style.seasonImg} alt="seaon" />
+            <img
+              src={seasonImg}
+              className={style.seasonImg}
+              alt="선수 시즌 이미지"
+            />
             <p className={style.name}>{name}</p>
           </div>
           <div>

@@ -8,14 +8,20 @@ export interface LayoutProps {
   children: React.ReactNode;
   isMobile: boolean;
   page: string;
+  path: string;
 }
 
-export default function Layout({ page, isMobile, children }: LayoutProps) {
+export default function Layout({
+  page,
+  isMobile,
+  children,
+  path,
+}: LayoutProps) {
   const windowWidth = useResize();
 
   return (
     <>
-      <Seo title={page} />
+      <Seo title={page} path={path} />
       {!isMobile ? (
         <div
           style={{

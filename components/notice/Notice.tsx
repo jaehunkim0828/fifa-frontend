@@ -21,7 +21,6 @@ export default function Notice() {
       // postid 1번은 질문 게시글입니다.
       const comments = await commentService.findComments(1);
       dispatch(findComment(comments));
-      console.log(comments);
     };
 
     getNoticeComments();
@@ -33,7 +32,7 @@ export default function Notice() {
   return (
     <div className={style.questionContainer}>
       <div className={style.questionWapper}>
-        <strong className={style.title}>불편한점이 있을까요?</strong>
+        <h1 className={style.title}>불편한점이 있을까요?</h1>
         <CommentForm postId={1} />
         <div className={style.questionList}>
           {comment.map((quesion: QuestionStatus, i) => (

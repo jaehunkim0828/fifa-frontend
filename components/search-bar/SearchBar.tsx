@@ -31,7 +31,11 @@ export default function SearchBar({
             type="button"
             onClick={() => setPlayer("player", "")}
           >
-            <Image src={Clean} alt="none" layout="responsive" />
+            <Image
+              src={Clean}
+              alt="선수 이름 전체 삭제하기"
+              layout="responsive"
+            />
           </button>
           <span className={style.span}></span>
         </div>
@@ -39,7 +43,7 @@ export default function SearchBar({
         <></>
       )}
       <button className={style.button} type="submit">
-        <Image src={Search} alt="none" layout="responsive" />
+        <Image src={Search} alt="선수 검색하기" layout="responsive" />
       </button>
     </form>
   );

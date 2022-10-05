@@ -26,10 +26,14 @@ export default function StartSearch() {
     <>
       <div className={style.searchContainer}>
         <div className={style.searchWapper}>
-          <div className={style.title}>PickFA</div>
+          <h1 className={style.title}>PickFA</h1>
           <form className={style.searchForm} onSubmit={submit}>
             <div className={style.searchImg}>
-              <Image src={SearchImg} layout="responsive" alt="1" />
+              <Image
+                src={SearchImg}
+                layout="responsive"
+                alt="선수 검색 이미지"
+              />
             </div>
             <input
               className={style.input}

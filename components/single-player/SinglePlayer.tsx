@@ -76,18 +76,27 @@ export default function SinglePlayer(props: SinglePlayerProps) {
   return (
     <div className={style.singlePlayerContainer}>
       <div className={style.singlePlayerWapper}>
-        <div className={style.intro}>
-          <Table
-            name={name}
-            desc={desc}
-            image={image}
-            seasonImg={playerStats[name]?.seasonImg}
-            power={power}
-            spid={spid}
-          />
-        </div>
-        <div className={style.graphContainer}>
-          <Graph stats={playerStats} seasonImg={playerStats[name]?.seasonImg} />
+        <h1>
+          <strong>{`"${name}"`}</strong>
+          <span> 선수의 상세정보</span>
+        </h1>
+        <div className={style.contents}>
+          <div className={style.intro}>
+            <Table
+              name={name}
+              desc={desc}
+              image={image}
+              seasonImg={playerStats[name]?.seasonImg}
+              power={power}
+              spid={spid}
+            />
+          </div>
+          <div className={style.graphContainer}>
+            <Graph
+              stats={playerStats}
+              seasonImg={playerStats[name]?.seasonImg}
+            />
+          </div>
         </div>
       </div>
     </div>

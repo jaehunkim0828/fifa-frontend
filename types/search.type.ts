@@ -6,4 +6,5 @@ export interface searchProps {
   player: PlayerInfo[];
   isMobile: boolean;
   average: { striker: Stats; midfielder: Stats; defender: Stats };
+  path: any;
 }

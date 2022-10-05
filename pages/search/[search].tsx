@@ -17,6 +17,7 @@ export default function Search({
   player,
   isMobile,
   average,
+  path,
 }: searchProps) {
   const router = useRouter();
   const count = 9;
@@ -30,7 +31,7 @@ export default function Search({
   }, [name, player, router]);
 
   return (
-    <Layout page={"선수비교"} isMobile={isMobile}>
+    <Layout page={"선수비교"} isMobile={isMobile} path={path}>
       <AllPlayer
         playersInitial={player}
         count={count}
@@ -68,6 +69,7 @@ export const getServerSideProps: GetServerSideProps =
           name,
           player,
           average: { striker, midfielder, defender },
+          path: context.resolvedUrl,
         },
       };
     }

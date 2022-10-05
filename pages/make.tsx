@@ -2,9 +2,7 @@
 import useInput from "@hooks/useInput";
 import { getMethod } from "@services/http";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-
-import fs from "fs";
+import { useState } from "react";
 
 export default function Make() {
   const [json, setJson] = useState<any>({ selectedPlayer: [] });
@@ -72,7 +70,7 @@ export default function Make() {
             >
               <img
                 src={p.season.seasonImg}
-                alt="none"
+                alt="선수 시즌 이미지"
                 style={{ width: "1rem", height: "0.7rem" }}
               />
               <div>{p.name}</div>
@@ -87,7 +85,7 @@ export default function Make() {
         {json.selectedPlayer.map(
           (player: { name: string; spid: string; img: string }, i: number) => (
             <button onClick={() => deletePlayer(i)} key={i}>
-              <img src={player.img} alt="none" />
+              <img src={player.img} alt="선수 이미지" />
               {`${player.name}  ${player.spid}`}
             </button>
           )

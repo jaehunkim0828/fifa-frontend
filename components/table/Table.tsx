@@ -57,7 +57,12 @@ export default function Table(props: TableProps) {
                 className={style.playerImage}
                 style={{ width: "150px", height: "150px" }}
               >
-                <Image src={image} alt="none" width="150px" height="150px" />
+                <Image
+                  src={image}
+                  alt="선수 이미지"
+                  width="150px"
+                  height="150px"
+                />
               </td>
             </tr>
             <tr>
@@ -97,7 +102,7 @@ export default function Table(props: TableProps) {
               <td>
                 <Image
                   src={seasonImg ?? NonPerson}
-                  alt="seeson"
+                  alt="선수 시즌 이미지"
                   width="30"
                   height="24"
                 />

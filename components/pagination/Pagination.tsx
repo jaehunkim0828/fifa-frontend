@@ -60,7 +60,7 @@ export default memo(function Pagination({
     <div className={style.pagination}>
       {skip > 0 && (
         <div className={style.number} onClick={() => changePages("back")}>
-          <Image src={left} layout="responsive" alt="none" />
+          <Image src={left} layout="responsive" alt="이전" />
         </div>
       )}
       <div className={style.numbers}>
@@ -84,7 +84,7 @@ export default memo(function Pagination({
             width="100%"
             height="100%"
             layout="responsive"
-            alt="none"
+            alt="이후"
           />
         </div>
       )}
