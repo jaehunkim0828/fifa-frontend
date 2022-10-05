@@ -1,8 +1,14 @@
 .thumbContainer {
   display: flex;
-  border: 1px solid rgb(88, 88, 88);
   margin: 0.2rem 0;
-  // padding: 0 0.2rem;
+  border-radius: 5px;
+  border: 1px solid rgba(226, 226, 226, 0.5);
+  background-color: #efefef;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+
+  &:hover {
+    background-color: #c6c6c6;
+  }
 
   .thumb {
     display: flex;
@@ -59,6 +65,7 @@
     color: #f7f5f2;
     border: none;
     cursor: pointer;
+    border-radius: 0 5px 5px 0;
 
     &:hover {
       background-color: #6b6b6b;

@@ -71,10 +71,15 @@ export default memo(function PlayerThumb({
               className={style.seasonImg}
               alt="선수 시즌 이미지"
             />
-            <p className={style.name}>{name}</p>
+            <p
+              style={value[spid] ? { color: "white" } : {}}
+              className={style.name}
+            >
+              {name}
+            </p>
           </div>
           <div>
-            <span>메인: </span>
+            <span style={value[spid] ? { color: "white" } : {}}>메인: </span>
             <span style={postionColor(position?.part)}>
               {position?.desc ?? "미정"}
             </span>
