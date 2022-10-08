@@ -9,7 +9,7 @@
   .row1 {
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    width: 90%;
     align-items: center;
     margin-bottom: 2rem;
 
@@ -53,6 +53,7 @@
     justify-content: space-around;
     width: 100%;
     flex: 1;
+    margin-bottom: 10px;
 
     .player {
       display: flex;
@@ -87,6 +88,56 @@
     tr {
       th {
         background-color: #277bc0;
+      }
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .rating {
+    height: 300px;
+
+    .row1 {
+      margin: 0;
+
+      .section {
+        button {
+          color: gray;
+          font-size: 0.8rem;
+          cursor: pointer;
+        }
+      }
+
+      .detail {
+        padding: 5px;
+        font-size: 0.8rem;
+      }
+    }
+
+    .first {
+      margin-bottom: 0;
+
+      span {
+        font-weight: bold;
+        font-size: 0.6rem;
+      }
+
+      h1 {
+        font-size: 0.8rem;
+        color: #ff1e1e;
+      }
+    }
+
+    .players {
+      align-items: center;
+    }
+
+    .table {
+      width: 80%;
+
+      th,
+      td {
+        height: 1rem;
       }
     }
   }

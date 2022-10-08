@@ -12,8 +12,6 @@ export default function Notice() {
   const dispatch = useAppDispatch();
   const { comment } = useAppSelector((state: RootState) => state.comment);
 
-  const [role, setRole] = useState<"admin" | "user">("user");
-
   useEffect(() => {
     const commentService = new CommentService();
 
@@ -24,15 +22,12 @@ export default function Notice() {
     };
 
     getNoticeComments();
-    const role = localStorage.getItem("role");
-
-    setRole(prev => (role === "admin" ? "admin" : prev));
   }, [dispatch]);
 
   return (
     <div className={style.questionContainer}>
       <div className={style.questionWapper}>
-        <h1 className={style.title}>불편한점이 있을까요?</h1>
+        <h1 className={style.title}>하고 싶은 말들은 공유해주세요!</h1>
         <CommentForm postId={1} />
         <div className={style.questionList}>
           {comment.map((quesion: QuestionStatus, i) => (

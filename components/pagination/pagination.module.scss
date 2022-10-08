@@ -1,5 +1,6 @@
 .pagination {
   display: flex;
+  padding: 10px 0;
 
   .numbers {
     display: flex;
@@ -21,12 +22,12 @@
 @media (max-width: 650px) {
   .pagination {
     bottom: none;
-    position: relative;
+
     .number {
-      width: 1.2rem;
-      height: 1.2rem;
+      width: 1.6rem;
+      height: 1.6rem;
       padding: 0.1rem;
-      margin: 0 0.2rem;
+      margin: 0 0.3rem;
       font-size: 0.5rem;
       border-width: 1px;
     }

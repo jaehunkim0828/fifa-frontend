@@ -10,7 +10,10 @@ export default function Seo({ title, path }: SeoProps) {
     <>
       <Head>
         <title>{`${title} | PickFA`}</title>
-
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0"
+        ></meta>
         <meta name="title" content={`${title} | PickFA`}></meta>
         <meta
           name="Keywords"

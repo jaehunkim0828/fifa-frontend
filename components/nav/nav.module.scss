@@ -1,9 +1,10 @@
 .navContainer {
   background-color: #4b5d67;
-  height: 3rem;
+  height: 47px;
   display: flex;
   padding: 1rem;
   justify-content: center;
+  position: sticky;
 
   button {
     background-color: transparent;

@@ -15,6 +15,7 @@ import Two from "@public/images/two.png";
 import Three from "@public/images/three.png";
 import { CircularProgress } from "@mui/material";
 import None from "@public/images/nonperson.png";
+import { useResize } from "@hooks/useResize";
 
 interface RatingTable extends PlayerCardStatus {
   assist: { score: number; best: boolean };
@@ -42,15 +43,26 @@ export default function RatingPlayer({
   const [secIndex, setSecIndex] = useState(0);
   const [nowAvg, setNowAvg] = useState(average.striker);
 
+  const window = useResize();
+
   const order = [One, Two, Three];
 
   const sections: {
     name: string;
     label: "striker" | "midfielder" | "defender";
   }[] = [
-    { name: "공격수 기준", label: "striker" },
-    { name: "미드필더 기준", label: "midfielder" },
-    { name: "수비수 기준", label: "defender" },
+    {
+      name: window.nowWidth > 650 ? "공격수 기준" : "공격수",
+      label: "striker",
+    },
+    {
+      name: window.nowWidth > 650 ? "미드필더 기준" : "미드필더",
+      label: "midfielder",
+    },
+    {
+      name: window.nowWidth > 650 ? "수비수 기준" : "수비수",
+      label: "defender",
+    },
   ];
 
   useEffect(() => {
@@ -164,7 +176,7 @@ export default function RatingPlayer({
               ))}
             </div>
             <button className={style.detail} onClick={() => setOpen(true)}>
-              상세 차트 분석
+              {window.nowWidth > 650 ? "상세 차트 분석" : "상세 분석"}
             </button>
           </div>
           <div className={style.first}>
@@ -177,7 +189,7 @@ export default function RatingPlayer({
               layout="fixed"
               alt="1등 시즌 이미지"
             />
-            <strong>{ps[0]?.name}</strong>
+            <h1>{ps[0]?.name}</h1>
           </div>
           <div className={style.players}>
             {ps.map(
@@ -224,46 +236,53 @@ export default function RatingPlayer({
               )
             )}
           </div>
-          <table className={style.table}>
-            <thead>
-              <tr>
-                <th></th>
-                <th>공격지수</th>
-                <th>도움지수</th>
-                <th>수비지수</th>
-              </tr>
-            </thead>
-            <tbody>
-              {ps.map(
-                ({ name, attack, assist, defense }: RatingTable, i: number) => (
-                  <tr key={i}>
-                    <td>{name}</td>
-                    <td
-                      style={
-                        attack.best
-                          ? { color: "#FF1E1E", fontWeight: "bold" }
-                          : {}
-                      }
-                    >{`${attack.score}점`}</td>
-                    <td
-                      style={
-                        assist.best
-                          ? { color: "#FF1E1E", fontWeight: "bold" }
-                          : {}
-                      }
-                    >{`${assist.score}점`}</td>
-                    <td
-                      style={
-                        defense.best
-                          ? { color: "#FF1E1E", fontWeight: "bold" }
-                          : {}
-                      }
-                    >{`${defense.score}점`}</td>
-                  </tr>
-                )
-              )}
-            </tbody>
-          </table>
+          {window.nowWidth >= 1000 ? (
+            <table className={style.table}>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>공격지수</th>
+                  <th>도움지수</th>
+                  <th>수비지수</th>
+                </tr>
+              </thead>
+              <tbody>
+                {ps.map(
+                  (
+                    { name, attack, assist, defense }: RatingTable,
+                    i: number
+                  ) => (
+                    <tr key={i}>
+                      <td>{name}</td>
+                      <td
+                        style={
+                          attack.best
+                            ? { color: "#FF1E1E", fontWeight: "bold" }
+                            : {}
+                        }
+                      >{`${attack.score}점`}</td>
+                      <td
+                        style={
+                          assist.best
+                            ? { color: "#FF1E1E", fontWeight: "bold" }
+                            : {}
+                        }
+                      >{`${assist.score}점`}</td>
+                      <td
+                        style={
+                          defense.best
+                            ? { color: "#FF1E1E", fontWeight: "bold" }
+                            : {}
+                        }
+                      >{`${defense.score}점`}</td>
+                    </tr>
+                  )
+                )}
+              </tbody>
+            </table>
+          ) : (
+            <></>
+          )}
         </>
       ) : (
         <CircularProgress />

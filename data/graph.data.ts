@@ -23,6 +23,19 @@ export const options1 = (players: GraphData[]) => ({
   },
 });
 
+export const options2 = (players: GraphData[]) => ({
+  responsive: true,
+  plugins: {
+    title: {
+      display: true,
+    },
+    legend: {
+      position: "top" as const,
+      display: false,
+    },
+  },
+});
+
 export const labels1 = [
   "드리블 거리",
   "드리블 성공",
@@ -36,7 +49,6 @@ export const step1 = (data: GraphData[]) => ({
   labels: labels1,
   datasets: data.map((player: GraphData, i: number) => {
     return {
-      label: `${i + 1}. ${player.name}`,
       data: [
         player.status.dribble,
         player.status.dribbleSuccess,

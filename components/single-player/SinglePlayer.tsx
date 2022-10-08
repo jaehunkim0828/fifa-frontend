@@ -81,16 +81,14 @@ export default function SinglePlayer(props: SinglePlayerProps) {
           <span> 선수의 상세정보</span>
         </h1>
         <div className={style.contents}>
-          <div className={style.intro}>
-            <Table
-              name={name}
-              desc={desc}
-              image={image}
-              seasonImg={playerStats[name]?.seasonImg}
-              power={power}
-              spid={spid}
-            />
-          </div>
+          <Table
+            name={name}
+            desc={desc}
+            image={image}
+            seasonImg={playerStats[name]?.seasonImg}
+            power={power}
+            spid={spid}
+          />
           <div className={style.graphContainer}>
             <Graph
               stats={playerStats}

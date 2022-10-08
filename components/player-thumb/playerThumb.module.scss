@@ -4,7 +4,6 @@
   border-radius: 5px;
   border: 1px solid rgba(226, 226, 226, 0.5);
   background-color: #efefef;
-  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 
   &:hover {
     background-color: #c6c6c6;
@@ -73,8 +72,15 @@
   }
 }
 
-@media (max-width: 650px) {
-  .thumb {
-    width: 80%;
+@media (max-width: 1000px) {
+  .thumbContainer {
+    width: 100%;
+    .thumb {
+      width: 100%;
+    }
+
+    .detail {
+      width: 4rem;
+    }
   }
 }

@@ -1,9 +1,24 @@
 /* eslint-disable @next/next/no-img-element */
+import { useResize } from "@hooks/useResize";
 import { PlayerCardProps } from "@type/playerCard";
+import { useEffect, useState } from "react";
 import style from "./playerCard.module.scss";
 
 export default function PlayerCard({ unit }: PlayerCardProps) {
-  const size = 125;
+  const window = useResize();
+
+  const [size, setSize] = useState(0);
+
+  useEffect(() => {
+    if (window.nowWidth <= 650) {
+      setSize(75);
+      return;
+    } else if (window.nowWidth <= 1000) {
+      setSize(100);
+      return;
+    }
+    setSize(125);
+  }, [window]);
 
   return (
     <div

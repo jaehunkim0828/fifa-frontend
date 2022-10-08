@@ -119,7 +119,6 @@ export default memo(function AllPlayer({
         onChangePlayer={onChangePlayer}
         submit={submit}
       />
-      <h1>{`검색 기록: ${name}`}</h1>
       <PlayerInformation
         stats={stats}
         showPlayerGraph={showPlayerGraph}

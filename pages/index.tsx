@@ -6,18 +6,6 @@ import { GetServerSidePropsContext } from "next";
 import { useEffect } from "react";
 
 const Search = ({ isMobile, path }: any) => {
-  useEffect(() => {
-    const welcomeSend = async () => {
-      const ipData = await fetch("https://geolocation-db.com/json/");
-      const locationIp = await ipData.json();
-      await postMethod(`mail/connectUser`, {
-        ip: locationIp.IPv4,
-      });
-    };
-
-    welcomeSend();
-  }, []);
-
   return (
     <Layout page="Home" isMobile={isMobile} path={path}>
       <StartSearch />

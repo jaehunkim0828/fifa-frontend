@@ -39,3 +39,13 @@
     }
   }
 }
+
+@media (max-width: 1000px) {
+  .form {
+    width: 90%;
+
+    .content {
+      width: 90%;
+    }
+  }
+}

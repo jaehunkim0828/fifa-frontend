@@ -20,7 +20,7 @@ ChartJS.register(
 );
 import style from "./graph.module.scss";
 import { GraphProps } from "@type/graph.type";
-import { colors, options1, step1, step2 } from "@data/graph.data";
+import { colors, options1, options2, step1, step2 } from "@data/graph.data";
 import { useEffect, useState } from "react";
 import { GraphData } from "@type/rankUserResult.type";
 import json from "@data/playerThumb.json";
@@ -34,8 +34,6 @@ export default function Graph({ stats, seasonImg }: GraphProps) {
   const playerColor = (index: number) => {
     return {
       backgroundColor: colors[index],
-      width: "2rem",
-      height: "1rem",
     };
   };
 
@@ -75,11 +73,11 @@ export default function Graph({ stats, seasonImg }: GraphProps) {
       ) : (
         <>
           <Bar options={options1(players)} data={step1(players)} />
-          <Bar data={step2(players)} />
+          <Bar options={options2(players)} data={step2(players)} />
           {players.map((player, i: number) => {
             return (
               <div key={i} className={style.who}>
-                <div style={playerColor(i)}></div>
+                <div className={style.box} style={playerColor(i)}></div>
                 <img src={player.seasonImg} alt="선수 시즌 이미지" />
                 <span>{`${player.name}의 경기 수: ${player.status.matchCount}`}</span>
               </div>

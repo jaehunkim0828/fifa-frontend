@@ -33,3 +33,15 @@
     border-radius: 5px;
   }
 }
+
+@media (max-width: 1000px) {
+  .tableContainer {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 650px) {
+  .tableContainer {
+    width: 100%;
+  }
+}

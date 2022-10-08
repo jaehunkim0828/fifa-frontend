@@ -60,3 +60,11 @@
     width: 30px;
   }
 }
+
+@media (max-width: 1000px) {
+  .searchbar {
+    width: 50%;
+    margin: 3px 0px 0px 0;
+    padding: 10px 7.5px 10px 10px;
+  }
+}
