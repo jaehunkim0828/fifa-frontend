@@ -20,7 +20,7 @@ export default function Search({
   path,
 }: searchProps) {
   const router = useRouter();
-  const count = 5;
+  const count = 9;
 
   useEffect(() => {
     if (player.length === 0) {
