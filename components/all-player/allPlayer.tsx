@@ -13,7 +13,11 @@ import { useAppSelector } from "@store/index";
 import { RootState } from "@store/index";
 import Pagination from "@components/pagination/Pagination";
 import { resetSpidValue, setSpidValue } from "@store/slices/spidSlice";
-import { PlayerStats, PositionStatus } from "@type/playerThumb.type";
+import {
+  PlayerStats,
+  PositionPart,
+  PositionStatus,
+} from "@type/playerThumb.type";
 import SearchBar from "@components/search-bar/SearchBar";
 import PositionService from "@services/position.api";
 import RankService from "@services/rank.api";
@@ -36,7 +40,19 @@ export default memo(function AllPlayer({
   const { value: players } = useAppSelector((state: RootState) => state.spid);
 
   const [player, setPlayer] = useInput({ player: "" });
-  const [playersInfo, setPlayerInfo] = useState<PlayerInfo[]>([]);
+  const [playersInfo, setPlayerInfo] = useState<PlayerInfo[]>([
+    {
+      name: "손흥민",
+      id: "1",
+      season: {
+        classname: "ㅎㅎ",
+        seasonImg:
+          "http://dev.f4coach.com/_next/image?url=https%3A%2F%2Fssl.nexon.com%2Fs2%2Fgame%2Ffo4%2Fobt%2FexternalAssets%2Fseason%2FLH.png&w=64&q=75",
+        id: 1,
+      },
+      position: { desc: PositionStatus.CB, part: PositionPart.MF },
+    },
+  ]);
   const [stats, setStats] = useStats({});
   const [totalCount, setCount] = useState(0);
 
