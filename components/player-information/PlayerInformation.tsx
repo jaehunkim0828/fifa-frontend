@@ -25,10 +25,7 @@ export default function PlayerInformation({
   }, [window]);
 
   return (
-    <div
-      style={{ height: window.nowWidth <= 1000 ? `${size - 150}px` : "100%" }}
-      className={style.playerRanksWapper}
-    >
+    <div className={style.playerRanksWapper}>
       <div className={style.detail}>
         {Object.keys(stats).length !== 0 ? (
           <RatingPlayer

@@ -28,7 +28,7 @@ export default function Layout({
             width: "100%",
             display: "flex",
             flexDirection: "column",
-            height: `${size.nowHeight}px`,
+            height: `100%`,
           }}
         >
           <Nav />
