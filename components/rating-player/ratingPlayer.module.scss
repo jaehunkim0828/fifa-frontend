@@ -29,6 +29,7 @@
       padding: 10px;
       border-radius: 5px;
       cursor: pointer;
+      color: black;
     }
   }
 
@@ -95,7 +96,7 @@
 
 @media (max-width: 1000px) {
   .rating {
-    height: 300px;
+    height: 375px;
 
     .row1 {
       margin: 0;
@@ -140,5 +141,11 @@
         height: 1rem;
       }
     }
+  }
+}
+
+@media (max-width: 650xp) {
+  .rating {
+    height: 350px;
   }
 }

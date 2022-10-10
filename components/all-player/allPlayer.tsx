@@ -13,7 +13,11 @@ import { useAppSelector } from "@store/index";
 import { RootState } from "@store/index";
 import Pagination from "@components/pagination/Pagination";
 import { resetSpidValue, setSpidValue } from "@store/slices/spidSlice";
-import { PlayerStats, PositionStatus } from "@type/playerThumb.type";
+import {
+  PlayerStats,
+  PositionPart,
+  PositionStatus,
+} from "@type/playerThumb.type";
 import SearchBar from "@components/search-bar/SearchBar";
 import PositionService from "@services/position.api";
 import RankService from "@services/rank.api";

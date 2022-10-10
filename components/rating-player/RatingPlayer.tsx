@@ -236,53 +236,47 @@ export default function RatingPlayer({
               )
             )}
           </div>
-          {window.nowWidth >= 1000 ? (
-            <table className={style.table}>
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>공격지수</th>
-                  <th>도움지수</th>
-                  <th>수비지수</th>
-                </tr>
-              </thead>
-              <tbody>
-                {ps.map(
-                  (
-                    { name, attack, assist, defense }: RatingTable,
-                    i: number
-                  ) => (
-                    <tr key={i}>
-                      <td>{name}</td>
-                      <td
-                        style={
-                          attack.best
-                            ? { color: "#FF1E1E", fontWeight: "bold" }
-                            : {}
-                        }
-                      >{`${attack.score}점`}</td>
-                      <td
-                        style={
-                          assist.best
-                            ? { color: "#FF1E1E", fontWeight: "bold" }
-                            : {}
-                        }
-                      >{`${assist.score}점`}</td>
-                      <td
-                        style={
-                          defense.best
-                            ? { color: "#FF1E1E", fontWeight: "bold" }
-                            : {}
-                        }
-                      >{`${defense.score}점`}</td>
-                    </tr>
-                  )
-                )}
-              </tbody>
-            </table>
-          ) : (
-            <></>
-          )}
+
+          <table className={style.table}>
+            <thead>
+              <tr>
+                <th></th>
+                <th>{window.nowWidth > 650 ? "공격지수" : "공격"}</th>
+                <th>{window.nowWidth > 650 ? "도움지수" : "도움"}</th>
+                <th>{window.nowWidth > 650 ? "수비지수" : "수비"}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {ps.map(
+                ({ name, attack, assist, defense }: RatingTable, i: number) => (
+                  <tr key={i}>
+                    <td>{window.nowWidth > 650 ? name : name.split(" ")[0]}</td>
+                    <td
+                      style={
+                        attack.best
+                          ? { color: "#FF1E1E", fontWeight: "bold" }
+                          : {}
+                      }
+                    >{`${attack.score}점`}</td>
+                    <td
+                      style={
+                        assist.best
+                          ? { color: "#FF1E1E", fontWeight: "bold" }
+                          : {}
+                      }
+                    >{`${assist.score}점`}</td>
+                    <td
+                      style={
+                        defense.best
+                          ? { color: "#FF1E1E", fontWeight: "bold" }
+                          : {}
+                      }
+                    >{`${defense.score}점`}</td>
+                  </tr>
+                )
+              )}
+            </tbody>
+          </table>
         </>
       ) : (
         <CircularProgress />

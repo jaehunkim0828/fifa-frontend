@@ -19,6 +19,12 @@
   }
 }
 
+@media (max-width: 1000px) {
+  .pagination {
+    height: 6vh;
+  }
+}
+
 @media (max-width: 650px) {
   .pagination {
     bottom: none;

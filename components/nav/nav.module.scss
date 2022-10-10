@@ -1,9 +1,8 @@
 .navContainer {
   background-color: #4b5d67;
-  height: 47px;
   display: flex;
-  padding: 1rem;
   justify-content: center;
+  align-items: center;
   position: sticky;
 
   button {
@@ -13,5 +12,6 @@
     font-weight: bold;
     width: 10rem;
     cursor: pointer;
+    height: 3rem;
   }
 }
