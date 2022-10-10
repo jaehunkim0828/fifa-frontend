@@ -1,6 +1,5 @@
 .navContainer {
   background-color: #4b5d67;
-  height: 47px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,11 +12,6 @@
     font-weight: bold;
     width: 10rem;
     cursor: pointer;
-  }
-}
-
-@media (max-width: 1000px) {
-  .navContainer {
     height: 3rem;
   }
 }

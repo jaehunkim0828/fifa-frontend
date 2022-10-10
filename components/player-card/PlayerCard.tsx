@@ -110,7 +110,7 @@ export default function PlayerCard({ unit }: PlayerCardProps) {
             style={{
               width: `${size * 0.15}px`,
               height: `${size * 0.15}px`,
-              fontSize: `${size * 0.04}px`,
+              fontSize: `${size * 0.1}px`,
             }}
             className={style.payIn}
           >
