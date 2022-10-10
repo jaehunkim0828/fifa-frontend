@@ -43,7 +43,13 @@ export default function SearchBar({
         <></>
       )}
       <button className={style.button} type="submit">
-        <Image src={Search} alt="선수 검색하기" layout="responsive" />
+        <Image
+          src={Search}
+          alt="선수 검색하기"
+          width="30px"
+          height="30px"
+          layout="responsive"
+        />
       </button>
     </form>
   );
