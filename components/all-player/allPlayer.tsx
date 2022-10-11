@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useRef, useEffect, memo } from "react";
 import { useRouter } from "next/router";
+import { CircularProgress } from "@mui/material";
 
 import useInput from "@hooks/useInput";
 import { useAppDispatch } from "@store/index";
@@ -43,6 +44,7 @@ export default memo(function AllPlayer({
   const [playersInfo, setPlayerInfo] = useState<PlayerInfo[]>([]);
   const [stats, setStats] = useStats({});
   const [totalCount, setCount] = useState(0);
+  const [dLoading, setdLoading] = useState(false);
 
   const onChangePlayer = ({
     target: { value },
@@ -117,25 +119,37 @@ export default memo(function AllPlayer({
 
   return (
     <div className={style.playerContainer}>
-      <SearchBar
-        player={player.player}
-        setPlayer={setPlayer}
-        onChangePlayer={onChangePlayer}
-        submit={submit}
-      />
-      <PlayerInformation
-        stats={stats}
-        showPlayerGraph={showPlayerGraph}
-        ranks={playersInfo}
-        average={average}
-      />
-      {count && (
-        <Pagination
-          totalCount={totalCount}
-          count={count}
-          setRanks={setPlayerInfo}
-          player={playerName}
+      <div
+        className={style.playerWrapper}
+        style={dLoading ? { opacity: "0.4", filter: "alpha(opacity=40)" } : {}}
+      >
+        <SearchBar
+          player={player.player}
+          setPlayer={setPlayer}
+          onChangePlayer={onChangePlayer}
+          submit={submit}
         />
+        <PlayerInformation
+          stats={stats}
+          showPlayerGraph={showPlayerGraph}
+          ranks={playersInfo}
+          average={average}
+          setdLoading={setdLoading}
+          dLoading={dLoading}
+        />
+        {count && (
+          <Pagination
+            totalCount={totalCount}
+            count={count}
+            setRanks={setPlayerInfo}
+            player={playerName}
+          />
+        )}
+      </div>
+      {dLoading && (
+        <div className={style.dLoading}>
+          <CircularProgress color="success" />
+        </div>
       )}
     </div>
   );

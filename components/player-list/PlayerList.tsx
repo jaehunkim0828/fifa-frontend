@@ -4,7 +4,12 @@ import { PlayerListProps } from "@type/playerList.type";
 import { useState } from "react";
 import style from "./playerList.module.scss";
 
-export default function PlayerList({ players, loading }: PlayerListProps) {
+export default function PlayerList({
+  players,
+  loading,
+  dLoading,
+  setdLoading,
+}: PlayerListProps) {
   return (
     <div className={style.playerList}>
       {players.map(
@@ -21,6 +26,8 @@ export default function PlayerList({ players, loading }: PlayerListProps) {
               seasonImg={seasonImg}
               classname={classname}
               loading={loading}
+              dLoading={dLoading}
+              setdLoading={setdLoading}
             />
           );
         }
