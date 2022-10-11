@@ -13,6 +13,8 @@ export default function PlayerInformation({
   ranks,
   average,
   showPlayerGraph,
+  dLoading,
+  setdLoading,
 }: PlayerInformationProps) {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
@@ -38,7 +40,12 @@ export default function PlayerInformation({
           <></>
         )}
       </div>
-      <PlayerList players={ranks} loading={loading} />
+      <PlayerList
+        players={ranks}
+        loading={loading}
+        setdLoading={setdLoading}
+        dLoading={dLoading}
+      />
       <Dialog
         open={open}
         keepMounted

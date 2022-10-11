@@ -3,6 +3,11 @@ import Nav from "../nav/Nav";
 import MobileNotice from "../mobile-notice/MobileNotice";
 import Seo from "./Seo";
 import { useResize } from "@hooks/useResize";
+import dynamic from "next/dynamic";
+
+const ProgressBar = dynamic(() => import("./ProgressBar"), {
+  ssr: false,
+});
 
 export interface LayoutProps {
   children: React.ReactNode;
@@ -32,6 +37,7 @@ export default function Layout({
           }}
         >
           <Nav />
+          <ProgressBar />
           <>{children}</>
         </div>
       ) : (

@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { memo } from "react";
+import { memo, useState } from "react";
 import { useAppSelector } from "@store/index";
 import { useAppDispatch } from "@store/index";
 import { resetSpidValue, spidRequest } from "@store/slices/spidSlice";
@@ -17,6 +17,8 @@ export default memo(function PlayerThumb({
   seasonImg,
   position,
   loading,
+  dLoading,
+  setdLoading,
 }: PlayerThumbProps) {
   const positionService = new PositionService();
   const rankService = new RankService();
@@ -44,6 +46,7 @@ export default memo(function PlayerThumb({
   };
 
   const showDetail = async (spid: string, name: string) => {
+    setdLoading(true);
     await positionService.updatePoOfPlayer(spid);
     const position = await positionService.findPartByPlayer(spid);
     dispatch(resetSpidValue());
@@ -56,6 +59,7 @@ export default memo(function PlayerThumb({
         desc: position.desc,
       },
     });
+    setdLoading(false);
   };
 
   return (
