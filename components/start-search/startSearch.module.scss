@@ -56,3 +56,21 @@
     }
   }
 }
+
+@media (max-width: 1000px) {
+  .searchContainer {
+    align-items: flex-start;
+
+    .searchWapper {
+      margin-top: 10rem;
+    }
+  }
+}
+
+@media (max-width: 650px) {
+  .searchContainer {
+    .searchWapper {
+      margin-top: 5rem;
+    }
+  }
+}
