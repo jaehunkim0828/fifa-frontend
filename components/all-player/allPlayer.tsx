@@ -135,7 +135,6 @@ export default memo(function AllPlayer({
           ranks={playersInfo}
           average={average}
           setdLoading={setdLoading}
-          dLoading={dLoading}
         />
         {count && (
           <Pagination

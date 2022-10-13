@@ -11,6 +11,8 @@ import { searchProps } from "@type/search.type";
 import RankService from "@services/rank.api";
 import { PositionPart } from "@type/playerThumb.type";
 import { wrapper } from "@store/index";
+import { useAppDispatch } from "@store/index";
+import { resetSpidValue } from "@store/slices/spidSlice";
 
 export default function Search({
   name,
@@ -19,6 +21,7 @@ export default function Search({
   average,
   path,
 }: searchProps) {
+  const dispatch = useAppDispatch();
   const router = useRouter();
   const count = 9;
 
@@ -29,6 +32,10 @@ export default function Search({
       return;
     }
   }, [name, player, router]);
+
+  useEffect(() => {
+    dispatch(resetSpidValue());
+  }, [dispatch]);
 
   return (
     <Layout page={"선수비교"} isMobile={isMobile} path={path}>

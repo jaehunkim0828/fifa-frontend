@@ -2,29 +2,20 @@ import Detail from "@components/detail/Detail";
 import PlayerList from "@components/player-list/PlayerList";
 import RatingPlayer from "@components/rating-player/RatingPlayer";
 import { PlayerInformationProps } from "@type/playerInformation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import style from "./playerInformation.module.scss";
 import json from "@data/playerThumb.json";
 import { Dialog } from "@mui/material";
-import { useResize } from "@hooks/useResize";
 
 export default function PlayerInformation({
   stats,
   ranks,
   average,
   showPlayerGraph,
-  dLoading,
   setdLoading,
 }: PlayerInformationProps) {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
-  const [size, setSize] = useState(0);
-
-  const window = useResize();
-
-  useEffect(() => {
-    setSize(window.nowHeight);
-  }, [window]);
 
   return (
     <div className={style.playerRanksWapper}>
@@ -40,12 +31,7 @@ export default function PlayerInformation({
           <></>
         )}
       </div>
-      <PlayerList
-        players={ranks}
-        loading={loading}
-        setdLoading={setdLoading}
-        dLoading={dLoading}
-      />
+      <PlayerList players={ranks} loading={loading} setdLoading={setdLoading} />
       <Dialog
         open={open}
         keepMounted

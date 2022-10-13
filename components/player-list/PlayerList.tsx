@@ -7,7 +7,7 @@ import style from "./playerList.module.scss";
 export default function PlayerList({
   players,
   loading,
-  dLoading,
+
   setdLoading,
 }: PlayerListProps) {
   return (
@@ -26,7 +26,6 @@ export default function PlayerList({
               seasonImg={seasonImg}
               classname={classname}
               loading={loading}
-              dLoading={dLoading}
               setdLoading={setdLoading}
             />
           );
