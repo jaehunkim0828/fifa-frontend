@@ -5,7 +5,6 @@ import RankService from "@services/rank.api";
 import { PositionStatus, Stats } from "@type/playerThumb.type";
 import { useEffect, useState } from "react";
 import { RootState, useAppSelector } from "@store/index";
-import { Power } from "@type/table.type";
 import { calculatePower } from "@utils/grade";
 import PlayerCard from "@components/player-card/PlayerCard";
 import { PlayerCardStatus } from "@type/playerCard";
@@ -72,7 +71,7 @@ export default function RatingPlayer({
     const rankService = new RankService();
 
     const getPlayers = async (
-      players: any,
+      players: { [x: string]: string },
       average: Stats,
       section?: string
     ) => {

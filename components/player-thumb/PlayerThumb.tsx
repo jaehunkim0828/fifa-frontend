@@ -1,14 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
-import { memo, useState } from "react";
+import { memo } from "react";
+import { useRouter } from "next/router";
+
 import { useAppSelector } from "@store/index";
 import { useAppDispatch } from "@store/index";
 import { resetSpidValue, spidRequest } from "@store/slices/spidSlice";
 import style from "./playerThumb.module.scss";
 import PositionService from "@services/position.api";
-import { PlayerThumbProps, PositionPart } from "@type/playerThumb.type";
+import { PlayerThumbProps } from "@type/playerThumb.type";
 import json from "@data/playerThumb.json";
 import { postionColor } from "@data/playerThumb.data";
-import { useRouter } from "next/router";
 import RankService from "@services/rank.api";
 
 export default memo(function PlayerThumb({
@@ -17,7 +18,6 @@ export default memo(function PlayerThumb({
   seasonImg,
   position,
   loading,
-  dLoading,
   setdLoading,
 }: PlayerThumbProps) {
   const positionService = new PositionService();

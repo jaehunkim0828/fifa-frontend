@@ -9,7 +9,7 @@ export const colors = [
   "#7A4069",
 ];
 
-export const options1 = (players: GraphData[]) => ({
+export const options1 = () => ({
   responsive: true,
   plugins: {
     title: {
@@ -23,7 +23,7 @@ export const options1 = (players: GraphData[]) => ({
   },
 });
 
-export const options2 = (players: GraphData[]) => ({
+export const options2 = () => ({
   responsive: true,
   plugins: {
     title: {

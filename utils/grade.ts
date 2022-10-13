@@ -27,63 +27,85 @@ export const calculatePower = (stats: Stats, average: Stats) => {
     const { stats, average, type } = arg;
 
     const getScore = (score: number, cost: number) => {
-      if (score >= cost) return cost;
-      else if (score <= -cost) return -cost;
-      else return score;
+      if (score >= cost) return Math.round(cost * 2);
+      else if (score <= -cost) return 0;
+      else return Math.round(score + cost);
     };
 
     switch (type) {
       case StatsType.dribble:
-        const dribble = Math.round(Math.round(stats[type] - average[type]) / 5);
-        return getScore(dribble, 2);
+        const dribble = Math.round(stats[type] - average[type]) / 2;
+        //8
+        return getScore(dribble, 8);
       case StatsType.dribbleSuccess:
         const dribbleSuccess = Math.round(
-          Math.round(stats[type] - average[type]) * 10
+          +(stats[type] - average[type]).toFixed(2) * 10
         );
-        return getScore(dribbleSuccess, 2);
+        //8
+        return getScore(dribbleSuccess, 8);
       case StatsType.dribbleTry:
         const dribbleTry = Math.round(
-          Math.round(stats[type] - average[type]) * 10
+          +(stats[type] - average[type]).toFixed(2) * 10
         );
-        return getScore(dribbleTry, 2);
+        //8
+        return getScore(dribbleTry, 8);
       case StatsType.passSuccess:
         const passSuccess = Math.round(
-          Math.round(stats[type] - average[type]) * 10
+          +(stats[type] - average[type]).toFixed(2) * 10
         );
-        return getScore(passSuccess, 2);
+        //9
+        return getScore(passSuccess, 9);
       case StatsType.passTry:
         const passTry = Math.round(
-          Math.round(stats[type] - average[type]) * 10
+          +(stats[type] - average[type]).toFixed(2) * 10
         );
-        return getScore(passTry, 2);
+        //9
+        return getScore(passTry, 9);
       case StatsType.assist:
-        const assist = Math.round(Math.round(stats[type] - average[type]) * 10);
-        return getScore(assist, 2);
+        //8
+        const assist = Math.round(
+          +(stats[type] - average[type]).toFixed(2) * 200
+        );
+        return getScore(assist, 8);
       case StatsType.block:
-        const block = Math.round((stats[type] - average[type]) * 100);
-        return getScore(block, 4);
+        // 20
+        const block = (stats[type] - average[type]) * 100;
+        return getScore(block, 20);
       case StatsType.tackle:
-        const tackle = Math.round((stats[type] - average[type]) * 20);
-        return getScore(tackle, 8);
+        //30
+        const tackle = (stats[type] - average[type]) * 50;
+        return getScore(tackle, 30);
+      case StatsType.shoot:
+        //10
+        const shoot = Math.round(
+          +(stats[type] - average[type]).toFixed(2) * 25
+        );
+        return getScore(shoot, 10);
+      case StatsType.effectiveShoot:
+        //17.5
+        const effective = Math.round(
+          +(stats[type] - average[type]).toFixed(2) * 50
+        );
+        return getScore(effective, 17.5);
       default:
-        const rest = Math.round((stats[type] - average[type]) * 10);
-        return getScore(rest, 4);
+        // goal
+        // 22.5
+        const rest = Math.round(+(stats[type] - average[type]).toFixed(2) * 75);
+        return getScore(rest, 22.5);
     }
   };
 
   const getGrade = (score: number) => {
     switch (true) {
-      case score >= 0 && score < 4:
+      case score >= 0 && score < 20:
         return Grade.F;
-      case score >= 4 && score < 8:
-        return Grade.E;
-      case score >= 8 && score < 12:
+      case score >= 20 && score < 40:
         return Grade.D;
-      case score >= 12 && score < 16:
+      case score >= 40 && score < 60:
         return Grade.C;
-      case score >= 16 && score < 20:
+      case score >= 60 && score < 80:
         return Grade.B;
-      case score >= 20 && score <= 24:
+      case score >= 80 && score <= 100:
         return Grade.A;
       default:
         return Grade.W;
@@ -93,21 +115,20 @@ export const calculatePower = (stats: Stats, average: Stats) => {
   let attack =
     compareStats({ stats, average, type: StatsType.shoot }) +
     compareStats({ stats, average, type: StatsType.effectiveShoot }) +
-    compareStats({ stats, average, type: StatsType.goal }) +
-    12;
+    compareStats({ stats, average, type: StatsType.goal });
+
   let assist =
     compareStats({ stats, average, type: StatsType.dribble }) +
     compareStats({ stats, average, type: StatsType.dribbleSuccess }) +
     compareStats({ stats, average, type: StatsType.dribbleTry }) +
     compareStats({ stats, average, type: StatsType.passSuccess }) +
     compareStats({ stats, average, type: StatsType.passTry }) +
-    compareStats({ stats, average, type: StatsType.assist }) +
-    12;
+    compareStats({ stats, average, type: StatsType.assist });
 
   let defense =
     compareStats({ stats, average, type: StatsType.tackle }) +
-    compareStats({ stats, average, type: StatsType.block }) +
-    12;
+    compareStats({ stats, average, type: StatsType.block });
+
   return {
     attack: { score: attack, grade: getGrade(attack) },
     assist: { score: assist, grade: getGrade(assist) },
