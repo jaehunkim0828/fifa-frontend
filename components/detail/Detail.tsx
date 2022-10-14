@@ -10,15 +10,15 @@ export default function Detail({
   seleteOptions,
   showPlayerGraph,
   stats,
-  isGraph,
-  setisGraph,
-}: DetailProps) {
+}: // isGraph,
+// setisGraph,
+DetailProps) {
   return (
     <div className={style.playerContainer}>
       <div className={style.graph}>
         <div className={style.select}>
-          <button onClick={() => setisGraph(true)}>Bar</button>
-          <button onClick={() => setisGraph(false)}>Radar</button>
+          {/* <button onClick={() => setisGraph(true)}>Bar</button>
+          <button onClick={() => setisGraph(false)}>Radar</button> */}
           <Select
             defaultValue={seleteOptions[0]}
             options={seleteOptions}
