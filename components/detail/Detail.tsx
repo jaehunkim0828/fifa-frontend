@@ -4,7 +4,7 @@ import Select from "react-select";
 import style from "./detail.module.scss";
 import { DetailProps } from "@type/detail.type";
 import { useState } from "react";
-import Randar from "@components/radar/Radar";
+// import Randar from "@components/radar/Radar";
 
 export default function Detail({
   seleteOptions,
@@ -25,11 +25,11 @@ export default function Detail({
             onChange={(e: any) => showPlayerGraph(e.value)}
           />
         </div>
-        {isGraph ? (
-          <Graph stats={stats} seasonImg={"1"} />
-        ) : (
+        {/* {isGraph ? ( */}
+        <Graph stats={stats} seasonImg={"1"} />
+        {/* ) : (
           <Randar stats={stats} />
-        )}
+        )} */}
       </div>
     </div>
   );
