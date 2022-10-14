@@ -6,6 +6,7 @@ import { createComment } from "@store/slices/commentSlice";
 import { QuestionStatus } from "@type/question.type";
 import CommentService from "@services/comment.api";
 import { useState } from "react";
+import MailService from "@services/mail.api";
 
 export default function CommentForm({
   groupNum,
@@ -15,6 +16,7 @@ export default function CommentForm({
   postId: number;
 }) {
   const commentService = new CommentService();
+  const mailService = new MailService();
 
   const [question, setQuestion] = useInput<QuestionStatus>({
     username: "",
@@ -51,6 +53,10 @@ export default function CommentForm({
       dispatch(createComment({ ...question, createAt: new Date() }));
 
       await commentService.createComment({ ...question, createAt: new Date() });
+      await mailService.sendQuestion(
+        `${question.username}님이 댓글을 달았습니다`,
+        question.content
+      );
       setQuestion();
     }
   };
