@@ -38,6 +38,7 @@ export default function RatingPlayer({
 }: RatingProps) {
   const { value: players } = useAppSelector((state: RootState) => state.spid);
 
+  const regex = /[a-zA-Z]/;
   const [ps, setPs] = useState<RatingTable[]>([]);
   const [secIndex, setSecIndex] = useState(0);
   const [nowAvg, setNowAvg] = useState(average.striker);
@@ -247,9 +248,26 @@ export default function RatingPlayer({
             </thead>
             <tbody>
               {ps.map(
-                ({ name, attack, assist, defense }: RatingTable, i: number) => (
+                (
+                  { name, attack, assist, defense, seasonImg }: RatingTable,
+                  i: number
+                ) => (
                   <tr key={i}>
-                    <td>{window.nowWidth > 650 ? name : name.split(" ")[0]}</td>
+                    <td>
+                      <span className={style.seasonImage}>
+                        <Image
+                          src={seasonImg}
+                          alt="시즌 이미지"
+                          width="15px"
+                          height="12px"
+                        />
+                      </span>
+                      {window.nowWidth <= 650
+                        ? regex.test(name.split(" ")[0])
+                          ? name.split(" ")[1]
+                          : name.split(" ")[0]
+                        : name}
+                    </td>
                     <td
                       style={
                         attack.best
