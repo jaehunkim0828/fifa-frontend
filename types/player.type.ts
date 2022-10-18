@@ -20,9 +20,9 @@ export interface PlayerInfo {
 
 export interface PlayerProps {
   playersInitial: Array<PlayerInfo>;
-  count?: number;
+  count: number;
   current_page?: number;
   players?: any;
   average: { striker: Stats; midfielder: Stats; defender: Stats };
-  name: string;
+  search: { name: string; season: string; position: string };
 }

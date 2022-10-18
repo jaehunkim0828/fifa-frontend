@@ -1,0 +1,26 @@
+{
+  "kind": [
+    [
+      { "id": 25, "name": "ST" },
+      { "id": 21, "name": "CF" },
+      { "id": 27, "name": "LW" },
+      { "id": 23, "name": "RW" }
+    ],
+    [
+      { "id": 14, "name": "CM" },
+      { "id": 18, "name": "CAM" },
+      { "id": 10, "name": "CDM" },
+      { "id": 16, "name": "LM" },
+      { "id": 12, "name": "RM" }
+    ],
+    [
+      { "id": 5, "name": "CB" },
+      { "id": 3, "name": "RB" },
+      { "id": 7, "name": "LB" },
+      { "id": 2, "name": "RWB" },
+      { "id": 8, "name": "LWB" }
+    ],
+    [{ "id": 0, "name": "GK" }]
+  ],
+  "part": ["FW", "MF", "DF", "GK"]
+}

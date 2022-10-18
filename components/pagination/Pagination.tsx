@@ -14,18 +14,19 @@ export default memo(function Pagination({
   totalCount,
   count,
   setRanks,
-  player,
+  search: { name, season, position },
 }: PaginationProps) {
   const [curPage, setCurpage] = useState(1);
   const [skip, setSkip] = useState(0);
 
   const playerService = new PlayerService();
-  const rankService = new RankService();
 
   const getCurrentPage = async (cur_page: number, c: number) => {
-    const ranksData: PlayerInfo[] = player
-      ? await playerService.findCurrentPage(player, cur_page, c)
-      : await rankService.findCurrentPage(cur_page, c);
+    const ranksData: PlayerInfo[] = await playerService.findCurrentPage(
+      { player: name, season, position },
+      cur_page,
+      c
+    );
 
     setRanks(ranksData);
     setCurpage(+cur_page);

@@ -53,7 +53,7 @@ export default function CommentForm({
       dispatch(createComment({ ...question, createAt: new Date() }));
 
       await commentService.createComment({ ...question, createAt: new Date() });
-      await mailService.sendQuestion(
+      mailService.sendQuestion(
         `${question.username}님이 댓글을 달았습니다`,
         question.content
       );

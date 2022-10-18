@@ -41,7 +41,6 @@ export default function Graph({ stats, seasonImg }: GraphProps) {
   // rader 100% translate
 
   useEffect(() => {
-    console.log(stats);
     const result: GraphData[] = [];
     for (const spid in stats) {
       result.push({

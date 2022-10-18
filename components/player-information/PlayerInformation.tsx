@@ -6,6 +6,7 @@ import { useState } from "react";
 import style from "./playerInformation.module.scss";
 import json from "@data/playerThumb.json";
 import { Dialog } from "@mui/material";
+import Pagination from "@components/pagination/Pagination";
 
 export default function PlayerInformation({
   stats,
@@ -13,9 +14,13 @@ export default function PlayerInformation({
   average,
   showPlayerGraph,
   setdLoading,
+  totalCount,
+  count,
+  setRanks,
+  search,
+  detail: { open, setOpen },
 }: PlayerInformationProps) {
   const [loading, setLoading] = useState(false);
-  const [open, setOpen] = useState(false);
 
   return (
     <div className={style.playerRanksWapper}>
@@ -31,7 +36,19 @@ export default function PlayerInformation({
           <></>
         )}
       </div>
-      <PlayerList players={ranks} loading={loading} setdLoading={setdLoading} />
+      <div className={style.players}>
+        <PlayerList
+          players={ranks}
+          loading={loading}
+          setdLoading={setdLoading}
+        />
+        <Pagination
+          totalCount={totalCount}
+          count={count}
+          setRanks={setRanks}
+          search={search}
+        />
+      </div>
       <Dialog
         open={open}
         keepMounted

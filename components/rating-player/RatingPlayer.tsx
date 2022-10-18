@@ -101,7 +101,6 @@ export default function RatingPlayer({
           let cur: number = b.assist.score + b.attack.score + b.defense.score;
           if (cur === prev) {
             //특정 스탯 순위
-            console.log(1);
             return b[p].score - a[p].score;
           }
           return cur - prev;

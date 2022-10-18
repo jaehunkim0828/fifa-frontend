@@ -22,21 +22,25 @@ import {
 import SearchBar from "@components/search-bar/SearchBar";
 import PositionService from "@services/position.api";
 import RankService from "@services/rank.api";
+import { position } from "position";
 
 export default memo(function AllPlayer({
   playersInitial,
   count,
   current_page,
   average,
-  name,
+  search: { name, season, position },
 }: PlayerProps) {
   const playerService = new PlayerService();
   const rankService = new RankService();
 
+  const initialMore = {
+    season: [],
+    position: [],
+  };
+
   const router = useRouter();
   const dispatch = useAppDispatch();
-
-  const playerName = router.query.search as string | undefined;
 
   const { value: players } = useAppSelector((state: RootState) => state.spid);
 
@@ -45,6 +49,8 @@ export default memo(function AllPlayer({
   const [stats, setStats] = useStats({});
   const [totalCount, setCount] = useState(0);
   const [dLoading, setdLoading] = useState(false);
+  const [more, setMore] = useState<{ [x in string]: number[] }>(initialMore);
+  const [open, setOpen] = useState(false);
 
   const onChangePlayer = ({
     target: { value },
@@ -56,14 +62,18 @@ export default memo(function AllPlayer({
 
   const submit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-
-    if (!player.player.trim().length) {
-      return;
-    }
+    const m: { season: string; name: string; position: string } = {
+      season: "",
+      name: "",
+      position: "",
+    };
+    if (player.player) m.name = player.player;
+    if (more.season.length) m.season = more.season.join(",");
+    if (more.position.length) m.position = more.position.join(",");
 
     if (current_page && count) {
-      const data = await playerService.getPlayersByName(
-        player["player"],
+      const data = await playerService.getPlayers(
+        { player: name, season: season, position: position },
         current_page,
         count
       );
@@ -72,8 +82,10 @@ export default memo(function AllPlayer({
 
     setPlayer("player", "");
     router.replace({
-      pathname: `/search/${player.player}`,
+      pathname: `/search`,
+      query: m,
     });
+    setMore(initialMore);
     dispatch(resetSpidValue());
   };
 
@@ -104,7 +116,11 @@ export default memo(function AllPlayer({
 
   useEffect(() => {
     const getTotalCount = async () => {
-      const data = await playerService.totalPlayerCount(playerName ?? "");
+      const data = await playerService.totalPlayerCount({
+        name,
+        season,
+        position,
+      });
       setCount(data);
     };
 
@@ -128,6 +144,9 @@ export default memo(function AllPlayer({
           setPlayer={setPlayer}
           onChangePlayer={onChangePlayer}
           submit={submit}
+          more={more}
+          setMore={setMore}
+          open={open}
         />
         <PlayerInformation
           stats={stats}
@@ -135,15 +154,12 @@ export default memo(function AllPlayer({
           ranks={playersInfo}
           average={average}
           setdLoading={setdLoading}
+          totalCount={totalCount}
+          count={count}
+          setRanks={setPlayerInfo}
+          search={{ name, season, position }}
+          detail={{ open, setOpen }}
         />
-        {count && (
-          <Pagination
-            totalCount={totalCount}
-            count={count}
-            setRanks={setPlayerInfo}
-            player={playerName}
-          />
-        )}
       </div>
       {dLoading && (
         <div className={style.dLoading}>

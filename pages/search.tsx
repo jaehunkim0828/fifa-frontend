@@ -15,7 +15,7 @@ import { useAppDispatch } from "@store/index";
 import { resetSpidValue } from "@store/slices/spidSlice";
 
 export default function Search({
-  name,
+  search: { name, season, position },
   player,
   isMobile,
   average,
@@ -44,7 +44,7 @@ export default function Search({
         count={count}
         current_page={0}
         average={average}
-        name={name}
+        search={{ name, season, position }}
       />
     </Layout>
   );
@@ -58,13 +58,17 @@ export const getServerSideProps: GetServerSideProps =
       const rankService = new RankService();
 
       const { query } = context;
-      const { search: name } = query as { search: string };
+      const { name, season, position } = query as {
+        name: string;
+        season: string;
+        position: string;
+      };
       const striker = await rankService.getAveragestats(PositionPart.FW);
       const midfielder = await rankService.getAveragestats(PositionPart.MF);
       const defender = await rankService.getAveragestats(PositionPart.DF);
 
-      const player: PlayerInfo[] = await playerService.getPlayersByName(
-        name,
+      const player: PlayerInfo[] = await playerService.getPlayers(
+        { player: name, season, position },
         0,
         9
       );
@@ -73,7 +77,11 @@ export const getServerSideProps: GetServerSideProps =
       store.dispatch(END);
       return {
         props: {
-          name,
+          search: {
+            season: season ?? null,
+            name: name ?? null,
+            position: position ?? null,
+          },
           player,
           average: { striker, midfielder, defender },
           path: context.resolvedUrl,

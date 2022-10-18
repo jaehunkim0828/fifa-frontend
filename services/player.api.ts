@@ -1,29 +1,55 @@
 import { getMethod } from "./http";
 
 export default class PlayerService {
-  public async getPlayersByName(
-    player: string,
+  public async getPlayers(
+    {
+      player,
+      season,
+      position,
+    }: { player?: string; season?: string; position?: string },
     current_page: number,
     count: number
   ) {
     return getMethod(
-      `player/spid/${encodeURI(
-        player
-      )}?current_page=${current_page}&count=${count}`
+      `player/spid/search?name=${encodeURI(player ?? "")}&season=${
+        season ?? ""
+      }&position=${position ?? ""}&current_page=${current_page}&count=${count}`
     );
   }
 
-  public async totalPlayerCount(name: string) {
-    return getMethod(`player/count/${name}`);
+  public async totalPlayerCount({
+    name,
+    season,
+    position,
+  }: {
+    name?: string;
+    season?: string;
+    position?: string;
+  }) {
+    return getMethod(
+      `player/count/search?name=${name ?? ""}&season=${season ?? ""}&position=${
+        position ?? ""
+      }`
+    );
   }
 
   public async getPlayerImageUrl(spid: string) {
     return getMethod(`player/image/${spid}`);
   }
 
-  public async findCurrentPage(names: string, cur_page: number, c: number) {
+  public async findCurrentPage(
+    {
+      player,
+      season,
+      position,
+    }: { player: string; season: string; position: string },
+    cur_page: number,
+    c: number
+  ) {
     return await getMethod(
-      `player/spid/${encodeURI(names)}?current_page=${cur_page}&count=${c}`
+      `player/spid/search?name=${encodeURI(player ?? "")}&season=${
+        season ?? ""
+      }&position=${position ?? ""}&current_page=${cur_page}&count=${c}`
     );
   }
 

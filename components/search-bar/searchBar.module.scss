@@ -1,71 +1,148 @@
-.searchbar {
+.container {
   margin: 1rem 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #eeeeee;
-  border-radius: 25px;
-  max-width: 25rem;
-  width: 80%;
-  min-width: 15rem;
-  padding: 15px 10px 15px 15px;
-  box-shadow: 0 1px 3px rgb(23 23 23 / 24%);
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 35rem;
+  width: 100%;
+  transition: height 0.5s;
 
-  &:hover {
-    background-color: #c6c6c6;
-    box-shadow: 0 4px 12px rgb(23 23 23 / 30%);
-  }
-
-  .name {
-    position: absolute;
-    font-size: 0.7rem;
-    color: #38424a;
-    font-weight: bold;
-    top: -5px;
-  }
-
-  .input {
-    border: none;
-    background-color: transparent;
-    outline: none;
-    flex: 1;
-    color: #3f3f3f;
-  }
-
-  .clean {
-    height: 100%;
+  .searchbar {
+    flex-direction: column;
     display: flex;
-    .cleanBtn {
-      background-color: transparent;
-      border: none;
-      cursor: pointer;
-      width: 30px;
-      height: 100%;
-      filter: invert(50%) sepia(11%) saturate(204%) hue-rotate(165deg)
-        brightness(93%) contrast(92%);
-    }
-    .span {
-      border-left: 1px solid #5f6368;
-      height: 100%;
-    }
-  }
+    align-items: flex-start;
+    background-color: #eeeeee;
+    border-radius: 25px;
+    width: 100%;
+    height: 100%;
+    padding: 10px 10px 10px 15px;
+    box-shadow: 0 1px 3px rgb(23 23 23 / 24%);
 
-  .button {
-    border-radius: 10px;
-    border: none;
-    background-color: transparent;
-    filter: invert(47%) sepia(0%) saturate(4066%) hue-rotate(260deg)
-      brightness(75%) contrast(75%);
-    align-items: center;
-    justify-content: center;
-    width: 30px;
+    &:hover {
+      background-color: #c6c6c6;
+      box-shadow: 0 4px 12px rgb(23 23 23 / 30%);
+    }
+
+    .searchForm {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      .name {
+        position: absolute;
+        font-size: 0.7rem;
+        color: #38424a;
+        font-weight: bold;
+        top: -5px;
+      }
+
+      .input {
+        border: none;
+        background-color: transparent;
+        outline: none;
+        height: 2rem;
+        color: #3f3f3f;
+        flex: 1;
+      }
+
+      .clean {
+        height: 100%;
+        display: flex;
+        .cleanBtn {
+          background-color: transparent;
+          border: none;
+          cursor: pointer;
+          width: 30px;
+          height: 100%;
+          filter: invert(50%) sepia(11%) saturate(204%) hue-rotate(165deg)
+            brightness(93%) contrast(92%);
+        }
+        .span {
+          border-left: 1px solid #5f6368;
+          height: 100%;
+        }
+      }
+
+      .button {
+        border-radius: 10px;
+        border: none;
+        background-color: transparent;
+        filter: invert(47%) sepia(0%) saturate(4066%) hue-rotate(260deg)
+          brightness(75%) contrast(75%);
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+      }
+    }
+    .more {
+      padding: 10px;
+      max-width: 35rem;
+      width: 100%;
+      min-width: 15rem;
+      overflow-y: scroll;
+      border-radius: 5px;
+      height: 100%;
+
+      .moreTitle {
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+
+      .season {
+        .seasonBtn {
+          background-color: transparent;
+          border: none;
+          cursor: pointer;
+          width: 40px;
+          height: 30px;
+          margin: 10px 5px;
+        }
+      }
+
+      .moreP {
+        display: flex;
+        flex-direction: column;
+
+        .part {
+          display: flex;
+          align-items: center;
+          padding: 10px;
+
+          span {
+            font-weight: bold;
+            margin-right: 10px;
+          }
+          .desc {
+            display: flex;
+            flex-wrap: wrap;
+            .item {
+              padding: 10px;
+              border: none;
+              background-color: transparent;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
   }
 }
 
 @media (max-width: 1000px) {
-  .searchbar {
+  .container {
     margin: 3px 0px 0px 0;
-    padding: 10px 7.5px 10px 10px;
+    width: 100%;
+
+    .searchbar {
+      padding: 10px 7.5px 10px 10px;
+    }
+  }
+}
+
+@media (max-width: 650px) {
+  .container {
+    .more {
+      width: 100%;
+    }
   }
 }

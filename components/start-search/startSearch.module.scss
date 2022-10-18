@@ -20,16 +20,22 @@
       color: #38424a;
     }
 
-    .searchForm {
-      position: relative;
-      border: 2px solid #5f6368;
-      border-radius: 24px;
-      padding: 10px 10px;
+    .form {
       max-width: 584px;
       width: calc(100%);
       min-width: 300px;
+      position: relative;
+      height: 3rem;
+    }
+    .searchForm {
+      position: absolute;
+      border: 2px solid #5f6368;
+      border-radius: 24px;
+      padding: 10px 10px;
+      width: 100%;
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
       &:hover {
         background-color: #d8dae7;
@@ -37,21 +43,36 @@
         border: 2px solid #d8dae7;
       }
 
-      .searchImg {
-        width: 20px;
-        height: auto;
-        margin: 0 10px;
-        filter: invert(47%) sepia(0%) saturate(4066%) hue-rotate(260deg)
-          brightness(75%) contrast(75%);
+      .search {
+        display: flex;
+
+        .searchImg {
+          width: 20px;
+          height: auto;
+          margin: 0 10px;
+          filter: invert(47%) sepia(0%) saturate(4066%) hue-rotate(260deg)
+            brightness(75%) contrast(75%);
+        }
+
+        .input {
+          border: none;
+          font-size: 1.2rem;
+          outline: none;
+          flex: 1 1;
+          background-color: transparent;
+        }
       }
 
-      .input {
-        border: none;
-        height: 100%;
-        font-size: 1.2rem;
-        outline: none;
-        flex: 1 1;
-        background-color: transparent;
+      .more {
+        overflow-y: scroll;
+        .season {
+          .seasonBtn {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            width: 40px;
+          }
+        }
       }
     }
   }

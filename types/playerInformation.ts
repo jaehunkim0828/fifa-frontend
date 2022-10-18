@@ -7,4 +7,9 @@ export interface PlayerInformationProps {
   stats: PlayerStats;
   ranks: PlayerInfo[];
   average: { striker: Stats; midfielder: Stats; defender: Stats };
+  totalCount: number;
+  count: number;
+  setRanks: React.Dispatch<PlayerInfo[]>;
+  search: { name: string; season: string; position: string };
+  detail: { open: boolean; setOpen: (v: boolean) => void };
 }
