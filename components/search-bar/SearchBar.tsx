@@ -1,16 +1,13 @@
 import { SearchBarProps } from "@type/searchBar.type";
 import Image from "next/image";
 import style from "./searchBar.module.scss";
-import Search from "@public/images/search.svg";
-import Clean from "@public/images/clean.svg";
-import { useEffect, useRef, useState, forwardRef, ForwardedRef } from "react";
+import { useEffect, useState } from "react";
 import SeasonService from "@services/season.api";
 import positionJSON from "@data/position.json";
-import { json } from "stream/consumers";
+import { postionColor, selectPostionColor } from "@data/playerThumb.data";
 
 export default function SearchBar({
   player,
-  setPlayer,
   onChangePlayer,
   submit,
   more,
@@ -50,53 +47,26 @@ export default function SearchBar({
   }, []);
 
   return (
-    <div
-      className={style.container}
-      style={{
-        height: focusInput ? "15rem" : "3rem",
-        zIndex: open ? "10" : "10000",
-      }}
-    >
+    <div className={style.container}>
       <form
+        style={{
+          height: focusInput ? "16rem" : "50px",
+          zIndex: open ? "10" : "10000",
+        }}
         onMouseEnter={() => setFocusInput(true)}
         onMouseLeave={() => setFocusInput(false)}
         className={style.searchbar}
         onSubmit={async (e: React.SyntheticEvent) => submit(e)}
       >
         <div className={style.searchForm}>
-          <span className={style.name}>선수이름</span>
           <input
             value={player}
-            placeholder="ex)손흥민, 박주영"
+            placeholder="       ex)손흥민, 박주영"
             onChange={onChangePlayer}
             className={style.input}
           />
-          {player.length ? (
-            <div className={style.clean}>
-              <button
-                className={style.cleanBtn}
-                type="button"
-                onClick={() => setPlayer("player", "")}
-              >
-                <Image
-                  src={Clean}
-                  alt="선수 이름 전체 삭제하기"
-                  layout="responsive"
-                />
-              </button>
-              <span className={style.span}></span>
-            </div>
-          ) : (
-            <></>
-          )}
           <button className={style.button} type="submit">
-            <Image
-              src={Search}
-              alt="선수 검색하기"
-              width="30px"
-              height="30px"
-              layout="responsive"
-            />
+            검색
           </button>
         </div>
         {focusInput && (
@@ -149,13 +119,25 @@ const More = ({
         <div className={style.moreTitle}>포지션</div>
         {positionJSON.kind.map((position, i) => (
           <div key={`포지션: ${i}`} className={` ${style.part}`}>
-            <span>{positionJSON.part[i]}</span>
+            <span
+              style={{ ...postionColor(positionJSON.part[i]), width: "2rem" }}
+            >
+              {positionJSON.part[i]}
+            </span>
             <div className={style.desc}>
               {position.map((p, j) => (
                 <button
-                  style={{
-                    color: more.position.includes(p.id) ? "#00ADB5" : "gray",
-                  }}
+                  style={
+                    more.position.includes(p.id)
+                      ? {
+                          backgroundColor: selectPostionColor(
+                            positionJSON.part[i]
+                          ),
+                          color: "white",
+                          border: "none",
+                        }
+                      : { color: "gray" }
+                  }
                   onClick={() => selectMore("position", p.id)}
                   type="button"
                   className={style.item}

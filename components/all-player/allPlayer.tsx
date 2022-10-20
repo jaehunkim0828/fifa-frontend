@@ -62,11 +62,7 @@ export default memo(function AllPlayer({
 
   const submit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    const m: { season: string; name: string; position: string } = {
-      season: "",
-      name: "",
-      position: "",
-    };
+    const m: { season?: string; name?: string; position?: string } = {};
     if (player.player) m.name = player.player;
     if (more.season.length) m.season = more.season.join(",");
     if (more.position.length) m.position = more.position.join(",");
@@ -141,7 +137,6 @@ export default memo(function AllPlayer({
       >
         <SearchBar
           player={player.player}
-          setPlayer={setPlayer}
           onChangePlayer={onChangePlayer}
           submit={submit}
           more={more}

@@ -14,7 +14,7 @@ import { Status, setSpidValue, spidRequest } from "../slices/spidSlice";
 
 function* setSpidValueSaga(action: PayloadAction<Status>) {
   try {
-    yield delay(100);
+    yield delay(500);
     yield put(setSpidValue(action.payload));
   } catch (err) {
     console.dir(err);

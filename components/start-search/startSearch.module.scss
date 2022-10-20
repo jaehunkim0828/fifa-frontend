@@ -1,7 +1,7 @@
 .searchContainer {
   display: flex;
   padding: 20px;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   flex: 1;
 
@@ -12,12 +12,27 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+    top: 20%;
 
     .title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       font-size: 5rem;
       font-weight: bold;
-      margin: 10px;
+
       color: #38424a;
+
+      .logo {
+        width: 20rem;
+      }
+
+      span {
+        position: relative;
+        top: 10px;
+        font-size: 0.9rem;
+      }
     }
 
     .form {
@@ -25,41 +40,43 @@
       width: calc(100%);
       min-width: 300px;
       position: relative;
-      height: 3rem;
+      top: 50px;
+      height: 100%;
     }
     .searchForm {
       position: absolute;
       border: 2px solid #5f6368;
-      border-radius: 24px;
-      padding: 10px 10px;
       width: 100%;
       display: flex;
       flex-direction: column;
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-
-      &:hover {
-        background-color: #d8dae7;
-        box-shadow: 1px 1px 5px #5f6368;
-        border: 2px solid #d8dae7;
-      }
 
       .search {
         display: flex;
+        height: 3rem;
 
         .searchImg {
           width: 20px;
           height: auto;
-          margin: 0 10px;
-          filter: invert(47%) sepia(0%) saturate(4066%) hue-rotate(260deg)
-            brightness(75%) contrast(75%);
         }
 
         .input {
           border: none;
+          padding: 0 10px;
           font-size: 1.2rem;
           outline: none;
           flex: 1 1;
           background-color: transparent;
+          height: 100%;
+        }
+
+        .btn {
+          height: 100%;
+          width: 5rem;
+          border: none;
+          background-color: #52616b;
+          color: #f0f5f9;
+          font-size: 1rem;
+          cursor: pointer;
         }
       }
 
@@ -80,18 +97,18 @@
 
 @media (max-width: 1000px) {
   .searchContainer {
-    align-items: flex-start;
-
-    .searchWapper {
-      margin-top: 10rem;
-    }
+    justify-content: flex-start;
   }
 }
 
 @media (max-width: 650px) {
   .searchContainer {
     .searchWapper {
-      margin-top: 5rem;
+      .title {
+        .logo {
+          width: 15rem;
+        }
+      }
     }
   }
 }

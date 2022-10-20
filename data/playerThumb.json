@@ -32,7 +32,8 @@
     { "value": 28, "label": "SUB" }
   ],
   "thumbstyle": {
-    "backgroundColor": "#277bc0"
+    "border": "2px solid #00ADB5",
+    "backgroundColor": "#E3EBF1"
   },
   "initialStatus": {
     "matchCount": 0,

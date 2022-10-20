@@ -7,6 +7,7 @@ import style from "./playerInformation.module.scss";
 import json from "@data/playerThumb.json";
 import { Dialog } from "@mui/material";
 import Pagination from "@components/pagination/Pagination";
+import { useResize } from "@hooks/useResize";
 
 export default function PlayerInformation({
   stats,
@@ -21,6 +22,7 @@ export default function PlayerInformation({
   detail: { open, setOpen },
 }: PlayerInformationProps) {
   const [loading, setLoading] = useState(false);
+  const { nowWidth } = useResize();
 
   return (
     <div className={style.playerRanksWapper}>
@@ -37,6 +39,20 @@ export default function PlayerInformation({
         )}
       </div>
       <div className={style.players}>
+        {nowWidth > 1000 ? (
+          <div className={style.thumbInfo}>
+            <div className={style.name}>
+              <div>시즌</div>
+              <div>선수명</div>
+            </div>
+            <div className={style.more}>
+              <div>OVR</div>
+              <div>포지션</div>
+            </div>
+          </div>
+        ) : (
+          <></>
+        )}
         <PlayerList
           players={ranks}
           loading={loading}

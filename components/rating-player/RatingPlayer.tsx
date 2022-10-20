@@ -42,6 +42,7 @@ export default function RatingPlayer({
   const [ps, setPs] = useState<RatingTable[]>([]);
   const [secIndex, setSecIndex] = useState(0);
   const [nowAvg, setNowAvg] = useState(average.striker);
+  const [pl, setP] = useState<any>([]);
 
   const window = useResize();
 
@@ -64,6 +65,24 @@ export default function RatingPlayer({
       label: "defender",
     },
   ];
+
+  // useEffect(() => {
+  //   const rankService = new RankService();
+
+  //   async function a() {
+  //     for (const spid in players) {
+  //       if (pl.some((e: any) => e[0] === spid)) continue;
+  //       const stats: Stats = await rankService.getMyTotalRankByPo(
+  //         spid,
+  //         PositionStatus.TOTAL
+  //       );
+
+  //       setP((prev: any) => [...prev, [spid, stats]]);
+  //     }
+  //   }
+
+  //   a();
+  // }, [players]);
 
   useEffect(() => {
     if (!Object.keys(players).length) return;
@@ -161,7 +180,11 @@ export default function RatingPlayer({
                 <button
                   style={
                     i === secIndex
-                      ? { color: "#FF884B", fontWeight: "bold" }
+                      ? {
+                          borderBottom: "2px solid black",
+                          fontWeight: "bold",
+                          color: "black",
+                        }
                       : {}
                   }
                   key={`기준: ${i}`}
@@ -239,7 +262,7 @@ export default function RatingPlayer({
           <table className={style.table}>
             <thead>
               <tr>
-                <th></th>
+                <th>선수 정보</th>
                 <th>{window.nowWidth > 650 ? "공격지수" : "공격"}</th>
                 <th>{window.nowWidth > 650 ? "도움지수" : "도움"}</th>
                 <th>{window.nowWidth > 650 ? "수비지수" : "수비"}</th>

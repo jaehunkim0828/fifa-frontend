@@ -7,80 +7,55 @@
   max-width: 35rem;
   width: 100%;
   transition: height 0.5s;
+  height: 3rem;
 
   .searchbar {
     flex-direction: column;
     display: flex;
     align-items: flex-start;
-    background-color: #eeeeee;
-    border-radius: 25px;
+    background-color: transparent;
     width: 100%;
     height: 100%;
-    padding: 10px 10px 10px 15px;
-    box-shadow: 0 1px 3px rgb(23 23 23 / 24%);
-
-    &:hover {
-      background-color: #c6c6c6;
-      box-shadow: 0 4px 12px rgb(23 23 23 / 30%);
-    }
+    position: absolute;
 
     .searchForm {
       display: flex;
       align-items: center;
       width: 100%;
-      .name {
-        position: absolute;
-        font-size: 0.7rem;
-        color: #38424a;
-        font-weight: bold;
-        top: -5px;
-      }
+      height: 4rem;
+      border: 2px solid #52616b;
 
       .input {
+        padding: 0 10px;
         border: none;
         background-color: transparent;
         outline: none;
-        height: 2rem;
+        height: 100%;
         color: #3f3f3f;
         flex: 1;
-      }
-
-      .clean {
-        height: 100%;
-        display: flex;
-        .cleanBtn {
-          background-color: transparent;
-          border: none;
-          cursor: pointer;
-          width: 30px;
-          height: 100%;
-          filter: invert(50%) sepia(11%) saturate(204%) hue-rotate(165deg)
-            brightness(93%) contrast(92%);
-        }
-        .span {
-          border-left: 1px solid #5f6368;
-          height: 100%;
-        }
+        font-size: 1rem;
+        background-color: #f0f5f9;
       }
 
       .button {
-        border-radius: 10px;
         border: none;
-        background-color: transparent;
-        filter: invert(47%) sepia(0%) saturate(4066%) hue-rotate(260deg)
-          brightness(75%) contrast(75%);
+        background-color: #52616b;
         align-items: center;
         justify-content: center;
-        width: 30px;
+        width: 5rem;
+        height: 100%;
+        color: #f0f5f9;
+        font-size: 1rem;
       }
     }
     .more {
+      background-color: #f0f5f9;
+      border: 2px solid #52616b;
       padding: 10px;
       max-width: 35rem;
       width: 100%;
       min-width: 15rem;
       overflow-y: scroll;
-      border-radius: 5px;
       height: 100%;
 
       .moreTitle {
@@ -117,9 +92,12 @@
             flex-wrap: wrap;
             .item {
               padding: 10px;
-              border: none;
+              border: 1px solid gray;
+              border-radius: 5px;
               background-color: transparent;
               cursor: pointer;
+              margin-right: 2px;
+              width: 3rem;
             }
           }
         }
@@ -130,17 +108,13 @@
 
 @media (max-width: 1000px) {
   .container {
-    margin: 3px 0px 0px 0;
     width: 100%;
-
-    .searchbar {
-      padding: 10px 7.5px 10px 10px;
-    }
   }
 }
 
 @media (max-width: 650px) {
   .container {
+    margin: 0;
     .more {
       width: 100%;
     }

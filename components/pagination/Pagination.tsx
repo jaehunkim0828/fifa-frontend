@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import Image from "next/image";
 
 import style from "./pagination.module.scss";
@@ -20,6 +20,10 @@ export default memo(function Pagination({
   const [skip, setSkip] = useState(0);
 
   const playerService = new PlayerService();
+
+  useEffect(() => {
+    setCurpage(1);
+  }, [name, season, position]);
 
   const getCurrentPage = async (cur_page: number, c: number) => {
     const ranksData: PlayerInfo[] = await playerService.findCurrentPage(

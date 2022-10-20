@@ -6,16 +6,15 @@
     display: flex;
   }
   .number {
-    border-radius: 50%;
-    border: 1.5px solid black;
     outline: none;
     cursor: pointer;
     width: 2rem;
     height: 2rem;
-    color: black;
+    color: 52616B;
     margin: 0 0.5rem;
-    padding: 0.3rem;
+    padding: 5px;
     background: transparent;
+    border: none;
   }
 }
 
@@ -30,12 +29,9 @@
     bottom: none;
 
     .number {
-      width: 1.6rem;
-      height: 1.6rem;
-      padding: 0.1rem;
-      margin: 0 0.3rem;
-      font-size: 0.5rem;
-      border-width: 1px;
+      padding: 1px;
+      margin: 0 0.1rem;
+      width: 1.5rem;
     }
   }
 }

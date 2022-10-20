@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
-import { memo } from "react";
+import { memo, useState } from "react";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 import { useAppSelector } from "@store/index";
 import { useAppDispatch } from "@store/index";
@@ -11,6 +12,7 @@ import { PlayerThumbProps } from "@type/playerThumb.type";
 import json from "@data/playerThumb.json";
 import { postionColor } from "@data/playerThumb.data";
 import RankService from "@services/rank.api";
+import Search from "@public/images/search.svg";
 
 export default memo(function PlayerThumb({
   spid,
@@ -26,6 +28,8 @@ export default memo(function PlayerThumb({
   const router = useRouter();
 
   const { value } = useAppSelector(state => state.spid);
+
+  const [isFocus, setIsFocus] = useState(false);
 
   const openGraph = async () => {
     if (!value[spid]) {
@@ -66,6 +70,8 @@ export default memo(function PlayerThumb({
     <div
       style={value[spid] ? json.thumbstyle : {}}
       className={style.thumbContainer}
+      onMouseEnter={() => setIsFocus(true)}
+      onMouseLeave={() => setIsFocus(false)}
     >
       <button disabled={loading} className={style.thumb} onClick={openGraph}>
         <div className={style.main}>
@@ -76,26 +82,32 @@ export default memo(function PlayerThumb({
               alt="선수 시즌 이미지"
             />
             <p
-              style={value[spid] ? { color: "white" } : {}}
               className={style.name}
+              style={value[spid] ? { fontWeight: "bold", color: "black" } : {}}
             >
               {name}
             </p>
+            {(value[spid] || isFocus) && (
+              <div
+                onClick={() => showDetail(spid, name)}
+                className={style.detail}
+              >
+                <Image
+                  src={Search}
+                  alt="상세정보"
+                  layout="fixed"
+                  width="30px"
+                  height="30px"
+                />
+              </div>
+            )}
           </div>
           <div>
-            <span style={value[spid] ? { color: "white" } : {}}>메인: </span>
             <span style={postionColor(position?.part)}>
               {position?.desc ?? "미정"}
             </span>
           </div>
         </div>
-      </button>
-      <button
-        disabled={loading}
-        onClick={() => showDetail(spid, name)}
-        className={style.detail}
-      >
-        상세정보
       </button>
     </div>
   );
