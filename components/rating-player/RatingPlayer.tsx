@@ -42,7 +42,6 @@ export default function RatingPlayer({
   const [ps, setPs] = useState<RatingTable[]>([]);
   const [secIndex, setSecIndex] = useState(0);
   const [nowAvg, setNowAvg] = useState(average.striker);
-  const [pl, setP] = useState<any>([]);
 
   const window = useResize();
 

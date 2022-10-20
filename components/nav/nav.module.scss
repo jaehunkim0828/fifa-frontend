@@ -21,6 +21,7 @@
         background-color: transparent;
         cursor: pointer;
         color: white;
+        padding: 0;
 
         strong {
           font-style: italic;
@@ -86,6 +87,7 @@
 
 @media (max-width: 650px) {
   .navContainer {
+    padding: 0 20px;
     .nav {
       height: 3rem;
     }
