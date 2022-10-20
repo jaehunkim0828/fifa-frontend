@@ -99,13 +99,12 @@ const More = ({
                 opacity: more.season.includes(season.seasonId) ? "1" : "0.3",
               }}
               onClick={() => selectMore("season", season.seasonId)}
-              className={` ${style.seasonBtn}`}
+              className={style.seasonBtn}
               key={`시즌: ${i}-1`}
               type="button"
             >
               <Image
                 src={season.seasonImg}
-                className={""}
                 alt={"시즌이미지"}
                 width="100%"
                 height="100%"
