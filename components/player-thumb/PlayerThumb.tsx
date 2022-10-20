@@ -8,7 +8,11 @@ import { useAppDispatch } from "@store/index";
 import { resetSpidValue, spidRequest } from "@store/slices/spidSlice";
 import style from "./playerThumb.module.scss";
 import PositionService from "@services/position.api";
-import { PlayerThumbProps } from "@type/playerThumb.type";
+import {
+  PlayerThumbProps,
+  PositionStatus,
+  Stats,
+} from "@type/playerThumb.type";
 import json from "@data/playerThumb.json";
 import { postionColor } from "@data/playerThumb.data";
 import RankService from "@services/rank.api";
@@ -21,6 +25,7 @@ export default memo(function PlayerThumb({
   position,
   loading,
   setdLoading,
+  setLoading,
 }: PlayerThumbProps) {
   const positionService = new PositionService();
   const rankService = new RankService();
@@ -32,6 +37,11 @@ export default memo(function PlayerThumb({
   const [isFocus, setIsFocus] = useState(false);
 
   const openGraph = async () => {
+    setLoading(true);
+    const stats: Stats = await rankService.getMyTotalRankByPo(
+      spid,
+      PositionStatus.TOTAL
+    );
     if (!value[spid]) {
       await rankService.create(spid, name);
     }
@@ -42,6 +52,7 @@ export default memo(function PlayerThumb({
         spidRequest({
           spid,
           name,
+          stats,
         })
       );
     } else {

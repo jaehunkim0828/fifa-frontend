@@ -1,14 +1,5 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import {
-  all,
-  call,
-  delay,
-  fork,
-  put,
-  takeEvery,
-  takeLatest,
-  takeLeading,
-} from "redux-saga/effects";
+import { delay, put, takeLatest } from "redux-saga/effects";
 
 import { Status, setSpidValue, spidRequest } from "../slices/spidSlice";
 

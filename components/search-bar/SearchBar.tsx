@@ -56,7 +56,10 @@ export default function SearchBar({
         onMouseEnter={() => setFocusInput(true)}
         onMouseLeave={() => setFocusInput(false)}
         className={style.searchbar}
-        onSubmit={async (e: React.SyntheticEvent) => submit(e)}
+        onSubmit={async (e: React.SyntheticEvent) => {
+          submit(e);
+          setFocusInput(false);
+        }}
       >
         <div className={style.searchForm}>
           <input

@@ -92,6 +92,7 @@ export interface PlayerThumbProps {
   position?: Position;
   loading: boolean;
   setdLoading: (value: boolean) => void;
+  setLoading: (value: boolean) => void;
 }
 
 export interface Ability {

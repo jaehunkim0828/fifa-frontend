@@ -42,6 +42,7 @@ export default function RatingPlayer({
   const [ps, setPs] = useState<RatingTable[]>([]);
   const [secIndex, setSecIndex] = useState(0);
   const [nowAvg, setNowAvg] = useState(average.striker);
+  const [pl, setP] = useState<any>({});
 
   const window = useResize();
 
@@ -65,49 +66,25 @@ export default function RatingPlayer({
     },
   ];
 
-  // useEffect(() => {
-  //   const rankService = new RankService();
-
-  //   async function a() {
-  //     for (const spid in players) {
-  //       if (pl.some((e: any) => e[0] === spid)) continue;
-  //       const stats: Stats = await rankService.getMyTotalRankByPo(
-  //         spid,
-  //         PositionStatus.TOTAL
-  //       );
-
-  //       setP((prev: any) => [...prev, [spid, stats]]);
-  //     }
-  //   }
-
-  //   a();
-  // }, [players]);
-
   useEffect(() => {
+    setLoading(true);
     if (!Object.keys(players).length) return;
 
     const playerService = new PlayerService();
-    const rankService = new RankService();
 
     const getPlayers = async (
-      players: { [x: string]: string },
+      players: { [spid: string]: { name: string; stats: Stats } },
       average: Stats,
       section?: string
     ) => {
-      setLoading(true);
       setPs([]);
       const powers = [];
       for (const spid in players) {
-        const stats: Stats = await rankService.getMyTotalRankByPo(
-          spid,
-          PositionStatus.TOTAL
-        );
-
         powers.push({
-          ...calculatePower(stats, average),
+          ...calculatePower(players[spid].stats, average),
           spid,
-          name: players[spid],
-          matchCount: stats.matchCount,
+          name: players[spid].name,
+          matchCount: players[spid].stats.matchCount,
         });
       }
 

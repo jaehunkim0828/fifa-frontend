@@ -18,6 +18,7 @@ import {
   PlayerStats,
   PositionPart,
   PositionStatus,
+  Stats,
 } from "@type/playerThumb.type";
 import SearchBar from "@components/search-bar/SearchBar";
 import PositionService from "@services/position.api";
@@ -90,7 +91,7 @@ export default memo(function AllPlayer({
     for (const player in players) {
       const status = await rankService.getMyTotalRankByPo(player, position);
       totalPlayerData[player] = {
-        name: players[player],
+        name: players[player].name,
         status,
         seasonImg: status.seasonImg,
       };
@@ -99,12 +100,17 @@ export default memo(function AllPlayer({
   };
 
   const getDefaultPlayer = async (id: string, name: string) => {
+    const stats: Stats = await rankService.getMyTotalRankByPo(
+      id,
+      PositionStatus.TOTAL
+    );
     if (name) {
       await rankService.create(id, name);
       dispatch(
         setSpidValue({
           spid: id,
           name,
+          stats,
         })
       );
     }

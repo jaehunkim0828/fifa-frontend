@@ -7,7 +7,7 @@ import style from "./playerList.module.scss";
 export default function PlayerList({
   players,
   loading,
-
+  setLoading,
   setdLoading,
 }: PlayerListProps) {
   return (
@@ -27,6 +27,7 @@ export default function PlayerList({
               classname={classname}
               loading={loading}
               setdLoading={setdLoading}
+              setLoading={setLoading}
             />
           );
         }

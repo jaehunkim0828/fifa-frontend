@@ -57,6 +57,7 @@ export default function PlayerInformation({
           players={ranks}
           loading={loading}
           setdLoading={setdLoading}
+          setLoading={setLoading}
         />
         <Pagination
           totalCount={totalCount}
