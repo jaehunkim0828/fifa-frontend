@@ -2,12 +2,12 @@ import Image from "next/image";
 
 import PlayerService from "@services/player.api";
 import RankService from "@services/rank.api";
-import { PositionStatus, Stats } from "@type/playerThumb.type";
+import { PositionStatus } from "@components/player-thumb/playerThumb.type";
 import { useEffect, useState } from "react";
 import { RootState, useAppSelector } from "@store/index";
 import { calculatePower } from "@utils/grade";
 import PlayerCard from "@components/player-card/PlayerCard";
-import { PlayerCardStatus } from "@type/playerCard";
+import { PlayerCardStatus } from "@components/player-card/playerCard.type";
 import style from "./ratingPlayer.module.scss";
 import One from "@public/images/one.png";
 import Two from "@public/images/two.png";
@@ -15,6 +15,7 @@ import Three from "@public/images/three.png";
 import { CircularProgress } from "@mui/material";
 import None from "@public/images/nonperson.png";
 import { useResize } from "@hooks/useResize";
+import { Stats } from "@type/rank.type";
 
 interface RatingTable extends PlayerCardStatus {
   assist: { score: number; best: boolean };

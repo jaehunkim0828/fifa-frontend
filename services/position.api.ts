@@ -1,4 +1,3 @@
-import { PositionPart } from "@type/playerThumb.type";
 import { getMethod, postMethod } from "./http";
 
 export default class PositionService {

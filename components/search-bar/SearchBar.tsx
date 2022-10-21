@@ -1,4 +1,4 @@
-import { SearchBarProps } from "@type/searchBar.type";
+import { SearchBarProps } from "@components/search-bar/searchBar.type";
 import Image from "next/image";
 import style from "./searchBar.module.scss";
 import { useEffect, useState } from "react";

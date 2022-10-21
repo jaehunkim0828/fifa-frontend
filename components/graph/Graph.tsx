@@ -20,10 +20,9 @@ ChartJS.register(
 );
 
 import style from "./graph.module.scss";
-import { GraphProps } from "@type/graph.type";
+import { GraphData, GraphProps } from "@components/graph/graph.type";
 import { colors, options1, options2, step1, step2 } from "@data/graph.data";
 import { useEffect, useState } from "react";
-import { GraphData } from "@type/rankUserResult.type";
 import json from "@data/playerThumb.json";
 import { Grid, Skeleton } from "@mui/material";
 

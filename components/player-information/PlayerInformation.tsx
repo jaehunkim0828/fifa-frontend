@@ -1,7 +1,7 @@
 import Detail from "@components/detail/Detail";
 import PlayerList from "@components/player-list/PlayerList";
 import RatingPlayer from "@components/rating-player/RatingPlayer";
-import { PlayerInformationProps } from "@type/playerInformation";
+import { PlayerInformationProps } from "./playerInformation.type";
 import { useState } from "react";
 import style from "./playerInformation.module.scss";
 import json from "@data/playerThumb.json";

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Stats } from "@type/playerThumb.type";
+import { Stats } from "@type/rank.type";
 
 export interface Status {
   spid: string;

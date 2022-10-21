@@ -1,4 +1,6 @@
-import { PositionPart, PositionStatus, Stats } from "./playerThumb.type";
+import { PositionStatus } from "../components/player-thumb/playerThumb.type";
+import { PositionPart } from "./position.type";
+import { Stats } from "./rank.type";
 
 export interface Position {
   desc: PositionStatus;
@@ -16,13 +18,13 @@ export interface PlayerInfo {
   id: string;
   season: { classname: string; seasonImg: string; id: number };
   position?: Position;
+  ovr?: string;
 }
 
-export interface PlayerProps {
-  playersInitial: Array<PlayerInfo>;
-  count: number;
-  current_page?: number;
-  players?: any;
-  average: { striker: Stats; midfielder: Stats; defender: Stats };
-  search: { name: string; season: string; position: string };
-}
+export type PlayerStats = {
+  [key in string]: {
+    status: Stats;
+    name: string;
+    seasonImg: string;
+  };
+};

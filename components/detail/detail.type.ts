@@ -1,4 +1,4 @@
-import { PlayerStats, Stats } from "./playerThumb.type";
+import { PlayerStats } from "@type/player.type";
 
 export interface DetailProps {
   seleteOptions: {

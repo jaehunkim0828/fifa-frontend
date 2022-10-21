@@ -2,7 +2,7 @@ import { memo, useEffect, useState } from "react";
 import Image from "next/image";
 
 import style from "./pagination.module.scss";
-import { PaginationProps } from "@type/pagination.type";
+import { PaginationProps } from "@components/pagination/pagination.type";
 import left from "../../public/images/left_arrow.png";
 import right from "../../public/images/right_arrow.png";
 import PlayerService from "@services/player.api";

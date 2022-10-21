@@ -1,4 +1,4 @@
-import { PlayerInfo } from "./player.type";
+import { PlayerInfo } from "../../types/player.type";
 
 export interface PaginationProps {
   totalCount: number;

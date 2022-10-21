@@ -1,5 +1,5 @@
-import { PlayerInfo } from "./player.type";
-import { PlayerStats, Stats } from "./playerThumb.type";
+import { Stats } from "@type/rank.type";
+import { PlayerInfo, PlayerStats } from "../../types/player.type";
 
 export interface PlayerInformationProps {
   showPlayerGraph: (value: number) => void;

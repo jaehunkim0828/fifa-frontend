@@ -68,6 +68,19 @@
         width: 100%;
         justify-content: space-between;
       }
+
+      .more {
+        display: flex;
+        width: 25%;
+        justify-content: space-between;
+
+        .ovr {
+          color: #52616b;
+          width: 30px;
+          font-weight: 400;
+          text-align: center;
+        }
+      }
     }
   }
 }

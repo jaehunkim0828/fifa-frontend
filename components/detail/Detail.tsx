@@ -2,9 +2,7 @@ import Graph from "@components/graph/Graph";
 import Select from "react-select";
 
 import style from "./detail.module.scss";
-import { DetailProps } from "@type/detail.type";
-import { useState } from "react";
-// import Randar from "@components/radar/Radar";
+import { DetailProps } from "@components/detail/detail.type";
 
 export default function Detail({
   seleteOptions,

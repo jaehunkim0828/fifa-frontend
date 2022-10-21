@@ -11,12 +11,12 @@ import PositionService from "@services/position.api";
 import {
   PlayerThumbProps,
   PositionStatus,
-  Stats,
-} from "@type/playerThumb.type";
+} from "@components/player-thumb/playerThumb.type";
 import json from "@data/playerThumb.json";
 import { postionColor } from "@data/playerThumb.data";
 import RankService from "@services/rank.api";
 import Search from "@public/images/search.svg";
+import { Stats } from "@type/rank.type";
 
 export default memo(function PlayerThumb({
   spid,
@@ -26,6 +26,7 @@ export default memo(function PlayerThumb({
   loading,
   setdLoading,
   setLoading,
+  ovr,
 }: PlayerThumbProps) {
   const positionService = new PositionService();
   const rankService = new RankService();
@@ -113,7 +114,8 @@ export default memo(function PlayerThumb({
               </div>
             )}
           </div>
-          <div>
+          <div className={style.more}>
+            <span className={style.ovr}>{ovr ?? "?"}</span>
             <span style={postionColor(position?.part)}>
               {position?.desc ?? "미정"}
             </span>

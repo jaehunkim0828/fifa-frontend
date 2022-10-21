@@ -3,7 +3,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
 
-import { TableProps } from "@type/table.type";
+import { TableProps } from "@components/table/table.type";
 import json from "@data/table.json";
 import style from "./table.module.scss";
 import ValueService from "@services/value.api";

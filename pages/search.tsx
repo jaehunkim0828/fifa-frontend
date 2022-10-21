@@ -7,12 +7,20 @@ import PlayerService from "@services/player.api";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { PlayerInfo } from "@type/player.type";
 import Layout from "@components/rest/Layout";
-import { searchProps } from "@type/search.type";
 import RankService from "@services/rank.api";
-import { PositionPart } from "@type/playerThumb.type";
 import { wrapper } from "@store/index";
 import { useAppDispatch } from "@store/index";
 import { resetSpidValue } from "@store/slices/spidSlice";
+import { Stats } from "@type/rank.type";
+import { PositionPart } from "@type/position.type";
+
+interface searchProps {
+  search: { name: string; season: string; position: string };
+  player: PlayerInfo[];
+  isMobile: boolean;
+  average: { striker: Stats; midfielder: Stats; defender: Stats };
+  path: any;
+}
 
 export default function Search({
   search: { name, season, position },

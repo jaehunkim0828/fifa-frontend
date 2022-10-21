@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { CompareThumb } from "../types/player.type";
-import { Thumb } from "../types/playerThumb.type";
+import { Thumb } from "../components/player-thumb/playerThumb.type";
 
 export default function useThumb(
   initialState: []

@@ -1,4 +1,4 @@
-import { PlayerStats, Stats } from "../types/playerThumb.type";
+import { PlayerStats } from "@type/player.type";
 import { useState, useCallback } from "react";
 
 export default function useStats(

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { RootState, useAppSelector, useAppDispatch } from "@store/index";
 import Question from "@components/question/Question";
-import { QuestionStatus } from "@type/question.type";
+import { QuestionStatus } from "@components/question/question.type";
 import style from "./notice.module.scss";
 import CommentForm from "@components/comment-form/CommentForm";
 import CommentService from "@services/comment.api";

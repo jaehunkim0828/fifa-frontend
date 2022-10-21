@@ -1,5 +1,5 @@
-import { CompareThumb, PlayerInfo } from "./player.type";
-import { Thumb } from "./playerThumb.type";
+import { CompareThumb, PlayerInfo } from "../../types/player.type";
+import { Thumb } from "../player-thumb/playerThumb.type";
 
 export interface PlayerListProps {
   players: PlayerInfo[];

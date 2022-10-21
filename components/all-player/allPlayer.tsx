@@ -5,7 +5,7 @@ import { CircularProgress } from "@mui/material";
 
 import useInput from "@hooks/useInput";
 import { useAppDispatch } from "@store/index";
-import { PlayerInfo, PlayerProps } from "@type/player.type";
+import { PlayerInfo, PlayerStats } from "@type/player.type";
 import style from "./allPlayer.module.scss";
 import PlayerInformation from "@components/player-information/PlayerInformation";
 import PlayerService from "@services/player.api";
@@ -14,16 +14,14 @@ import { useAppSelector } from "@store/index";
 import { RootState } from "@store/index";
 import Pagination from "@components/pagination/Pagination";
 import { resetSpidValue, setSpidValue } from "@store/slices/spidSlice";
-import {
-  PlayerStats,
-  PositionPart,
-  PositionStatus,
-  Stats,
-} from "@type/playerThumb.type";
+import { PositionStatus } from "@components/player-thumb/playerThumb.type";
 import SearchBar from "@components/search-bar/SearchBar";
 import PositionService from "@services/position.api";
 import RankService from "@services/rank.api";
 import { position } from "position";
+import { PlayerProps } from "./allPlayer.type";
+import { Stats } from "@type/rank.type";
+import { More } from "@components/search-bar/searchBar.type";
 
 export default memo(function AllPlayer({
   playersInitial,
@@ -50,7 +48,7 @@ export default memo(function AllPlayer({
   const [stats, setStats] = useStats({});
   const [totalCount, setCount] = useState(0);
   const [dLoading, setdLoading] = useState(false);
-  const [more, setMore] = useState<{ [x in string]: number[] }>(initialMore);
+  const [more, setMore] = useState<More>(initialMore);
   const [open, setOpen] = useState(false);
 
   const onChangePlayer = ({
