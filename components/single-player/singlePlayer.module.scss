@@ -2,7 +2,7 @@
   display: flex;
   flex: 1;
   width: 100%;
-  padding: 3rem 5rem;
+  padding: 3rem 3rem;
   justify-content: center;
 
   .singlePlayerWapper {
@@ -13,10 +13,11 @@
 
     h1 {
       font-size: 1.3rem;
+      margin: 0 0 3rem 0;
 
       strong {
         font-size: 1.5rem;
-        color: rgb(255, 69, 69);
+        color: #00adb5;
       }
     }
 
@@ -39,6 +40,9 @@
 
     .singlePlayerWapper {
       width: 100%;
+      h1 {
+        margin: 1rem 0;
+      }
 
       .contents {
         flex-direction: column;
