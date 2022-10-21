@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useRef, useEffect, memo } from "react";
+import React, { useState, useEffect, memo } from "react";
 import { useRouter } from "next/router";
 import { CircularProgress } from "@mui/material";
 
@@ -12,13 +12,10 @@ import PlayerService from "@services/player.api";
 import useStats from "@hooks/useRank";
 import { useAppSelector } from "@store/index";
 import { RootState } from "@store/index";
-import Pagination from "@components/pagination/Pagination";
-import { resetSpidValue, setSpidValue } from "@store/slices/spidSlice";
+import { resetSpidValue, spidRequest } from "@store/slices/spidSlice";
 import { PositionStatus } from "@components/player-thumb/playerThumb.type";
 import SearchBar from "@components/search-bar/SearchBar";
-import PositionService from "@services/position.api";
 import RankService from "@services/rank.api";
-import { position } from "position";
 import { PlayerProps } from "./allPlayer.type";
 import { Stats } from "@type/rank.type";
 import { More } from "@components/search-bar/searchBar.type";
@@ -105,7 +102,7 @@ export default memo(function AllPlayer({
     if (name) {
       await rankService.create(id, name);
       dispatch(
-        setSpidValue({
+        spidRequest({
           spid: id,
           name,
           stats,

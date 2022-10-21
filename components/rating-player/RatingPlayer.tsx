@@ -69,7 +69,9 @@ export default function RatingPlayer({
 
   useEffect(() => {
     setLoading(true);
-    if (!Object.keys(players).length) return;
+    if (!Object.keys(players).length) {
+      return setLoading(false);
+    }
 
     const playerService = new PlayerService();
 
