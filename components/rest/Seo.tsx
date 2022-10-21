@@ -34,6 +34,11 @@ export default function Seo({ title, path }: SeoProps) {
         ></meta>
         <meta property="og:site_name" content={`${title} | PickFA`}></meta>
         <meta property="og:url" content={`https://f4coach.com${path}`}></meta>
+        <meta
+          property="og:image"
+          itemProp="image"
+          content={`${process.env.NEXT_PUBLIC_FRONT_URL}/images/PickFA-thumb.png`}
+        ></meta>
         {/* twitter */}
         <meta name="twitter:card" content="summary"></meta>
         <meta name="twitter:title" content={`${title} | PickFA`}></meta>
