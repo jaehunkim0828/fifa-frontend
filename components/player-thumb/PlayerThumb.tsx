@@ -1,16 +1,22 @@
 /* eslint-disable @next/next/no-img-element */
-import { memo } from "react";
+import { memo, useState } from "react";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 import { useAppSelector } from "@store/index";
 import { useAppDispatch } from "@store/index";
 import { resetSpidValue, spidRequest } from "@store/slices/spidSlice";
 import style from "./playerThumb.module.scss";
 import PositionService from "@services/position.api";
-import { PlayerThumbProps } from "@type/playerThumb.type";
+import {
+  PlayerThumbProps,
+  PositionStatus,
+} from "@components/player-thumb/playerThumb.type";
 import json from "@data/playerThumb.json";
 import { postionColor } from "@data/playerThumb.data";
 import RankService from "@services/rank.api";
+import Search from "@public/images/search.svg";
+import { Stats } from "@type/rank.type";
 
 export default memo(function PlayerThumb({
   spid,
@@ -19,6 +25,8 @@ export default memo(function PlayerThumb({
   position,
   loading,
   setdLoading,
+  setLoading,
+  ovr,
 }: PlayerThumbProps) {
   const positionService = new PositionService();
   const rankService = new RankService();
@@ -27,7 +35,14 @@ export default memo(function PlayerThumb({
 
   const { value } = useAppSelector(state => state.spid);
 
+  const [isFocus, setIsFocus] = useState(false);
+
   const openGraph = async () => {
+    setLoading(true);
+    const stats: Stats = await rankService.getMyTotalRankByPo(
+      spid,
+      PositionStatus.TOTAL
+    );
     if (!value[spid]) {
       await rankService.create(spid, name);
     }
@@ -38,6 +53,7 @@ export default memo(function PlayerThumb({
         spidRequest({
           spid,
           name,
+          stats,
         })
       );
     } else {
@@ -66,6 +82,8 @@ export default memo(function PlayerThumb({
     <div
       style={value[spid] ? json.thumbstyle : {}}
       className={style.thumbContainer}
+      onMouseEnter={() => setIsFocus(true)}
+      onMouseLeave={() => setIsFocus(false)}
     >
       <button disabled={loading} className={style.thumb} onClick={openGraph}>
         <div className={style.main}>
@@ -76,26 +94,33 @@ export default memo(function PlayerThumb({
               alt="선수 시즌 이미지"
             />
             <p
-              style={value[spid] ? { color: "white" } : {}}
               className={style.name}
+              style={value[spid] ? { fontWeight: "bold", color: "black" } : {}}
             >
               {name}
             </p>
+            {(value[spid] || isFocus) && (
+              <div
+                onClick={() => showDetail(spid, name)}
+                className={style.detail}
+              >
+                <Image
+                  src={Search}
+                  alt="상세정보"
+                  layout="fixed"
+                  width="30px"
+                  height="30px"
+                />
+              </div>
+            )}
           </div>
-          <div>
-            <span style={value[spid] ? { color: "white" } : {}}>메인: </span>
+          <div className={style.more}>
+            <span className={style.ovr}>{ovr ?? "?"}</span>
             <span style={postionColor(position?.part)}>
               {position?.desc ?? "미정"}
             </span>
           </div>
         </div>
-      </button>
-      <button
-        disabled={loading}
-        onClick={() => showDetail(spid, name)}
-        className={style.detail}
-      >
-        상세정보
       </button>
     </div>
   );

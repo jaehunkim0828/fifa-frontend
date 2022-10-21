@@ -1,5 +1,5 @@
-import { Stats } from "@type/playerThumb.type";
-import { Grade } from "@type/table.type";
+import { Grade } from "@components/table/table.type";
+import { Stats } from "@type/rank.type";
 
 enum StatsType {
   assist = "assist",

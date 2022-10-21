@@ -1,12 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Stats } from "@type/rank.type";
 
 export interface Status {
   spid: string;
   name: string;
+  stats: Stats;
 }
 interface CommonState {
   value: {
-    [key in string]: string;
+    [spid in string]: { name: string; stats: Stats };
   };
 }
 
@@ -29,7 +31,10 @@ const spidSlice = createSlice({
 
         state.value = {
           ...state.value,
-          [action.payload.spid]: action.payload.name,
+          [action.payload.spid]: {
+            name: action.payload.name,
+            stats: action.payload.stats,
+          },
         };
       },
       prepare: (text: Status) => ({

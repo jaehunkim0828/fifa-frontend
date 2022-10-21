@@ -1,7 +1,10 @@
 import React, { memo, useState } from "react";
 import Image from "next/image";
 
-import { CommnetStatus, QuestionStatus } from "@type/question.type";
+import {
+  CommnetStatus,
+  QuestionStatus,
+} from "@components/question/question.type";
 import style from "./question.module.scss";
 import parseDate from "@utils/date";
 import Reply from "@public/images/reply.png";

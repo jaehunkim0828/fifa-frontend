@@ -2,18 +2,18 @@
   display: flex;
   margin: 0.2rem 0;
   border-radius: 5px;
-  border: 1px solid rgba(226, 226, 226, 0.5);
-  background-color: #efefef;
+  border: 1px solid #999999;
+  background-color: transparent;
 
   &:hover {
-    background-color: #c6c6c6;
+    background-color: #f0f5f9;
   }
 
   .thumb {
     display: flex;
     flex-direction: column;
     position: relative;
-    width: 20rem;
+    width: 25rem;
     transition: transform 200ms ease-in;
     cursor: pointer;
     border: none;
@@ -36,6 +36,23 @@
         }
         .name {
           font-size: 1rem;
+          color: #52616b;
+        }
+        .detail {
+          position: relative;
+          left: 10px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: #00adb5;
+          padding: 0 5px;
+          font-size: 0.8rem;
+          color: #f7f5f2;
+          border: none;
+          cursor: pointer;
+          border-radius: 5px;
+          width: 2rem;
+          height: 2rem;
         }
       }
       .btn {
@@ -51,23 +68,19 @@
         width: 100%;
         justify-content: space-between;
       }
-    }
-  }
 
-  .detail {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #9d9d9d;
-    padding: 0 5px;
-    font-size: 0.8rem;
-    color: #f7f5f2;
-    border: none;
-    cursor: pointer;
-    border-radius: 0 5px 5px 0;
+      .more {
+        display: flex;
+        width: 25%;
+        justify-content: space-between;
 
-    &:hover {
-      background-color: #6b6b6b;
+        .ovr {
+          color: #52616b;
+          width: 30px;
+          font-weight: 400;
+          text-align: center;
+        }
+      }
     }
   }
 }

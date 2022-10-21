@@ -1,4 +1,4 @@
-import { PositionPart } from "@type/playerThumb.type";
+import { PositionPart } from "@type/position.type";
 import { getMethod, postMethod } from "./http";
 
 export default class RankService {

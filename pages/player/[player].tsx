@@ -1,8 +1,19 @@
 import SinglePlayer from "@components/single-player/SinglePlayer";
-import { PlayterDetailProps } from "@type/playerDetailPage";
 import Layout from "@components/rest/Layout";
 import { GetServerSidePropsContext } from "next";
-import { useResize } from "@hooks/useResize";
+import { Stats } from "@type/rank.type";
+import { PositionPart } from "@type/position.type";
+
+interface PlayterDetailProps {
+  stats: Stats;
+  name: string;
+  part: PositionPart;
+  average: Stats;
+  spid: string;
+  desc: string;
+  isMobile: boolean;
+  path: string;
+}
 
 export default function PlayerDetail({
   name,
@@ -12,8 +23,6 @@ export default function PlayerDetail({
   desc,
   path,
 }: PlayterDetailProps) {
-  const size = useResize();
-
   return (
     <Layout page={`${name}의 상세정보`} isMobile={isMobile} path={path}>
       <SinglePlayer name={name} part={part} desc={desc} spid={spid} />

@@ -1,20 +1,18 @@
 import Graph from "@components/graph/Graph";
-import { SinglePlayerProps } from "@type/singlePlayer.type";
+import { SinglePlayerProps } from "@components/single-player/singlePlayer.type";
 import { useEffect, useState } from "react";
 import style from "./singlePlayer.module.scss";
 import { frontUrl } from "@services/http";
 import Table from "@components/table/Table";
-import {
-  PlayerStats,
-  PositionPart,
-  PositionStatus,
-  Stats,
-} from "@type/playerThumb.type";
+import { PositionStatus } from "@components/player-thumb/playerThumb.type";
 import { publicImage } from "@helpers/image";
-import { Grade } from "@type/table.type";
+import { Grade } from "@components/table/table.type";
 import PlayerService from "@services/player.api";
 import RankService from "@services/rank.api";
 import { calculatePower } from "../../utils/grade";
+import { PlayerStats } from "@type/player.type";
+import { Stats } from "@type/rank.type";
+import { PositionPart } from "@type/position.type";
 
 export default function SinglePlayer(props: SinglePlayerProps) {
   const { name, part, spid, desc } = props;

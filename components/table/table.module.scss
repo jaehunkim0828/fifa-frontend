@@ -3,9 +3,14 @@
   width: 20rem;
   height: auto;
 
-  th,
+  th {
+    border-top: 2px solid black;
+    height: 3rem;
+  }
+
   td {
-    border: 1px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
     height: 3rem;
   }
 
@@ -14,7 +19,8 @@
       text-align: center;
 
       &:not(:last-of-type) {
-        background-color: #277bc0;
+        background-color: #52616b;
+        color: white;
       }
 
       span {

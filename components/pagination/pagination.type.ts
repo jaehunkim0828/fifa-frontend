@@ -1,9 +1,8 @@
-import { PlayerInfo } from "./player.type";
-import { PlayerRank } from "./rankUserResult.type";
+import { PlayerInfo } from "../../types/player.type";
 
 export interface PaginationProps {
   totalCount: number;
   count: number;
   setRanks: React.Dispatch<PlayerInfo[]>;
-  player?: string;
+  search: { name: string; season: string; position: string };
 }

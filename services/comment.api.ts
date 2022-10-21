@@ -1,4 +1,4 @@
-import { QuestionStatus } from "@type/question.type";
+import { QuestionStatus } from "@components/question/question.type";
 import { postMethod, getMethod } from "./http";
 
 export default class CommentService {

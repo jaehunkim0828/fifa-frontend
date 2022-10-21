@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { QuestionStatus } from "@type/question.type";
+import { QuestionStatus } from "@components/question/question.type";
 
 interface CommonState {
   comment: QuestionStatus[];

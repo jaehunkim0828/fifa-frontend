@@ -2,12 +2,12 @@ import Image from "next/image";
 
 import PlayerService from "@services/player.api";
 import RankService from "@services/rank.api";
-import { PositionStatus, Stats } from "@type/playerThumb.type";
+import { PositionStatus } from "@components/player-thumb/playerThumb.type";
 import { useEffect, useState } from "react";
 import { RootState, useAppSelector } from "@store/index";
 import { calculatePower } from "@utils/grade";
 import PlayerCard from "@components/player-card/PlayerCard";
-import { PlayerCardStatus } from "@type/playerCard";
+import { PlayerCardStatus } from "@components/player-card/playerCard.type";
 import style from "./ratingPlayer.module.scss";
 import One from "@public/images/one.png";
 import Two from "@public/images/two.png";
@@ -15,6 +15,7 @@ import Three from "@public/images/three.png";
 import { CircularProgress } from "@mui/material";
 import None from "@public/images/nonperson.png";
 import { useResize } from "@hooks/useResize";
+import { Stats } from "@type/rank.type";
 
 interface RatingTable extends PlayerCardStatus {
   assist: { score: number; best: boolean };
@@ -42,6 +43,7 @@ export default function RatingPlayer({
   const [ps, setPs] = useState<RatingTable[]>([]);
   const [secIndex, setSecIndex] = useState(0);
   const [nowAvg, setNowAvg] = useState(average.striker);
+  const [pl, setP] = useState<any>({});
 
   const window = useResize();
 
@@ -66,30 +68,26 @@ export default function RatingPlayer({
   ];
 
   useEffect(() => {
-    if (!Object.keys(players).length) return;
+    setLoading(true);
+    if (!Object.keys(players).length) {
+      return setLoading(false);
+    }
 
     const playerService = new PlayerService();
-    const rankService = new RankService();
 
     const getPlayers = async (
-      players: { [x: string]: string },
+      players: { [spid: string]: { name: string; stats: Stats } },
       average: Stats,
       section?: string
     ) => {
-      setLoading(true);
       setPs([]);
       const powers = [];
       for (const spid in players) {
-        const stats: Stats = await rankService.getMyTotalRankByPo(
-          spid,
-          PositionStatus.TOTAL
-        );
-
         powers.push({
-          ...calculatePower(stats, average),
+          ...calculatePower(players[spid].stats, average),
           spid,
-          name: players[spid],
-          matchCount: stats.matchCount,
+          name: players[spid].name,
+          matchCount: players[spid].stats.matchCount,
         });
       }
 
@@ -101,7 +99,6 @@ export default function RatingPlayer({
           let cur: number = b.assist.score + b.attack.score + b.defense.score;
           if (cur === prev) {
             //특정 스탯 순위
-            console.log(1);
             return b[p].score - a[p].score;
           }
           return cur - prev;
@@ -162,7 +159,11 @@ export default function RatingPlayer({
                 <button
                   style={
                     i === secIndex
-                      ? { color: "#FF884B", fontWeight: "bold" }
+                      ? {
+                          borderBottom: "2px solid black",
+                          fontWeight: "bold",
+                          color: "black",
+                        }
                       : {}
                   }
                   key={`기준: ${i}`}
@@ -240,7 +241,7 @@ export default function RatingPlayer({
           <table className={style.table}>
             <thead>
               <tr>
-                <th></th>
+                <th>선수 정보</th>
                 <th>{window.nowWidth > 650 ? "공격지수" : "공격"}</th>
                 <th>{window.nowWidth > 650 ? "도움지수" : "도움"}</th>
                 <th>{window.nowWidth > 650 ? "수비지수" : "수비"}</th>

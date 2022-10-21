@@ -3,18 +3,13 @@ import React, { useEffect } from "react";
 import style from "./commentForm.module.scss";
 import { useAppDispatch } from "@store/index";
 import { createComment } from "@store/slices/commentSlice";
-import { QuestionStatus } from "@type/question.type";
+import { QuestionStatus } from "@components/question/question.type";
 import CommentService from "@services/comment.api";
-import { useState } from "react";
 import MailService from "@services/mail.api";
+import { CommentProps } from "./comment.type";
+import { RoleStatus } from "@type/comment.type";
 
-export default function CommentForm({
-  groupNum,
-  postId,
-}: {
-  groupNum?: number;
-  postId: number;
-}) {
+export default function CommentForm({ groupNum, postId }: CommentProps) {
   const commentService = new CommentService();
   const mailService = new MailService();
 
@@ -22,7 +17,7 @@ export default function CommentForm({
     username: "",
     content: "",
     groupNum: groupNum ?? 0,
-    role: "user",
+    role: RoleStatus.User,
     createAt: new Date(),
     addChat: [],
     hierarchy: groupNum ? 1 : 0,
@@ -53,7 +48,7 @@ export default function CommentForm({
       dispatch(createComment({ ...question, createAt: new Date() }));
 
       await commentService.createComment({ ...question, createAt: new Date() });
-      await mailService.sendQuestion(
+      mailService.sendQuestion(
         `${question.username}님이 댓글을 달았습니다`,
         question.content
       );

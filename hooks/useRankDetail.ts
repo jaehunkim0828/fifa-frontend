@@ -1,6 +1,11 @@
-import { Stats } from "../types/playerThumb.type";
+import { Stats } from "@type/rank.type";
 import { useState, useCallback } from "react";
-import { RankDetail } from "@type/rankUserResult.type";
+
+interface RankDetail {
+  createDate: string;
+  spPosition: number;
+  status: Stats;
+}
 
 export default function useStats(
   initialState: RankDetail[]

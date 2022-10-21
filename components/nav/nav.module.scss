@@ -1,17 +1,102 @@
 .navContainer {
+  padding: 0 30px;
   background-color: #4b5d67;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
   position: sticky;
+  justify-content: flex-start;
+  height: auto;
 
-  button {
-    background-color: transparent;
-    border: none;
-    color: #bdf2d5;
-    font-weight: bold;
-    width: 10rem;
-    cursor: pointer;
-    height: 3rem;
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 4rem;
+
+    .title {
+      color: white;
+
+      button {
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        color: white;
+        padding: 0;
+        font-size: 1.4rem;
+
+        strong {
+          font-style: italic;
+        }
+        span {
+          font-size: 0.6rem;
+          position: relative;
+          left: 10px;
+        }
+      }
+    }
+
+    .navItems {
+      width: 10rem;
+      display: flex;
+      justify-content: space-between;
+
+      button {
+        background-color: transparent;
+        border: none;
+        color: white;
+        font-weight: bold;
+        width: 3rem;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .dropdown {
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease-out(0, 0, 0.58, 2);
+
+    button {
+      border: none;
+      cursor: pointer;
+      color: white;
+      background-color: transparent;
+      padding: 5px;
+    }
+  }
+}
+
+.burger {
+  width: 18px;
+  height: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+
+  span {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+    border-top: 1px solid white;
+    position: absolute;
+  }
+}
+
+@media (max-width: 650px) {
+  .navContainer {
+    padding: 0 20px;
+    .nav {
+      height: 3rem;
+
+      .title {
+        button {
+          font-size: 1rem;
+        }
+      }
+    }
   }
 }

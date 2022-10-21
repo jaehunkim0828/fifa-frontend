@@ -1,5 +1,3 @@
-import { PlayerStats, PositionPart } from "./playerThumb.type";
-
 export interface Power {
   attack: { score: number; grade: Grade };
   assist: { score: number; grade: Grade };

@@ -1,4 +1,4 @@
-import { PlayerStats, PositionPart, Stats } from "./playerThumb.type";
+import { PositionPart } from "@type/position.type";
 
 export interface SinglePlayerProps {
   name: string;

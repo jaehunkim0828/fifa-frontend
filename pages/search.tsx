@@ -7,15 +7,23 @@ import PlayerService from "@services/player.api";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { PlayerInfo } from "@type/player.type";
 import Layout from "@components/rest/Layout";
-import { searchProps } from "@type/search.type";
 import RankService from "@services/rank.api";
-import { PositionPart } from "@type/playerThumb.type";
 import { wrapper } from "@store/index";
 import { useAppDispatch } from "@store/index";
 import { resetSpidValue } from "@store/slices/spidSlice";
+import { Stats } from "@type/rank.type";
+import { PositionPart } from "@type/position.type";
+
+interface searchProps {
+  search: { name: string; season: string; position: string };
+  player: PlayerInfo[];
+  isMobile: boolean;
+  average: { striker: Stats; midfielder: Stats; defender: Stats };
+  path: any;
+}
 
 export default function Search({
-  name,
+  search: { name, season, position },
   player,
   isMobile,
   average,
@@ -44,7 +52,7 @@ export default function Search({
         count={count}
         current_page={0}
         average={average}
-        name={name}
+        search={{ name, season, position }}
       />
     </Layout>
   );
@@ -58,13 +66,17 @@ export const getServerSideProps: GetServerSideProps =
       const rankService = new RankService();
 
       const { query } = context;
-      const { search: name } = query as { search: string };
+      const { name, season, position } = query as {
+        name: string;
+        season: string;
+        position: string;
+      };
       const striker = await rankService.getAveragestats(PositionPart.FW);
       const midfielder = await rankService.getAveragestats(PositionPart.MF);
       const defender = await rankService.getAveragestats(PositionPart.DF);
 
-      const player: PlayerInfo[] = await playerService.getPlayersByName(
-        name,
+      const player: PlayerInfo[] = await playerService.getPlayers(
+        { player: name, season, position },
         0,
         9
       );
@@ -73,7 +85,11 @@ export const getServerSideProps: GetServerSideProps =
       store.dispatch(END);
       return {
         props: {
-          name,
+          search: {
+            season: season ?? null,
+            name: name ?? null,
+            position: position ?? null,
+          },
           player,
           average: { striker, midfielder, defender },
           path: context.resolvedUrl,

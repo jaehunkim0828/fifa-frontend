@@ -1,7 +1,7 @@
 import json from "@data/playerThumb.json";
-import { PositionPart } from "@type/playerThumb.type";
+import { PositionPart } from "@type/position.type";
 
-const selectPostionColor = (part?: string) => {
+export const selectPostionColor = (part?: string) => {
   const { positionColor: color } = json;
 
   switch (part) {

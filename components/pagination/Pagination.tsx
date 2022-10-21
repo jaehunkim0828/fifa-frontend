@@ -1,8 +1,8 @@
-import { memo, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import Image from "next/image";
 
 import style from "./pagination.module.scss";
-import { PaginationProps } from "@type/pagination.type";
+import { PaginationProps } from "@components/pagination/pagination.type";
 import left from "../../public/images/left_arrow.png";
 import right from "../../public/images/right_arrow.png";
 import PlayerService from "@services/player.api";
@@ -14,18 +14,23 @@ export default memo(function Pagination({
   totalCount,
   count,
   setRanks,
-  player,
+  search: { name, season, position },
 }: PaginationProps) {
   const [curPage, setCurpage] = useState(1);
   const [skip, setSkip] = useState(0);
 
   const playerService = new PlayerService();
-  const rankService = new RankService();
+
+  useEffect(() => {
+    setCurpage(1);
+  }, [name, season, position]);
 
   const getCurrentPage = async (cur_page: number, c: number) => {
-    const ranksData: PlayerInfo[] = player
-      ? await playerService.findCurrentPage(player, cur_page, c)
-      : await rankService.findCurrentPage(cur_page, c);
+    const ranksData: PlayerInfo[] = await playerService.findCurrentPage(
+      { player: name, season, position },
+      cur_page,
+      c
+    );
 
     setRanks(ranksData);
     setCurpage(+cur_page);
