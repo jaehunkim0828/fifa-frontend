@@ -59,6 +59,7 @@ export default memo(function PlayerThumb({
     } else {
       window.alert("선수는 3명까지 비교 가능합니다.");
     }
+    setLoading(false);
   };
 
   const showDetail = async (spid: string, name: string) => {
