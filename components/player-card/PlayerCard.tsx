@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { useResize } from "@hooks/useResize";
-import { PlayerCardProps } from "@type/playerCard";
+import { PlayerCardProps } from "./playerCard.type";
 import { useEffect, useState } from "react";
 import style from "./playerCard.module.scss";
 

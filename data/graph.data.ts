@@ -1,4 +1,4 @@
-import { GraphData } from "@type/rankUserResult.type";
+import { GraphData } from "@components/graph/graph.type";
 
 export const colors = [
   "#E99497",

@@ -1,5 +1,5 @@
 export interface QuestionStatus extends CommnetStatus {
-  addChat?: CommnetStatus[];
+  addChat: CommnetStatus[];
 }
 
 export interface CommnetStatus {
