@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { memo, useState } from "react";
+import { memo, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 
@@ -32,12 +32,14 @@ export default memo(function PlayerThumb({
   const rankService = new RankService();
   const dispatch = useAppDispatch();
   const router = useRouter();
+  const detailRef = useRef<HTMLDivElement>(null);
 
   const { value } = useAppSelector(state => state.spid);
 
   const [isFocus, setIsFocus] = useState(false);
 
-  const openGraph = async () => {
+  const openGraph = async (e: any) => {
+    if (detailRef.current?.contains(e.target)) return;
     setLoading(true);
     const stats: Stats = await rankService.getMyTotalRankByPo(
       spid,
@@ -58,8 +60,8 @@ export default memo(function PlayerThumb({
       );
     } else {
       window.alert("선수는 3명까지 비교 가능합니다.");
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   const showDetail = async (spid: string, name: string) => {
@@ -102,6 +104,7 @@ export default memo(function PlayerThumb({
             </p>
             {(value[spid] || isFocus) && (
               <div
+                ref={detailRef}
                 onClick={() => showDetail(spid, name)}
                 className={style.detail}
               >
