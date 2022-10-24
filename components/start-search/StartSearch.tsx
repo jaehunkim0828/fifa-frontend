@@ -36,29 +36,18 @@ export default function StartSearch() {
     setPlayer("player", event.target.value);
   };
 
-  const selectSeason = (seasonId: number) => {
-    if (more.season.includes(seasonId)) {
-      const index = more.season.indexOf(seasonId);
-      more.season.splice(index, 1);
-      setMore(prev => ({
-        ...prev,
-        season: more.season,
-      }));
-      return;
-    }
-    setMore((prev: any) => ({
-      ...prev,
-      season: [...prev.season, seasonId],
-    }));
-  };
-
   return (
     <>
       <div className={style.searchContainer}>
         <div className={style.searchWapper}>
           <div className={style.title}>
             <div className={style.logo}>
-              <Image src={Logo} alt="PickFA-Logo" layout="responsive" />
+              <Image
+                src={Logo}
+                alt="PickFA-Logo"
+                layout="responsive"
+                priority
+              />
             </div>
             <span>선수 데이터 웹사이트 분석</span>
           </div>

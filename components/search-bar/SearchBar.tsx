@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import SeasonService from "@services/season.api";
 import positionJSON from "@data/position.json";
 import { postionColor, selectPostionColor } from "@data/playerThumb.data";
+import seasonData from "@data/season.data.json";
 
 export default function SearchBar({
   player,
@@ -14,10 +15,6 @@ export default function SearchBar({
   setMore,
   open,
 }: SearchBarProps) {
-  const [seasons, setSeason] = useState<
-    { seasonId: number; seasonImg: string }[]
-  >([]);
-
   const [focusInput, setFocusInput] = useState(false);
 
   const selectMore = (kind: string, kindId: number) => {
@@ -35,16 +32,6 @@ export default function SearchBar({
       [kind]: [...prev[kind], kindId],
     }));
   };
-
-  useEffect(() => {
-    const seasonService = new SeasonService();
-
-    async function getMoreChoice() {
-      const s = await seasonService.getSeason();
-      setSeason(s);
-    }
-    getMoreChoice();
-  }, []);
 
   return (
     <div className={style.container}>
@@ -73,7 +60,11 @@ export default function SearchBar({
           </button>
         </div>
         {focusInput && (
-          <More seasons={seasons} more={more} selectMore={selectMore} />
+          <More
+            seasons={seasonData.seasonImg}
+            more={more}
+            selectMore={selectMore}
+          />
         )}
       </form>
     </div>
