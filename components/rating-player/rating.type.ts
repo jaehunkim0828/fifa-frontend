@@ -9,7 +9,7 @@ export interface RatingTable extends PlayerCardStatus {
 }
 
 export interface RatingProps {
-  average: { striker: Stats; midfielder: Stats; defender: Stats };
+  average: Stats;
   loading: boolean;
   setLoading: (v: boolean) => void;
   setOpen: (v: boolean) => void;

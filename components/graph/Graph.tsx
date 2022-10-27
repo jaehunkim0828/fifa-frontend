@@ -21,15 +21,25 @@ ChartJS.register(
 
 import style from "./graph.module.scss";
 import { GraphData, GraphProps } from "@components/graph/graph.type";
-import { colors, options1, options2, step1, step2 } from "@data/graph.data";
+import {
+  colors,
+  mobileStep,
+  mobileLabel,
+  options,
+  step1,
+  step2,
+} from "@data/graph.data";
 import { useEffect, useState } from "react";
 import json from "@data/playerThumb.json";
 import { Grid, Skeleton } from "@mui/material";
+import { useResize } from "@hooks/useResize";
 
 export default function Graph({ stats, seasonImg }: GraphProps) {
   const [players, setPlayers] = useState<GraphData[]>([
     { name: "", status: json.initialStatus, spid: "", seasonImg: "/" },
   ]);
+
+  const { nowWidth } = useResize();
 
   const playerColor = (index: number) => {
     return {
@@ -74,8 +84,22 @@ export default function Graph({ stats, seasonImg }: GraphProps) {
         </Grid>
       ) : (
         <>
-          <Bar options={options1()} data={step1(players)} />
-          <Bar options={options2()} data={step2(players)} />
+          {nowWidth >= 650 ? (
+            <>
+              <Bar options={options} data={step1(players)} />
+              <Bar options={options} data={step2(players)} />
+            </>
+          ) : (
+            <div className={style.barContainer}>
+              {mobileLabel.map((label, i) => (
+                <Bar
+                  key={`bar-graph: ${i}`}
+                  options={options}
+                  data={mobileStep(players, label.type, label.kind)}
+                />
+              ))}
+            </div>
+          )}
           {players.map((player, i: number) => {
             return (
               <div key={i} className={style.who}>

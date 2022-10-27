@@ -17,6 +17,7 @@ import { postionColor } from "@data/playerThumb.data";
 import RankService from "@services/rank.api";
 import Search from "@public/images/search.svg";
 import { Stats } from "@type/rank.type";
+import CardService from "@services/card.api";
 
 export default memo(function PlayerThumb({
   spid,
@@ -30,8 +31,11 @@ export default memo(function PlayerThumb({
 }: PlayerThumbProps) {
   const positionService = new PositionService();
   const rankService = new RankService();
+  const cardService = new CardService();
+
   const dispatch = useAppDispatch();
   const router = useRouter();
+
   const detailRef = useRef<HTMLDivElement>(null);
 
   const { value } = useAppSelector(state => state.spid);
@@ -41,21 +45,24 @@ export default memo(function PlayerThumb({
   const openGraph = async (e: any) => {
     if (detailRef.current?.contains(e.target)) return;
     setLoading(true);
-    const stats: Stats = await rankService.getMyTotalRankByPo(
-      spid,
-      PositionStatus.TOTAL
-    );
+
     if (!value[spid]) {
       await rankService.create(spid, name);
     }
 
     // 최대 3명까지
     if (value[spid] || Object.keys(value).length < 3) {
+      const card = await cardService.findCard(spid);
+      const stats = await rankService.getMyTotalRankByPo(
+        spid,
+        PositionStatus.TOTAL
+      );
       dispatch(
         spidRequest({
           spid,
           name,
-          stats,
+          stats: stats,
+          card,
         })
       );
     } else {

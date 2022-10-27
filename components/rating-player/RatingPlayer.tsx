@@ -2,12 +2,10 @@ import Image from "next/image";
 
 import PlayerService from "@services/player.api";
 import RankService from "@services/rank.api";
-import { PositionStatus } from "@components/player-thumb/playerThumb.type";
 import { useEffect, useState } from "react";
 import { RootState, useAppSelector } from "@store/index";
 import { calculatePower } from "@utils/grade";
 import PlayerCard from "@components/player-card/PlayerCard";
-import { PlayerCardStatus } from "@components/player-card/playerCard.type";
 import style from "./ratingPlayer.module.scss";
 import One from "@public/images/one.png";
 import Two from "@public/images/two.png";
@@ -16,20 +14,9 @@ import { CircularProgress } from "@mui/material";
 import None from "@public/images/nonperson.png";
 import { useResize } from "@hooks/useResize";
 import { Stats } from "@type/rank.type";
-
-interface RatingTable extends PlayerCardStatus {
-  assist: { score: number; best: boolean };
-  attack: { score: number; best: boolean };
-  defense: { score: number; best: boolean };
-  matchCount: string;
-}
-
-interface RatingProps {
-  average: { striker: Stats; midfielder: Stats; defender: Stats };
-  loading: boolean;
-  setLoading: (v: boolean) => void;
-  setOpen: (v: boolean) => void;
-}
+import { PositionPart } from "@type/position.type";
+import { RatingProps, RatingTable } from "./rating.type";
+import { Card } from "@type/card.type";
 
 export default function RatingPlayer({
   average,
@@ -38,12 +25,12 @@ export default function RatingPlayer({
   setLoading,
 }: RatingProps) {
   const { value: players } = useAppSelector((state: RootState) => state.spid);
+  const rankService = new RankService();
 
   const regex = /[a-zA-Z]/;
   const [ps, setPs] = useState<RatingTable[]>([]);
   const [secIndex, setSecIndex] = useState(0);
-  const [nowAvg, setNowAvg] = useState(average.striker);
-  const [pl, setP] = useState<any>({});
+  const [nowAvg, setNowAvg] = useState(average);
 
   const window = useResize();
 
@@ -51,32 +38,37 @@ export default function RatingPlayer({
 
   const sections: {
     name: string;
-    label: "striker" | "midfielder" | "defender";
+    label: PositionPart.FW | PositionPart.MF | PositionPart.DF;
   }[] = [
     {
       name: window.nowWidth > 650 ? "공격수 기준" : "공격수",
-      label: "striker",
+      label: PositionPart.FW,
     },
     {
       name: window.nowWidth > 650 ? "미드필더 기준" : "미드필더",
-      label: "midfielder",
+      label: PositionPart.MF,
     },
     {
       name: window.nowWidth > 650 ? "수비수 기준" : "수비수",
-      label: "defender",
+      label: PositionPart.DF,
     },
   ];
 
+  const getAverage = async (part: PositionPart, index: number) => {
+    setSecIndex(index);
+    const average = await rankService.getAveragestats(part);
+    setNowAvg(average);
+  };
+
   useEffect(() => {
     setLoading(true);
+
     if (!Object.keys(players).length) {
       return setLoading(false);
     }
 
-    const playerService = new PlayerService();
-
     const getPlayers = async (
-      players: { [spid: string]: { name: string; stats: Stats } },
+      players: { [spid: string]: { name: string; stats: Stats; card: Card } },
       average: Stats,
       section?: string
     ) => {
@@ -88,6 +80,7 @@ export default function RatingPlayer({
           spid,
           name: players[spid].name,
           matchCount: players[spid].stats.matchCount,
+          card: players[spid].card,
         });
       }
 
@@ -121,11 +114,9 @@ export default function RatingPlayer({
       let deB = getBestScore(powers, "defense");
 
       for (let i = 0; i < powers.length; i += 1) {
-        const playerStandard = await playerService.getPlayerByCr(
-          powers[i].spid
-        );
+        let playerStandard: any = {};
 
-        const { name, matchCount, attack, assist, defense } = powers[i];
+        const { name, matchCount, attack, assist, defense, card } = powers[i];
         playerStandard.name = name;
         playerStandard.matchCount = matchCount;
         playerStandard.attack = {
@@ -140,14 +131,16 @@ export default function RatingPlayer({
           score: defense.score,
           best: i === deB ? true : false,
         };
+        playerStandard = { ...playerStandard, ...card };
 
         setPs(prev => [...prev, playerStandard]);
       }
+
       setLoading(false);
     };
 
     getPlayers(players, nowAvg);
-  }, [players, average, nowAvg, setLoading]);
+  }, [players, average, setLoading, nowAvg]);
 
   return (
     <div className={style.rating}>
@@ -155,26 +148,30 @@ export default function RatingPlayer({
         <>
           <div className={style.row1}>
             <div className={style.section}>
-              {sections.map((section, i: number) => (
-                <button
-                  style={
-                    i === secIndex
-                      ? {
-                          borderBottom: "2px solid black",
-                          fontWeight: "bold",
-                          color: "black",
-                        }
-                      : {}
-                  }
-                  key={`기준: ${i}`}
-                  onClick={() => {
-                    setNowAvg(average[`${section.label}`]);
-                    setSecIndex(i);
-                  }}
-                >
-                  {section.name}
-                </button>
-              ))}
+              <div>
+                {sections.map((section, i: number) => (
+                  <button
+                    style={
+                      i === secIndex
+                        ? {
+                            fontWeight: "bold",
+                            color: "black",
+                          }
+                        : {}
+                    }
+                    key={`기준: ${i}`}
+                    onClick={() => getAverage(section.label, i)}
+                  >
+                    {section.name}
+                  </button>
+                ))}
+              </div>
+              <div
+                style={{
+                  left: `${secIndex * 34}%`,
+                }}
+                className={style.sectionSpan}
+              />
             </div>
             <button className={style.detail} onClick={() => setOpen(true)}>
               {window.nowWidth > 650 ? "상세 차트 분석" : "상세 분석"}
@@ -203,8 +200,9 @@ export default function RatingPlayer({
                   nation,
                   seasonImg,
                   name,
-                  pay,
+                  salary,
                   matchCount,
+                  bigSeason,
                 }: RatingTable,
                 i
               ) => (
@@ -218,7 +216,8 @@ export default function RatingPlayer({
                       nation,
                       seasonImg,
                       name,
-                      pay,
+                      salary,
+                      bigSeason,
                     }}
                   />
                   <br />

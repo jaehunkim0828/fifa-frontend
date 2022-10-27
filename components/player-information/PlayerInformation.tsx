@@ -71,6 +71,10 @@ export default function PlayerInformation({
         keepMounted
         onClose={() => setOpen(false)}
         aria-describedby="alert-dialog-slide-description"
+        style={{
+          overflowY: "scroll",
+        }}
+        fullWidth
       >
         <Detail
           seleteOptions={json.seleteOptions}

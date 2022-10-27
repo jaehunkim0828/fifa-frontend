@@ -19,6 +19,8 @@ import RankService from "@services/rank.api";
 import { PlayerProps } from "./allPlayer.type";
 import { Stats } from "@type/rank.type";
 import { More } from "@components/search-bar/searchBar.type";
+import CardService from "@services/card.api";
+import { Card } from "@type/card.type";
 
 export default memo(function AllPlayer({
   playersInitial,
@@ -29,6 +31,7 @@ export default memo(function AllPlayer({
 }: PlayerProps) {
   const playerService = new PlayerService();
   const rankService = new RankService();
+  const cardService = new CardService();
 
   const initialMore = {
     season: [],
@@ -81,31 +84,33 @@ export default memo(function AllPlayer({
     dispatch(resetSpidValue());
   };
 
-  const showPlayerGraph = async (position: number) => {
+  const showPlayerGraph = async () => {
     const totalPlayerData: PlayerStats = {};
     for (const player in players) {
-      const status = await rankService.getMyTotalRankByPo(player, position);
       totalPlayerData[player] = {
         name: players[player].name,
-        status,
-        seasonImg: status.seasonImg,
+        status: players[player].stats,
+        seasonImg: players[player].stats.seasonImg || "",
       };
     }
     setStats(totalPlayerData);
   };
 
   const getDefaultPlayer = async (id: string, name: string) => {
-    const stats: Stats = await rankService.getMyTotalRankByPo(
-      id,
-      PositionStatus.TOTAL
-    );
+    await rankService.create(id, name);
+
+    const card: Card = await cardService.findCard(id);
     if (name) {
-      await rankService.create(id, name);
+      const stats: Stats = await rankService.getMyTotalRankByPo(
+        id,
+        PositionStatus.TOTAL
+      );
       dispatch(
         spidRequest({
           spid: id,
           name,
           stats,
+          card,
         })
       );
     }
@@ -120,15 +125,14 @@ export default memo(function AllPlayer({
       });
       setCount(data);
     };
-
     getTotalCount();
     setPlayerInfo(playersInitial ?? []);
     getDefaultPlayer(playersInitial[0]?.id, playersInitial[0]?.name);
   }, [playersInitial]);
 
   useEffect(() => {
-    showPlayerGraph(PositionStatus.TOTAL);
-  }, [players]);
+    showPlayerGraph();
+  }, [Object.keys(players).length]);
 
   return (
     <div className={style.playerContainer}>
