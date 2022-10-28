@@ -12,7 +12,7 @@ import { wrapper } from "@store/index";
 import { useAppDispatch } from "@store/index";
 import { resetSpidValue } from "@store/slices/spidSlice";
 import { Stats } from "@type/rank.type";
-import { PositionPart } from "@type/position.type";
+import { PositionMainPart } from "@type/position.type";
 
 interface searchProps {
   search: { name: string; season: string; position: string };
@@ -71,7 +71,7 @@ export const getServerSideProps: GetServerSideProps =
         season: string;
         position: string;
       };
-      const striker = await rankService.getAveragestats(PositionPart.FW);
+      const striker = await rankService.getAveragestats(PositionMainPart.FW);
 
       const player: PlayerInfo[] = await playerService.getPlayers(
         { player: name, season, position },

@@ -12,7 +12,7 @@ import RankService from "@services/rank.api";
 import { calculatePower } from "../../utils/grade";
 import { PlayerStats } from "@type/player.type";
 import { Stats } from "@type/rank.type";
-import { PositionPart } from "@type/position.type";
+import { PositionMainPart } from "@type/position.type";
 
 export default function SinglePlayer(props: SinglePlayerProps) {
   const { name, part, spid, desc } = props;
@@ -29,7 +29,7 @@ export default function SinglePlayer(props: SinglePlayerProps) {
     name: string,
     stats: Stats,
     average: Stats,
-    part: PositionPart
+    part: PositionMainPart
   ): PlayerStats => ({
     [name]: {
       status: stats,

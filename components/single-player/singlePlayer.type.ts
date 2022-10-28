@@ -1,8 +1,8 @@
-import { PositionPart } from "@type/position.type";
+import { PositionMainPart } from "@type/position.type";
 
 export interface SinglePlayerProps {
   name: string;
-  part: PositionPart;
+  part: PositionMainPart;
   spid: string;
   desc: string;
 }

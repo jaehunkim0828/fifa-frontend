@@ -1,6 +1,5 @@
 import Image from "next/image";
 
-import PlayerService from "@services/player.api";
 import RankService from "@services/rank.api";
 import { useEffect, useState } from "react";
 import { RootState, useAppSelector } from "@store/index";
@@ -14,7 +13,7 @@ import { CircularProgress } from "@mui/material";
 import None from "@public/images/nonperson.png";
 import { useResize } from "@hooks/useResize";
 import { Stats } from "@type/rank.type";
-import { PositionPart } from "@type/position.type";
+import { PositionMainPart } from "@type/position.type";
 import { RatingProps, RatingTable } from "./rating.type";
 import { Card } from "@type/card.type";
 
@@ -30,7 +29,19 @@ export default function RatingPlayer({
   const regex = /[a-zA-Z]/;
   const [ps, setPs] = useState<RatingTable[]>([]);
   const [secIndex, setSecIndex] = useState(0);
-  const [nowAvg, setNowAvg] = useState(average);
+  const [averageList, setAverageList] = useState<{
+    [value in
+      | PositionMainPart.FW
+      | PositionMainPart.DF
+      | PositionMainPart.MF
+      | PositionMainPart.GK]: Stats | object;
+  }>({
+    [PositionMainPart.FW]: average,
+    [PositionMainPart.MF]: {},
+    [PositionMainPart.DF]: {},
+    [PositionMainPart.GK]: {},
+  });
+  const [nowAvg, setNowAvg] = useState<Stats | object>(average);
 
   const window = useResize();
 
@@ -38,26 +49,34 @@ export default function RatingPlayer({
 
   const sections: {
     name: string;
-    label: PositionPart.FW | PositionPart.MF | PositionPart.DF;
+    label: PositionMainPart.FW | PositionMainPart.MF | PositionMainPart.DF;
   }[] = [
     {
       name: window.nowWidth > 650 ? "공격수 기준" : "공격수",
-      label: PositionPart.FW,
+      label: PositionMainPart.FW,
     },
     {
       name: window.nowWidth > 650 ? "미드필더 기준" : "미드필더",
-      label: PositionPart.MF,
+      label: PositionMainPart.MF,
     },
     {
       name: window.nowWidth > 650 ? "수비수 기준" : "수비수",
-      label: PositionPart.DF,
+      label: PositionMainPart.DF,
     },
   ];
 
-  const getAverage = async (part: PositionPart, index: number) => {
+  const getAverage = async (part: PositionMainPart, index: number) => {
     setSecIndex(index);
-    const average = await rankService.getAveragestats(part);
-    setNowAvg(average);
+    if (!Object.keys(averageList[part]).length) {
+      const average = await rankService.getAveragestats(part);
+      setAverageList(prev => ({
+        ...prev,
+        [part]: average,
+      }));
+      setNowAvg(average);
+    } else {
+      setNowAvg(averageList[part]);
+    }
   };
 
   useEffect(() => {
@@ -69,7 +88,7 @@ export default function RatingPlayer({
 
     const getPlayers = async (
       players: { [spid: string]: { name: string; stats: Stats; card: Card } },
-      average: Stats,
+      average: any,
       section?: string
     ) => {
       setPs([]);

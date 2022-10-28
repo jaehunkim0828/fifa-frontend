@@ -6,3 +6,10 @@ export enum PositionPart {
   SUB = "SUB",
   ALL = "ALL",
 }
+
+export enum PositionMainPart {
+  GK = "GK",
+  DF = "DF",
+  MF = "MF",
+  FW = "FW",
+}

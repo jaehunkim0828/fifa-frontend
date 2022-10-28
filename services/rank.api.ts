@@ -1,4 +1,4 @@
-import { PositionPart } from "@type/position.type";
+import { PositionMainPart } from "@type/position.type";
 import { getMethod, postMethod } from "./http";
 
 export default class RankService {
@@ -10,7 +10,7 @@ export default class RankService {
     });
   }
 
-  public async getAveragestats(part: PositionPart) {
+  public async getAveragestats(part: PositionMainPart) {
     return getMethod(`rank/average/${part}`);
   }
 
