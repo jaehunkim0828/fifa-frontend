@@ -10,5 +10,6 @@ export interface PlayerCardStatus {
   nation: string;
   seasonImg: string;
   name: string;
-  pay: string;
+  salary: string;
+  bigSeason: string;
 }

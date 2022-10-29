@@ -20,6 +20,13 @@
 
 @media (max-width: 650px) {
   .graph {
+    width: 90%;
+    .barContainer {
+      height: 300px;
+      overflow-y: scroll;
+      width: 100%;
+    }
+
     .who {
       .box {
         width: 0.8rem;

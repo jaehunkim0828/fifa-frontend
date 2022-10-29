@@ -1,10 +1,10 @@
 import { PositionStatus } from "../components/player-thumb/playerThumb.type";
-import { PositionPart } from "./position.type";
+import { PositionMainPart } from "./position.type";
 import { Stats } from "./rank.type";
 
 export interface Position {
   desc: PositionStatus;
-  part: PositionPart;
+  part: PositionMainPart;
 }
 
 export interface CompareThumb {

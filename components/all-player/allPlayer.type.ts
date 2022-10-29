@@ -6,6 +6,6 @@ export interface PlayerProps {
   count: number;
   current_page?: number;
   players?: any;
-  average: { striker: Stats; midfielder: Stats; defender: Stats };
-  search: { name: string; season: string; position: string };
+  average: Stats;
+  search: { name: string; season: string; position: string; nation: string };
 }

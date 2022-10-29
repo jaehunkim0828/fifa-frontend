@@ -1,20 +1,18 @@
 import json from "@data/playerThumb.json";
-import { PositionPart } from "@type/position.type";
+import { PositionMainPart } from "@type/position.type";
 
 export const selectPostionColor = (part?: string) => {
   const { positionColor: color } = json;
 
   switch (part) {
-    case PositionPart.GK:
+    case PositionMainPart.GK:
       return color[0];
-    case PositionPart.MF:
+    case PositionMainPart.MF:
       return color[1];
-    case PositionPart.DF:
+    case PositionMainPart.DF:
       return color[2];
-    case PositionPart.FW:
+    case PositionMainPart.FW:
       return color[3];
-    case PositionPart.SUB:
-      return color[4];
     default:
       return "gray";
   }

@@ -20,11 +20,12 @@
 
 @media (max-width: 650px) {
   .playerContainer {
-    width: 90vw;
-    padding: 3rem 10px;
+    width: 100%;
+    padding: 3rem 0;
+
     .graph {
-      min-width: 25rem;
-      width: 100%;
+      min-width: 15rem;
+      width: 90%;
 
       .select {
         width: 90%;

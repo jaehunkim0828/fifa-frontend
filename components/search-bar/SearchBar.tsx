@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import SeasonService from "@services/season.api";
 import positionJSON from "@data/position.json";
 import { postionColor, selectPostionColor } from "@data/playerThumb.data";
+import seasonData from "@data/season.data.json";
 
 export default function SearchBar({
   player,
@@ -14,43 +15,12 @@ export default function SearchBar({
   setMore,
   open,
 }: SearchBarProps) {
-  const [seasons, setSeason] = useState<
-    { seasonId: number; seasonImg: string }[]
-  >([]);
-
   const [focusInput, setFocusInput] = useState(false);
-
-  const selectMore = (kind: string, kindId: number) => {
-    if (more[kind].includes(kindId)) {
-      const index = more[kind].indexOf(kindId);
-      more[kind].splice(index, 1);
-      setMore((prev: any) => ({
-        ...prev,
-        [kind]: more[kind],
-      }));
-      return;
-    }
-    setMore((prev: any) => ({
-      ...prev,
-      [kind]: [...prev[kind], kindId],
-    }));
-  };
-
-  useEffect(() => {
-    const seasonService = new SeasonService();
-
-    async function getMoreChoice() {
-      const s = await seasonService.getSeason();
-      setSeason(s);
-    }
-    getMoreChoice();
-  }, []);
 
   return (
     <div className={style.container}>
       <form
         style={{
-          height: focusInput ? "16rem" : "50px",
           zIndex: open ? "10" : "10000",
         }}
         onMouseEnter={() => setFocusInput(true)}
@@ -73,7 +43,7 @@ export default function SearchBar({
           </button>
         </div>
         {focusInput && (
-          <More seasons={seasons} more={more} selectMore={selectMore} />
+          <More seasons={seasonData.seasonImg} more={more} setMore={setMore} />
         )}
       </form>
     </div>
@@ -83,25 +53,58 @@ export default function SearchBar({
 const More = ({
   seasons,
   more,
-  selectMore,
+
+  setMore,
 }: {
-  seasons: { seasonId: number; seasonImg: string }[];
+  seasons: { id: number; seasonImg: string; name: string }[];
   more: {
-    [x in string]: number[];
+    season: number[];
+    position: number[];
+    nation: string;
   };
-  selectMore: (kind: string, value: number) => void;
+  setMore: (value: any) => void;
 }) => {
+  const selectMore = (kind: "season" | "position", kindId: number) => {
+    if (more[kind].includes(kindId)) {
+      const index = more[kind].indexOf(kindId);
+      more[kind].splice(index, 1);
+      setMore((prev: any) => ({
+        ...prev,
+        [kind]: more[kind],
+      }));
+      return;
+    }
+    setMore((prev: any) => ({
+      ...prev,
+      [kind]: [...prev[kind], kindId],
+    }));
+  };
+
   return (
     <div className={style.more}>
+      <div className={style.nation}>
+        <div className={style.moreTitle}>국적</div>
+        <input
+          className={style.input}
+          placeholder="   국적명을 입력해주세요."
+          value={more.nation}
+          onChange={e =>
+            setMore((prev: any) => ({
+              ...prev,
+              nation: e.target.value,
+            }))
+          }
+        />
+      </div>
       <div className={style.season}>
         <div className={style.moreTitle}>시즌</div>
         {seasons.map((season, i: any) => {
           return (
             <button
               style={{
-                opacity: more.season.includes(season.seasonId) ? "1" : "0.3",
+                opacity: more.season.includes(season.id) ? "1" : "0.3",
               }}
-              onClick={() => selectMore("season", season.seasonId)}
+              onClick={() => selectMore("season", season.id)}
               className={style.seasonBtn}
               key={`시즌: ${i}-1`}
               type="button"
@@ -120,7 +123,7 @@ const More = ({
       <div className={style.moreP}>
         <div className={style.moreTitle}>포지션</div>
         {positionJSON.kind.map((position, i) => (
-          <div key={`포지션: ${i}`} className={` ${style.part}`}>
+          <div key={`포지션: ${i}`} className={style.part}>
             <span
               style={{ ...postionColor(positionJSON.part[i]), width: "2rem" }}
             >

@@ -8,5 +8,7 @@ export interface SearchBarProps {
 }
 
 export interface More {
-  [x: string]: number[];
+  season: number[];
+  position: number[];
+  nation: string;
 }

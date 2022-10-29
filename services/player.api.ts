@@ -6,14 +6,17 @@ export default class PlayerService {
       player,
       season,
       position,
-    }: { player?: string; season?: string; position?: string },
+      nation,
+    }: { player?: string; season?: string; position?: string; nation?: string },
     current_page: number,
     count: number
   ) {
     return getMethod(
       `player/spid/search?name=${encodeURI(player ?? "")}&season=${
         season ?? ""
-      }&position=${position ?? ""}&current_page=${current_page}&count=${count}`
+      }&position=${position ?? ""}&nation=${encodeURI(
+        nation ?? ""
+      )}&current_page=${current_page}&count=${count}`
     );
   }
 
@@ -21,15 +24,17 @@ export default class PlayerService {
     name,
     season,
     position,
+    nation,
   }: {
     name?: string;
     season?: string;
     position?: string;
+    nation?: string;
   }) {
     return getMethod(
       `player/count/search?name=${name ?? ""}&season=${season ?? ""}&position=${
         position ?? ""
-      }`
+      }&nation=${nation ?? ""}`
     );
   }
 
@@ -42,14 +47,17 @@ export default class PlayerService {
       player,
       season,
       position,
-    }: { player: string; season: string; position: string },
+      nation,
+    }: { player: string; season: string; position: string; nation: string },
     cur_page: number,
     c: number
   ) {
     return await getMethod(
       `player/spid/search?name=${encodeURI(player ?? "")}&season=${
         season ?? ""
-      }&position=${position ?? ""}&current_page=${cur_page}&count=${c}`
+      }&position=${position ?? ""}&nation=${
+        nation ?? ""
+      }&current_page=${cur_page}&count=${c}`
     );
   }
 

@@ -19,20 +19,24 @@ import RankService from "@services/rank.api";
 import { PlayerProps } from "./allPlayer.type";
 import { Stats } from "@type/rank.type";
 import { More } from "@components/search-bar/searchBar.type";
+import CardService from "@services/card.api";
+import { Card } from "@type/card.type";
 
 export default memo(function AllPlayer({
   playersInitial,
   count,
   current_page,
   average,
-  search: { name, season, position },
+  search: { name, season, position, nation },
 }: PlayerProps) {
   const playerService = new PlayerService();
   const rankService = new RankService();
+  const cardService = new CardService();
 
   const initialMore = {
     season: [],
     position: [],
+    nation: "",
   };
 
   const router = useRouter();
@@ -58,9 +62,15 @@ export default memo(function AllPlayer({
 
   const submit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    const m: { season?: string; name?: string; position?: string } = {};
+    const m: {
+      season?: string;
+      name?: string;
+      position?: string;
+      nation?: string;
+    } = {};
     if (player.player) m.name = player.player;
     if (more.season.length) m.season = more.season.join(",");
+    if (more.nation !== "") m.nation = more.nation;
     if (more.position.length) m.position = more.position.join(",");
 
     if (current_page && count) {
@@ -81,31 +91,33 @@ export default memo(function AllPlayer({
     dispatch(resetSpidValue());
   };
 
-  const showPlayerGraph = async (position: number) => {
+  const showPlayerGraph = async () => {
     const totalPlayerData: PlayerStats = {};
     for (const player in players) {
-      const status = await rankService.getMyTotalRankByPo(player, position);
       totalPlayerData[player] = {
         name: players[player].name,
-        status,
-        seasonImg: status.seasonImg,
+        status: players[player].stats,
+        seasonImg: players[player].stats.seasonImg || "",
       };
     }
     setStats(totalPlayerData);
   };
 
   const getDefaultPlayer = async (id: string, name: string) => {
-    const stats: Stats = await rankService.getMyTotalRankByPo(
-      id,
-      PositionStatus.TOTAL
-    );
+    await rankService.create(id, name);
+
+    const card: Card = await cardService.findCard(id);
     if (name) {
-      await rankService.create(id, name);
+      const stats: Stats = await rankService.getMyTotalRankByPo(
+        id,
+        PositionStatus.TOTAL
+      );
       dispatch(
         spidRequest({
           spid: id,
           name,
           stats,
+          card,
         })
       );
     }
@@ -117,18 +129,18 @@ export default memo(function AllPlayer({
         name,
         season,
         position,
+        nation,
       });
       setCount(data);
     };
-
     getTotalCount();
     setPlayerInfo(playersInitial ?? []);
     getDefaultPlayer(playersInitial[0]?.id, playersInitial[0]?.name);
   }, [playersInitial]);
 
   useEffect(() => {
-    showPlayerGraph(PositionStatus.TOTAL);
-  }, [players]);
+    showPlayerGraph();
+  }, [Object.keys(players).length]);
 
   return (
     <div className={style.playerContainer}>
@@ -153,7 +165,7 @@ export default memo(function AllPlayer({
           totalCount={totalCount}
           count={count}
           setRanks={setPlayerInfo}
-          search={{ name, season, position }}
+          search={{ name, season, position, nation }}
           detail={{ open, setOpen }}
         />
       </div>

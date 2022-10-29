@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 35rem;
+  max-width: 50rem;
   width: 100%;
   transition: height 0.5s;
   height: 3rem;
@@ -13,20 +13,18 @@
     flex-direction: column;
     display: flex;
     align-items: flex-start;
-    background-color: transparent;
     width: 100%;
-    height: 100%;
     position: absolute;
 
     .searchForm {
       display: flex;
       align-items: center;
       width: 100%;
-      height: 4rem;
       border: 2px solid #52616b;
+      height: 3rem;
 
       .input {
-        padding: 0 10px;
+        padding: 0 15px;
         border: none;
         background-color: transparent;
         outline: none;
@@ -34,7 +32,7 @@
         color: #3f3f3f;
         flex: 1;
         font-size: 1rem;
-        background-color: #f0f5f9;
+        background-color: white;
       }
 
       .button {
@@ -48,19 +46,34 @@
         font-size: 1rem;
       }
     }
+
     .more {
-      background-color: #f0f5f9;
+      background-color: white;
       border: 2px solid #52616b;
+      border-top: none;
       padding: 10px;
-      max-width: 35rem;
+      max-width: 50rem;
       width: 100%;
-      min-width: 15rem;
+      min-width: 20rem;
       overflow-y: scroll;
-      height: 100%;
+      height: 20rem;
 
       .moreTitle {
         font-size: 1.2rem;
         font-weight: bold;
+      }
+
+      .nation {
+        .input {
+          margin: 10px;
+          border: 1px solid #434f57;
+          background-color: transparent;
+          box-sizing: border-box;
+          font-size: 15px;
+          outline: none;
+          padding: 5px 10px;
+          font-weight: 400;
+        }
       }
 
       .season {
@@ -115,6 +128,7 @@
 @media (max-width: 650px) {
   .container {
     margin: 0;
+
     .more {
       width: 100%;
     }

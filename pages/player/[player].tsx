@@ -2,12 +2,12 @@ import SinglePlayer from "@components/single-player/SinglePlayer";
 import Layout from "@components/rest/Layout";
 import { GetServerSidePropsContext } from "next";
 import { Stats } from "@type/rank.type";
-import { PositionPart } from "@type/position.type";
+import { PositionMainPart } from "@type/position.type";
 
 interface PlayterDetailProps {
   stats: Stats;
   name: string;
-  part: PositionPart;
+  part: PositionMainPart;
   average: Stats;
   spid: string;
   desc: string;
@@ -20,8 +20,8 @@ export default function PlayerDetail({
   part,
   isMobile,
   spid,
-  desc,
   path,
+  desc,
 }: PlayterDetailProps) {
   return (
     <Layout page={`${name}의 상세정보`} isMobile={isMobile} path={path}>
@@ -39,8 +39,8 @@ export const getServerSideProps = async ({
       name: player,
       part,
       spid,
-      desc,
       path: resolvedUrl,
+      desc,
     },
   };
 };

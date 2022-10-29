@@ -68,22 +68,35 @@ export default function PlayerCard({ unit }: PlayerCardProps) {
       />
       <img
         style={{
-          width: `${size * 0.15}px`,
-          left: `${size * 0.1}px`,
-          top: `${size * 0.97}px`,
+          width: `${size * 0.2}px`,
+          left: `${size * 0.07}px`,
+          top: `${size * 0.93}px`,
         }}
-        className={style.seasonImg}
-        src={unit.seasonImg}
-        alt="선수 시즌 이미지"
+        className={style.bigSeason}
+        src={unit.bigSeason}
+        alt="선수 빅 시즌 이미지"
       />
       <div
         style={{
           fontSize: `${size * 0.1}px`,
-          bottom: `${size * 0.35}px`,
+          bottom: `${size * 0.25}px`,
           width: `${size}px`,
         }}
         className={style.nameWrapper}
       >
+        {window.nowWidth > 650 ? (
+          <img
+            style={{
+              width: `${size * 0.1}px`,
+              marginRight: `${size * 0.02}px`,
+            }}
+            className={style.seasonImg}
+            src={unit.seasonImg}
+            alt="선수 시즌 이미지"
+          />
+        ) : (
+          <></>
+        )}
         <div
           className={style.name}
           style={{
@@ -114,7 +127,7 @@ export default function PlayerCard({ unit }: PlayerCardProps) {
             }}
             className={style.payIn}
           >
-            {unit.pay}
+            {unit.salary}
           </div>
         </div>
       </div>

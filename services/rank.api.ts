@@ -1,4 +1,4 @@
-import { PositionPart } from "@type/position.type";
+import { PositionMainPart } from "@type/position.type";
 import { getMethod, postMethod } from "./http";
 
 export default class RankService {
@@ -10,7 +10,7 @@ export default class RankService {
     });
   }
 
-  public async getAveragestats(part: PositionPart) {
+  public async getAveragestats(part: PositionMainPart) {
     return getMethod(`rank/average/${part}`);
   }
 
@@ -19,10 +19,6 @@ export default class RankService {
       matchtype: 50,
       spid,
     });
-  }
-
-  public async findCurrentPage(cur_page: number, c: number) {
-    return await getMethod(`rank/all?current_page=${cur_page}&count=${c}`);
   }
 
   public async getTotalRankCount() {

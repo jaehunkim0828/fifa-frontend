@@ -12,18 +12,18 @@ import { wrapper } from "@store/index";
 import { useAppDispatch } from "@store/index";
 import { resetSpidValue } from "@store/slices/spidSlice";
 import { Stats } from "@type/rank.type";
-import { PositionPart } from "@type/position.type";
+import { PositionMainPart } from "@type/position.type";
 
 interface searchProps {
-  search: { name: string; season: string; position: string };
+  search: { name: string; season: string; position: string; nation: string };
   player: PlayerInfo[];
   isMobile: boolean;
-  average: { striker: Stats; midfielder: Stats; defender: Stats };
+  average: Stats;
   path: any;
 }
 
 export default function Search({
-  search: { name, season, position },
+  search: { name, season, position, nation },
   player,
   isMobile,
   average,
@@ -39,7 +39,7 @@ export default function Search({
       router.push("/");
       return;
     }
-  }, [name, player, router]);
+  }, [name, position, season, nation, player.length, router]);
 
   useEffect(() => {
     dispatch(resetSpidValue());
@@ -52,7 +52,7 @@ export default function Search({
         count={count}
         current_page={0}
         average={average}
-        search={{ name, season, position }}
+        search={{ name, season, position, nation }}
       />
     </Layout>
   );
@@ -66,17 +66,16 @@ export const getServerSideProps: GetServerSideProps =
       const rankService = new RankService();
 
       const { query } = context;
-      const { name, season, position } = query as {
+      const { name, season, position, nation } = query as {
         name: string;
         season: string;
         position: string;
+        nation: string;
       };
-      const striker = await rankService.getAveragestats(PositionPart.FW);
-      const midfielder = await rankService.getAveragestats(PositionPart.MF);
-      const defender = await rankService.getAveragestats(PositionPart.DF);
+      const striker = await rankService.getAveragestats(PositionMainPart.FW);
 
       const player: PlayerInfo[] = await playerService.getPlayers(
-        { player: name, season, position },
+        { player: name, season, position, nation },
         0,
         9
       );
@@ -89,9 +88,10 @@ export const getServerSideProps: GetServerSideProps =
             season: season ?? null,
             name: name ?? null,
             position: position ?? null,
+            nation: nation ?? null,
           },
           player,
-          average: { striker, midfielder, defender },
+          average: striker,
           path: context.resolvedUrl,
         },
       };

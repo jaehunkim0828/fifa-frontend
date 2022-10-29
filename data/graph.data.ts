@@ -1,4 +1,5 @@
 import { GraphData } from "@components/graph/graph.type";
+import { Stats } from "fs";
 
 export const colors = [
   "#E99497",
@@ -9,21 +10,7 @@ export const colors = [
   "#7A4069",
 ];
 
-export const options1 = () => ({
-  responsive: true,
-  plugins: {
-    title: {
-      display: true,
-      text: `1경기당 평균 선수의 그래프`,
-    },
-    legend: {
-      position: "top" as const,
-      display: false,
-    },
-  },
-});
-
-export const options2 = () => ({
+export const options = {
   responsive: true,
   plugins: {
     title: {
@@ -34,7 +21,7 @@ export const options2 = () => ({
       display: false,
     },
   },
-});
+};
 
 export const labels1 = [
   "드리블 거리",
@@ -44,6 +31,20 @@ export const labels1 = [
   "패스 시도",
 ];
 export const labels2 = ["슛 시도", "유효슛", "골", "도움", "태클", "블락"];
+
+export const mobileLabel = [
+  { type: "shoot", kind: "슛 시도" },
+  { type: "effectiveShoot", kind: "유효슛" },
+  { type: "goal", kind: "골" },
+  { type: "dribble", kind: "드리블 거리" },
+  { type: "dribbleSuccess", kind: "드리블 성공" },
+  { type: "dribbleTry", kind: "드리블 시도" },
+  { type: "passSuccess", kind: "패스 성공" },
+  { type: "passTry", kind: "패스 시도" },
+  { type: "assist", kind: "도움" },
+  { type: "tackle", kind: "태클" },
+  { type: "block", kind: "블락" },
+];
 
 export const step1 = (data: GraphData[]) => ({
   labels: labels1,
@@ -75,6 +76,18 @@ export const step2 = (data: GraphData[]) => ({
         player.status.tackle,
         player.status.block,
       ],
+      borderColor: `rgb(${255 - i * 10}, 99, 132)`,
+      backgroundColor: colors[i],
+    };
+  }),
+});
+
+export const mobileStep = (data: GraphData[], type: string, kind: string) => ({
+  labels: [kind],
+  datasets: data.map((player: any, i: number) => {
+    return {
+      label: `${i + 1}. ${player.name}`,
+      data: [player.status[type]],
       borderColor: `rgb(${255 - i * 10}, 99, 132)`,
       backgroundColor: colors[i],
     };
