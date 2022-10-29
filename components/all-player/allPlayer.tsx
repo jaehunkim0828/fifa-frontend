@@ -27,7 +27,7 @@ export default memo(function AllPlayer({
   count,
   current_page,
   average,
-  search: { name, season, position },
+  search: { name, season, position, nation },
 }: PlayerProps) {
   const playerService = new PlayerService();
   const rankService = new RankService();
@@ -36,6 +36,7 @@ export default memo(function AllPlayer({
   const initialMore = {
     season: [],
     position: [],
+    nation: "",
   };
 
   const router = useRouter();
@@ -61,9 +62,15 @@ export default memo(function AllPlayer({
 
   const submit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    const m: { season?: string; name?: string; position?: string } = {};
+    const m: {
+      season?: string;
+      name?: string;
+      position?: string;
+      nation?: string;
+    } = {};
     if (player.player) m.name = player.player;
     if (more.season.length) m.season = more.season.join(",");
+    if (more.nation !== "") m.nation = more.nation;
     if (more.position.length) m.position = more.position.join(",");
 
     if (current_page && count) {
@@ -122,6 +129,7 @@ export default memo(function AllPlayer({
         name,
         season,
         position,
+        nation,
       });
       setCount(data);
     };
@@ -157,7 +165,7 @@ export default memo(function AllPlayer({
           totalCount={totalCount}
           count={count}
           setRanks={setPlayerInfo}
-          search={{ name, season, position }}
+          search={{ name, season, position, nation }}
           detail={{ open, setOpen }}
         />
       </div>

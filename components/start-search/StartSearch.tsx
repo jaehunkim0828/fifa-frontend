@@ -14,17 +14,28 @@ export default function StartSearch() {
   const router = useRouter();
 
   const [player, setPlayer] = useInput({ player: "" });
-  const [more, setMore] = useState<{ season: number[]; position: number[] }>({
+  const [more, setMore] = useState<{
+    season: number[];
+    position: number[];
+    nation: string;
+  }>({
     season: [],
     position: [],
+    nation: "",
   });
 
   const submit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    const m: { season?: string; name?: string; position?: string } = {};
+    const m: {
+      season?: string;
+      name?: string;
+      position?: string;
+      nation?: string;
+    } = {};
     if (player.player) m.name = player.player;
     if (more.season.length) m.season = more.season.join(",");
     if (more.position.length) m.position = more.position.join(",");
+    if (more.nation !== "") m.nation = more.nation;
 
     router.push({
       pathname: `/search`,

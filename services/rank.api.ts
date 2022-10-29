@@ -21,10 +21,6 @@ export default class RankService {
     });
   }
 
-  public async findCurrentPage(cur_page: number, c: number) {
-    return await getMethod(`rank/all?current_page=${cur_page}&count=${c}`);
-  }
-
   public async getTotalRankCount() {
     return await getMethod(`rank/player/count`);
   }
