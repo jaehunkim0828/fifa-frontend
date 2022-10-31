@@ -91,13 +91,14 @@ export default memo(function AllPlayer({
     dispatch(resetSpidValue());
   };
 
-  const showPlayerGraph = async () => {
+  const showPlayerGraph = async (position: PositionStatus) => {
     const totalPlayerData: PlayerStats = {};
     for (const player in players) {
+      const status = await rankService.getMyTotalRankByPo(player, position);
       totalPlayerData[player] = {
         name: players[player].name,
-        status: players[player].stats,
-        seasonImg: players[player].stats.seasonImg || "",
+        status,
+        seasonImg: status.seasonImg,
       };
     }
     setStats(totalPlayerData);
@@ -105,7 +106,6 @@ export default memo(function AllPlayer({
 
   const getDefaultPlayer = async (id: string, name: string) => {
     await rankService.create(id, name);
-
     const card: Card = await cardService.findCard(id);
     if (name) {
       const stats: Stats = await rankService.getMyTotalRankByPo(
@@ -139,7 +139,7 @@ export default memo(function AllPlayer({
   }, [playersInitial]);
 
   useEffect(() => {
-    showPlayerGraph();
+    showPlayerGraph(PositionStatus.TOTAL);
   }, [Object.keys(players).length]);
 
   return (

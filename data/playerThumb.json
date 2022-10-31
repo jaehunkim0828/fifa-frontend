@@ -26,10 +26,7 @@
     { "value": 22, "label": "LF" },
     { "value": 23, "label": "RW" },
     { "value": 24, "label": "RS" },
-    { "value": 25, "label": "ST" },
-    { "value": 26, "label": "LS" },
-    { "value": 27, "label": "LW" },
-    { "value": 28, "label": "SUB" }
+    { "value": 25, "label": "ST" }
   ],
   "thumbstyle": {
     "border": "2px solid #00ADB5",
