@@ -1,4 +1,4 @@
-import { SearchBarProps } from "@components/search-bar/searchBar.type";
+import { SearchBarProps, More } from "@components/search-bar/searchBar.type";
 import Image from "next/image";
 import style from "./searchBar.module.scss";
 import { useEffect, useState } from "react";
@@ -6,6 +6,8 @@ import SeasonService from "@services/season.api";
 import positionJSON from "@data/position.json";
 import { postionColor, selectPostionColor } from "@data/playerThumb.data";
 import seasonData from "@data/season.data.json";
+import { MoreType } from "@hooks/useMore";
+import json from "@data/team.data.json";
 
 export default function SearchBar({
   player,
@@ -57,44 +59,74 @@ const More = ({
   setMore,
 }: {
   seasons: { id: number; seasonImg: string; name: string }[];
-  more: {
-    season: number[];
-    position: number[];
-    nation: string;
-  };
-  setMore: (value: any) => void;
+  more: More;
+  setMore: (m: { type: MoreType; value: any }) => void;
 }) => {
-  const selectMore = (kind: "season" | "position", kindId: number) => {
-    if (more[kind].includes(kindId)) {
-      const index = more[kind].indexOf(kindId);
-      more[kind].splice(index, 1);
-      setMore((prev: any) => ({
-        ...prev,
-        [kind]: more[kind],
-      }));
-      return;
-    }
-    setMore((prev: any) => ({
-      ...prev,
-      [kind]: [...prev[kind], kindId],
-    }));
-  };
+  const [teams, setTeams] = useState(json.team);
+  const [teamName, setTeamName] = useState("");
 
   return (
     <div className={style.more}>
-      <div className={style.nation}>
-        <div className={style.moreTitle}>국적</div>
-        <input
-          className={style.input}
-          placeholder="   국적명을 입력해주세요."
-          value={more.nation}
-          onChange={e =>
-            setMore((prev: any) => ({
-              ...prev,
-              nation: e.target.value,
-            }))
-          }
-        />
+      {more.team === "" ? (
+        <></>
+      ) : (
+        <div className={style.selected}>
+          <>{more.team}</>
+          <button onClick={() => setMore({ type: MoreType.team, value: "" })}>
+            X
+          </button>
+        </div>
+      )}
+      <div className={style.belong}>
+        <div className={style.nation}>
+          <div className={style.moreTitle}>국적</div>
+          <input
+            className={style.input}
+            placeholder="   국적명을 입력해주세요."
+            value={more.nation}
+            onChange={e =>
+              setMore({ type: MoreType.nation, value: e.target.value })
+            }
+          />
+        </div>
+        <div className={style.team}>
+          <div className={style.moreTitle}>소속팀</div>
+          <div className={style.teamBox}>
+            <div>
+              <input
+                className={`${style.input} ${style.teamInput}`}
+                placeholder="   소속팀명을 입력해주세요."
+                value={teamName}
+                onChange={e => {
+                  setTeamName(e.target.value);
+                  setTeams(prev => {
+                    return json.team.filter(team =>
+                      team.includes(e.target.value)
+                    );
+                  });
+                }}
+              />
+              {teamName === "" ? (
+                <></>
+              ) : (
+                <div className={style.dropDown}>
+                  {teams.map((team, i) => (
+                    <button
+                      onClick={() => {
+                        setMore({ type: MoreType.team, value: team });
+                        setTeamName("");
+                      }}
+                      type="button"
+                      key={`team: ${i}`}
+                    >
+                      {team}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
       <div className={style.season}>
         <div className={style.moreTitle}>시즌</div>
@@ -102,9 +134,13 @@ const More = ({
           return (
             <button
               style={{
-                opacity: more.season.includes(season.id) ? "1" : "0.3",
+                opacity: more.season.includes(season.id.toString())
+                  ? "1"
+                  : "0.3",
               }}
-              onClick={() => selectMore("season", season.id)}
+              onClick={() =>
+                setMore({ type: MoreType.season, value: season.id.toString() })
+              }
               className={style.seasonBtn}
               key={`시즌: ${i}-1`}
               type="button"
@@ -133,7 +169,7 @@ const More = ({
               {position.map((p, j) => (
                 <button
                   style={
-                    more.position.includes(p.id)
+                    more.position.includes(p.id.toString())
                       ? {
                           backgroundColor: selectPostionColor(
                             positionJSON.part[i]
@@ -143,7 +179,9 @@ const More = ({
                         }
                       : { color: "gray" }
                   }
-                  onClick={() => selectMore("position", p.id)}
+                  onClick={() =>
+                    setMore({ type: MoreType.season, value: p.id.toString() })
+                  }
                   type="button"
                   className={style.item}
                   key={`part: ${j}`}

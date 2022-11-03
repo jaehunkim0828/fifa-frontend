@@ -7,5 +7,11 @@ export interface PlayerProps {
   current_page?: number;
   players?: any;
   average: Stats;
-  search: { name: string; season: string; position: string; nation: string };
+  search: {
+    name: string;
+    season: string;
+    position: string;
+    nation: string;
+    team: string;
+  };
 }

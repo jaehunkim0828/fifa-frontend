@@ -9,20 +9,13 @@ import { useEffect } from "react";
 import SeasonService from "@services/season.api";
 import Logo from "@public/images/logo.png";
 import SearchBar from "@components/search-bar/SearchBar";
+import useMore, { initialMore } from "@hooks/useMore";
 
 export default function StartSearch() {
   const router = useRouter();
 
   const [player, setPlayer] = useInput({ player: "" });
-  const [more, setMore] = useState<{
-    season: number[];
-    position: number[];
-    nation: string;
-  }>({
-    season: [],
-    position: [],
-    nation: "",
-  });
+  const [more, changeMore] = useMore(initialMore);
 
   const submit = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -63,7 +56,7 @@ export default function StartSearch() {
             <span>선수 데이터 웹사이트 분석</span>
           </div>
           <SearchBar
-            setMore={setMore}
+            setMore={changeMore}
             more={more}
             player={player.player}
             onChangePlayer={onChangePlayer}

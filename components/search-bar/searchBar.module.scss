@@ -63,16 +63,84 @@
         font-weight: bold;
       }
 
-      .nation {
-        .input {
-          margin: 10px;
-          border: 1px solid #434f57;
+      .selected {
+        width: max-content;
+        margin: 10px;
+        background-color: #00adb5;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+
+        button {
+          border: none;
+          cursor: pointer;
           background-color: transparent;
-          box-sizing: border-box;
-          font-size: 15px;
-          outline: none;
-          padding: 5px 10px;
-          font-weight: 400;
+          color: black;
+          margin-left: 10px;
+        }
+      }
+
+      .belong {
+        display: flex;
+
+        .nation {
+          margin-right: 10px;
+          .input {
+            margin: 10px;
+            border: 1px solid #434f57;
+            background-color: transparent;
+            box-sizing: border-box;
+            font-size: 15px;
+            outline: none;
+            padding: 5px 10px;
+            font-weight: 400;
+            width: 12rem;
+            border-radius: 0;
+          }
+        }
+
+        .team {
+          position: relative;
+
+          .teamBox {
+            display: flex;
+          }
+
+          .input {
+            margin: 10px 10px 0 10px;
+            border: 1px solid #434f57;
+            background-color: transparent;
+            box-sizing: border-box;
+            font-size: 15px;
+            outline: none;
+            padding: 5px 10px;
+            font-weight: 400;
+            width: 12rem;
+            border-radius: 0;
+          }
+          .dropDown {
+            margin: 0 10px;
+            display: flex;
+            flex-direction: column;
+            z-index: 1;
+            background-color: white;
+            position: absolute;
+            max-height: 10rem;
+            height: auto;
+            overflow-y: scroll;
+            width: 12rem;
+            border: 1px solid black;
+            border-top: none;
+
+            button {
+              padding: 10px 0;
+              background-color: transparent;
+              border: none;
+              cursor: pointer;
+            }
+          }
         }
       }
 
@@ -131,6 +199,10 @@
 
     .more {
       width: 100%;
+
+      .belong {
+        flex-direction: column;
+      }
     }
   }
 }

@@ -15,7 +15,13 @@ import { Stats } from "@type/rank.type";
 import { PositionMainPart } from "@type/position.type";
 
 interface searchProps {
-  search: { name: string; season: string; position: string; nation: string };
+  search: {
+    name: string;
+    season: string;
+    position: string;
+    nation: string;
+    team: string;
+  };
   player: PlayerInfo[];
   isMobile: boolean;
   average: Stats;
@@ -23,7 +29,7 @@ interface searchProps {
 }
 
 export default function Search({
-  search: { name, season, position, nation },
+  search: { name, season, position, nation, team },
   player,
   isMobile,
   average,
@@ -52,7 +58,7 @@ export default function Search({
         count={count}
         current_page={0}
         average={average}
-        search={{ name, season, position, nation }}
+        search={{ name, season, position, nation, team }}
       />
     </Layout>
   );
@@ -66,16 +72,17 @@ export const getServerSideProps: GetServerSideProps =
       const rankService = new RankService();
 
       const { query } = context;
-      const { name, season, position, nation } = query as {
+      const { name, season, position, nation, team } = query as {
         name: string;
         season: string;
         position: string;
         nation: string;
+        team: string;
       };
       const striker = await rankService.getAveragestats(PositionMainPart.FW);
 
       const player: PlayerInfo[] = await playerService.getPlayers(
-        { player: name, season, position, nation },
+        { player: name, season, position, nation, team },
         0,
         9
       );
@@ -89,6 +96,7 @@ export const getServerSideProps: GetServerSideProps =
             name: name ?? null,
             position: position ?? null,
             nation: nation ?? null,
+            team: team ?? null,
           },
           player,
           average: striker,
