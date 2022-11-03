@@ -9,7 +9,6 @@ const ProgressBar = dynamic(() => import("./ProgressBar"), {
 
 export interface LayoutProps {
   children: React.ReactNode;
-  isMobile: boolean;
   page: string;
   path: string;
 }

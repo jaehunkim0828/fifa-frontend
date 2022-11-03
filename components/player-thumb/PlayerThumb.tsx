@@ -47,7 +47,14 @@ export default memo(function PlayerThumb({
     setLoading(true);
 
     if (!value[spid]) {
-      await rankService.create(spid, name);
+      const result = await rankService.create(spid, name).catch(err => {
+        window.alert(err.response.data);
+        return "err";
+      });
+      if (result === "err") {
+        setLoading(false);
+        return;
+      }
     }
 
     // 최대 3명까지

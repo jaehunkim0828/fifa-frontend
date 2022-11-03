@@ -4,7 +4,7 @@ import { GetServerSidePropsContext } from "next";
 
 export default function NoticeQuestion({ isMobile, path }: any) {
   return (
-    <Layout page="질문하기" isMobile={isMobile} path={path}>
+    <Layout page="질문하기" path={path}>
       <Notice />
     </Layout>
   );

@@ -31,7 +31,6 @@ interface searchProps {
 export default function Search({
   search: { name, season, position, nation, team },
   player,
-  isMobile,
   average,
   path,
 }: searchProps) {
@@ -52,7 +51,7 @@ export default function Search({
   }, [dispatch]);
 
   return (
-    <Layout page={"선수비교"} isMobile={isMobile} path={path}>
+    <Layout page={"선수비교"} path={path}>
       <AllPlayer
         playersInitial={player}
         count={count}
