@@ -12,6 +12,7 @@ import useInput from "@hooks/useInput";
 import { useRouter } from "next/router";
 import { useAppDispatch } from "@store/index";
 import { resetSpidValue } from "@store/slices/spidSlice";
+import { PositionStatus } from "@components/player-thumb/playerThumb.type";
 
 export default function SearchBar({ open }: SearchBarProps) {
   const router = useRouter();
@@ -132,7 +133,7 @@ const More = ({
         {more.season.length !== 0 &&
           more.season.map((s, i) => (
             <div className={style.selected} key={`selected season: ${i}`}>
-              {more.season[i]}
+              {s}
             </div>
           ))}
       </div>

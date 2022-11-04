@@ -28,7 +28,11 @@ export default function useMore(
         team: "",
       });
     } else if (type === MoreType.position || type === MoreType.season) {
-      if (more[type].includes(value)) {
+      if (type === MoreType.position && value === "0") {
+        if (more[type].includes(value))
+          return setMore(prev => ({ ...prev, [type]: [] }));
+        else return setMore(prev => ({ ...prev, [type]: [value] }));
+      } else if (more[type].includes(value)) {
         const index = more[type].indexOf(value);
         more[type].splice(index, 1);
         setMore((prev: any) => ({
@@ -36,6 +40,13 @@ export default function useMore(
           [type]: more[type],
         }));
         return;
+      } else if (more[type].includes("0")) {
+        const index = more[type].indexOf("0");
+        more[type].splice(index, 1);
+        setMore((prev: any) => ({
+          ...prev,
+          [type]: [value],
+        }));
       }
       setMore((prev: any) => ({
         ...prev,
