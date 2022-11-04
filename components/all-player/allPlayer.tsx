@@ -34,50 +34,15 @@ export default memo(function AllPlayer({
   const rankService = new RankService();
   const cardService = new CardService();
 
-  const router = useRouter();
   const dispatch = useAppDispatch();
 
   const { value: players } = useAppSelector((state: RootState) => state.spid);
 
-  const [player, setPlayer] = useInput({ player: "" });
   const [playersInfo, setPlayerInfo] = useState<PlayerInfo[]>([]);
   const [stats, setStats] = useStats({});
   const [totalCount, setCount] = useState(0);
   const [dLoading, setdLoading] = useState(false);
   const [open, setOpen] = useState(false);
-  const [more, changeMore] = useMore(initialMore);
-
-  const onChangePlayer = ({
-    target: { value },
-  }: {
-    target: { value: string };
-  }) => {
-    setPlayer("player", value);
-  };
-
-  const submit = async (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    const m: {
-      season?: string;
-      name?: string;
-      position?: string;
-      nation?: string;
-      team?: string;
-    } = {};
-    if (player.player) m.name = player.player;
-    if (more.season.length) m.season = more.season.join(",");
-    if (more.nation !== "") m.nation = more.nation;
-    if (more.team !== "") m.team = more.team;
-    if (more.position.length) m.position = more.position.join(",");
-
-    setPlayer("player", "");
-    router.replace({
-      pathname: `/search`,
-      query: m,
-    });
-    changeMore({});
-    dispatch(resetSpidValue());
-  };
 
   const showPlayerGraph = async (position: PositionStatus) => {
     const totalPlayerData: PlayerStats = {};
@@ -118,6 +83,7 @@ export default memo(function AllPlayer({
         season,
         position,
         nation,
+        team,
       });
       setCount(data);
     };
@@ -136,14 +102,7 @@ export default memo(function AllPlayer({
         className={style.playerWrapper}
         style={dLoading ? { opacity: "0.4", filter: "alpha(opacity=40)" } : {}}
       >
-        <SearchBar
-          player={player.player}
-          onChangePlayer={onChangePlayer}
-          submit={submit}
-          more={more}
-          setMore={changeMore}
-          open={open}
-        />
+        <SearchBar open={open} />
         <PlayerInformation
           stats={stats}
           showPlayerGraph={showPlayerGraph}

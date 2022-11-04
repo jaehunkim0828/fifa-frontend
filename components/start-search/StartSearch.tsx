@@ -12,34 +12,6 @@ import SearchBar from "@components/search-bar/SearchBar";
 import useMore, { initialMore } from "@hooks/useMore";
 
 export default function StartSearch() {
-  const router = useRouter();
-
-  const [player, setPlayer] = useInput({ player: "" });
-  const [more, changeMore] = useMore(initialMore);
-
-  const submit = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    const m: {
-      season?: string;
-      name?: string;
-      position?: string;
-      nation?: string;
-    } = {};
-    if (player.player) m.name = player.player;
-    if (more.season.length) m.season = more.season.join(",");
-    if (more.position.length) m.position = more.position.join(",");
-    if (more.nation !== "") m.nation = more.nation;
-
-    router.push({
-      pathname: `/search`,
-      query: m,
-    });
-  };
-
-  const onChangePlayer = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPlayer("player", event.target.value);
-  };
-
   return (
     <>
       <div className={style.searchContainer}>
@@ -55,13 +27,7 @@ export default function StartSearch() {
             </div>
             <span>선수 데이터 웹사이트 분석</span>
           </div>
-          <SearchBar
-            setMore={changeMore}
-            more={more}
-            player={player.player}
-            onChangePlayer={onChangePlayer}
-            submit={submit}
-          />
+          <SearchBar />
         </div>
       </div>
     </>

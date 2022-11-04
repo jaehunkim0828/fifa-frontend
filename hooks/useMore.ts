@@ -20,7 +20,7 @@ export default function useMore(
 ): [More, ({ type, value }: { type?: MoreType; value?: string }) => void] {
   const [more, setMore] = useState(initialState);
   const changeMore = ({ type, value }: { type?: MoreType; value?: string }) => {
-    if (!type || !value) {
+    if (!type || (value !== "" && !value)) {
       setMore({
         season: [],
         position: [],
