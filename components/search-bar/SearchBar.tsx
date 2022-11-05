@@ -130,12 +130,6 @@ const More = ({
             </button>
           </div>
         )}
-        {more.season.length !== 0 &&
-          more.season.map((s, i) => (
-            <div className={style.selected} key={`selected season: ${i}`}>
-              {s}
-            </div>
-          ))}
       </div>
       <div className={style.belong}>
         <div className={style.nation}>

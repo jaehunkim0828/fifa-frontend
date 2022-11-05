@@ -66,6 +66,9 @@ export default function Inquiry() {
         keepMounted
         onClose={() => setOpen(false)}
         aria-describedby="alert-dialog-slide-description"
+        style={{
+          zIndex: "10001",
+        }}
       >
         <DialogTitle>문의하기</DialogTitle>
         <DialogContent>
