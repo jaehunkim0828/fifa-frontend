@@ -22,6 +22,7 @@ export default function RatingPlayer({
   loading,
   setOpen,
   setLoading,
+  position,
 }: RatingProps) {
   const { value: players } = useAppSelector((state: RootState) => state.spid);
   const rankService = new RankService();
@@ -34,40 +35,53 @@ export default function RatingPlayer({
       | PositionMainPart.FW
       | PositionMainPart.DF
       | PositionMainPart.MF
-      | PositionMainPart.GK]: Stats | object;
-  }>({
-    [PositionMainPart.FW]: average,
-    [PositionMainPart.MF]: {},
-    [PositionMainPart.DF]: {},
-    [PositionMainPart.GK]: {},
-  });
+      | PositionMainPart.GK]?: Stats | object;
+  }>(
+    position !== "0"
+      ? {
+          [PositionMainPart.FW]: average,
+          [PositionMainPart.MF]: {},
+          [PositionMainPart.DF]: {},
+          [PositionMainPart.GK]: {},
+        }
+      : {
+          [PositionMainPart.GK]: {},
+        }
+  );
   const [nowAvg, setNowAvg] = useState<Stats | object>(average);
 
   const window = useResize();
 
   const order = [One, Two, Three];
 
-  const sections: {
-    name: string;
-    label: PositionMainPart.FW | PositionMainPart.MF | PositionMainPart.DF;
-  }[] = [
-    {
-      name: window.nowWidth > 650 ? "공격수 기준" : "공격수",
-      label: PositionMainPart.FW,
-    },
-    {
-      name: window.nowWidth > 650 ? "미드필더 기준" : "미드필더",
-      label: PositionMainPart.MF,
-    },
-    {
-      name: window.nowWidth > 650 ? "수비수 기준" : "수비수",
-      label: PositionMainPart.DF,
-    },
-  ];
+  const sections = (position: string) => {
+    if (position === "0") {
+      return [
+        {
+          name: window.nowWidth > 650 ? "골키퍼 기준" : "골키퍼",
+          label: PositionMainPart.GK,
+        },
+      ];
+    }
+    return [
+      {
+        name: window.nowWidth > 650 ? "공격수 기준" : "공격수",
+        label: PositionMainPart.FW,
+      },
+      {
+        name: window.nowWidth > 650 ? "미드필더 기준" : "미드필더",
+        label: PositionMainPart.MF,
+      },
+      {
+        name: window.nowWidth > 650 ? "수비수 기준" : "수비수",
+        label: PositionMainPart.DF,
+      },
+    ];
+  };
 
   const getAverage = async (part: PositionMainPart, index: number) => {
     setSecIndex(index);
-    if (!Object.keys(averageList[part]).length) {
+    if (!Object.keys(averageList[part] ?? {}).length) {
       const average = await rankService.getAveragestats(part);
       setAverageList(prev => ({
         ...prev,
@@ -75,7 +89,7 @@ export default function RatingPlayer({
       }));
       setNowAvg(average);
     } else {
-      setNowAvg(averageList[part]);
+      setNowAvg(averageList[part] ?? {});
     }
   };
 
@@ -168,7 +182,7 @@ export default function RatingPlayer({
           <div className={style.row1}>
             <div className={style.section}>
               <div>
-                {sections.map((section, i: number) => (
+                {sections(position).map((section, i: number) => (
                   <button
                     style={
                       i === secIndex
@@ -188,6 +202,7 @@ export default function RatingPlayer({
               <div
                 style={{
                   left: `${secIndex * 34}%`,
+                  width: position === "0" ? "100%" : "33%",
                 }}
                 className={style.sectionSpan}
               />

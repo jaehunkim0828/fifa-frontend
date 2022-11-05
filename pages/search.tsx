@@ -23,7 +23,6 @@ interface searchProps {
     team: string;
   };
   player: PlayerInfo[];
-  isMobile: boolean;
   average: Stats;
   path: any;
 }
@@ -78,7 +77,11 @@ export const getServerSideProps: GetServerSideProps =
         nation: string;
         team: string;
       };
-      const striker = await rankService.getAveragestats(PositionMainPart.FW);
+      const striker = async (position: string) => {
+        if (position === "0")
+          return await rankService.getAveragestats(PositionMainPart.GK);
+        else return await rankService.getAveragestats(PositionMainPart.FW);
+      };
 
       const player: PlayerInfo[] = await playerService.getPlayers(
         { player: name, season, position, nation, team },
@@ -98,7 +101,7 @@ export const getServerSideProps: GetServerSideProps =
             team: team ?? null,
           },
           player,
-          average: striker,
+          average: await striker(position),
           path: context.resolvedUrl,
         },
       };
