@@ -26,7 +26,9 @@ export default function Layout({ page, children, path }: LayoutProps) {
         }}
       >
         <Nav />
-        <ProgressBar />
+        <div style={{ position: "sticky" }}>
+          <ProgressBar />
+        </div>
         <>{children}</>
       </div>
     </>
