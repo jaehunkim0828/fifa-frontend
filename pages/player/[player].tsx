@@ -24,7 +24,7 @@ export default function PlayerDetail({
   desc,
 }: PlayterDetailProps) {
   return (
-    <Layout page={`${name}의 상세정보`} isMobile={isMobile} path={path}>
+    <Layout page={`${name}의 상세정보`} path={path}>
       <SinglePlayer name={name} part={part} desc={desc} spid={spid} />
     </Layout>
   );

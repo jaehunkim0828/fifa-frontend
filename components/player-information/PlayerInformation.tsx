@@ -29,6 +29,7 @@ export default function PlayerInformation({
       <div className={style.detail}>
         {Object.keys(stats).length !== 0 ? (
           <RatingPlayer
+            position={search.position}
             average={average}
             loading={loading}
             setLoading={setLoading}

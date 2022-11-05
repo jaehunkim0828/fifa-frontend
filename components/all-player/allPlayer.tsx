@@ -21,75 +21,28 @@ import { Stats } from "@type/rank.type";
 import { More } from "@components/search-bar/searchBar.type";
 import CardService from "@services/card.api";
 import { Card } from "@type/card.type";
+import useMore, { initialMore } from "@hooks/useMore";
 
 export default memo(function AllPlayer({
   playersInitial,
   count,
   current_page,
   average,
-  search: { name, season, position, nation },
+  search: { name, season, position, nation, team },
 }: PlayerProps) {
   const playerService = new PlayerService();
   const rankService = new RankService();
   const cardService = new CardService();
 
-  const initialMore = {
-    season: [],
-    position: [],
-    nation: "",
-  };
-
-  const router = useRouter();
   const dispatch = useAppDispatch();
 
   const { value: players } = useAppSelector((state: RootState) => state.spid);
 
-  const [player, setPlayer] = useInput({ player: "" });
   const [playersInfo, setPlayerInfo] = useState<PlayerInfo[]>([]);
   const [stats, setStats] = useStats({});
   const [totalCount, setCount] = useState(0);
   const [dLoading, setdLoading] = useState(false);
-  const [more, setMore] = useState<More>(initialMore);
   const [open, setOpen] = useState(false);
-
-  const onChangePlayer = ({
-    target: { value },
-  }: {
-    target: { value: string };
-  }) => {
-    setPlayer("player", value);
-  };
-
-  const submit = async (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    const m: {
-      season?: string;
-      name?: string;
-      position?: string;
-      nation?: string;
-    } = {};
-    if (player.player) m.name = player.player;
-    if (more.season.length) m.season = more.season.join(",");
-    if (more.nation !== "") m.nation = more.nation;
-    if (more.position.length) m.position = more.position.join(",");
-
-    if (current_page && count) {
-      const data = await playerService.getPlayers(
-        { player: name, season: season, position: position },
-        current_page,
-        count
-      );
-      setPlayerInfo(data === "" ? [] : data);
-    }
-
-    setPlayer("player", "");
-    router.replace({
-      pathname: `/search`,
-      query: m,
-    });
-    setMore(initialMore);
-    dispatch(resetSpidValue());
-  };
 
   const showPlayerGraph = async (position: PositionStatus) => {
     const totalPlayerData: PlayerStats = {};
@@ -130,6 +83,7 @@ export default memo(function AllPlayer({
         season,
         position,
         nation,
+        team,
       });
       setCount(data);
     };
@@ -148,14 +102,7 @@ export default memo(function AllPlayer({
         className={style.playerWrapper}
         style={dLoading ? { opacity: "0.4", filter: "alpha(opacity=40)" } : {}}
       >
-        <SearchBar
-          player={player.player}
-          onChangePlayer={onChangePlayer}
-          submit={submit}
-          more={more}
-          setMore={setMore}
-          open={open}
-        />
+        <SearchBar open={open} />
         <PlayerInformation
           stats={stats}
           showPlayerGraph={showPlayerGraph}
@@ -165,7 +112,7 @@ export default memo(function AllPlayer({
           totalCount={totalCount}
           count={count}
           setRanks={setPlayerInfo}
-          search={{ name, season, position, nation }}
+          search={{ name, season, position, nation, team }}
           detail={{ open, setOpen }}
         />
       </div>

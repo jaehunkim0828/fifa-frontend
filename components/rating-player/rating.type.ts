@@ -11,6 +11,7 @@ export interface RatingTable extends PlayerCardStatus {
 export interface RatingProps {
   average: Stats;
   loading: boolean;
+  position: string;
   setLoading: (v: boolean) => void;
   setOpen: (v: boolean) => void;
 }

@@ -9,7 +9,6 @@ const ProgressBar = dynamic(() => import("./ProgressBar"), {
 
 export interface LayoutProps {
   children: React.ReactNode;
-  isMobile: boolean;
   page: string;
   path: string;
 }
@@ -27,7 +26,9 @@ export default function Layout({ page, children, path }: LayoutProps) {
         }}
       >
         <Nav />
-        <ProgressBar />
+        <div style={{ position: "sticky" }}>
+          <ProgressBar />
+        </div>
         <>{children}</>
       </div>
     </>

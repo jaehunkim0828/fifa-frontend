@@ -5,9 +5,9 @@ import { postMethod } from "@services/http";
 import { GetServerSidePropsContext } from "next";
 import { useEffect } from "react";
 
-const Search = ({ isMobile, path }: any) => {
+const Search = ({ path }: any) => {
   return (
-    <Layout page="Home" isMobile={isMobile} path={path}>
+    <Layout page="Home" path={path}>
       <StartSearch />
     </Layout>
   );

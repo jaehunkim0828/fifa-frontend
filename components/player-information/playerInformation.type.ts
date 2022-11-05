@@ -10,6 +10,12 @@ export interface PlayerInformationProps {
   totalCount: number;
   count: number;
   setRanks: React.Dispatch<PlayerInfo[]>;
-  search: { name: string; season: string; position: string; nation: string };
+  search: {
+    name: string;
+    season: string;
+    position: string;
+    nation: string;
+    team: string;
+  };
   detail: { open: boolean; setOpen: (v: boolean) => void };
 }
