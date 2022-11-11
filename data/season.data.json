@@ -2,348 +2,373 @@
   "seasonImg": [
     {
       "id": 101,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/icon.png",
-      "name": "icon"
+      "name": "ICON",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/icon.png"
     },
     {
       "id": 201,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/nhd.png",
-      "name": "nhd"
+      "name": "NHD",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/nhd.png"
     },
     {
       "id": 202,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/tki.png",
-      "name": "tki"
+      "name": "TKI",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/tki.png"
     },
     {
       "id": 206,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/tb.png",
-      "name": "tb"
+      "name": "TB",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/tb.png"
     },
     {
       "id": 207,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/tt.png",
-      "name": "tt"
+      "name": "TT",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/tt.png"
     },
     {
       "id": 210,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/gr.png",
-      "name": "gr"
+      "name": "GR",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/gr.png"
     },
     {
       "id": 211,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/19toty.png",
-      "name": "19toty"
+      "name": "19 TOTY",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/19toty.png"
     },
     {
       "id": 212,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/18toty.png",
-      "name": "18toty"
+      "name": "18 TOTY",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/18toty.png"
     },
     {
       "id": 213,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/mcicon.png",
-      "name": "mcicon"
+      "name": "Man City ICON",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/mcicon.png"
     },
     {
       "id": 214,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/tc.png",
-      "name": "tc"
+      "name": "TC",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/tc.png"
     },
     {
       "id": 215,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/19tots.png",
-      "name": "19tots"
+      "name": "19 TOTS",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/19tots.png"
     },
     {
       "id": 216,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/hot.png",
-      "name": "hot"
+      "name": "HOT",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/hot.png"
     },
     {
       "id": 217,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/coc.png",
-      "name": "coc"
+      "name": "COC",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/coc.png"
     },
     {
       "id": 218,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/otw.png",
-      "name": "otw"
+      "name": "OTW",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/otw.png"
     },
     {
       "id": 219,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/19ng.png",
-      "name": "19ng"
+      "name": "19NG",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/19ng.png"
     },
     {
       "id": 220,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/20toty.png",
-      "name": "20toty"
+      "name": "20 TOTY",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/20toty.png"
     },
     {
       "id": 221,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/19ucl.png",
-      "name": "19ucl"
+      "name": "19 UCL",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/19ucl.png"
     },
     {
       "id": 222,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/20totn.png",
-      "name": "20totn"
+      "name": "20 TOTN",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/20totn.png"
     },
     {
       "id": 225,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/tkl.png",
-      "name": "tkl"
+      "name": "TKL",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/tkl.png"
     },
     {
       "id": 230,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/20tots.png",
-      "name": "20tots"
+      "name": "20 TOTS",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/20tots.png"
     },
     {
       "id": 231,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/vtr.png",
-      "name": "vtr"
+      "name": "VTR",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/vtr.png"
     },
     {
       "id": 233,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/mog.png",
-      "name": "mog"
+      "name": "MOG",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/mog.png"
     },
     {
       "id": 234,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/lh.png",
-      "name": "lh"
+      "name": "LH",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/lh.png"
     },
     {
       "id": 236,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/la.png",
-      "name": "la"
+      "name": "LA",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/la.png"
     },
     {
       "id": 237,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/mc.png",
-      "name": "mc"
+      "name": "MC",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/mc.png"
     },
     {
       "id": 238,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/20ng.png",
-      "name": "20ng"
+      "name": "20NG",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/20ng.png"
     },
     {
       "id": 239,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/20klb.png",
-      "name": "20klb"
+      "name": "20KLB",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/20klb.png"
     },
     {
       "id": 240,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/21toty.png",
-      "name": "21toty"
+      "name": "21 TOTY",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/21toty.png"
     },
     {
       "id": 241,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/21totn.png",
-      "name": "21totn"
+      "name": "21 TOTN",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/21totn.png"
     },
     {
       "id": 242,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/20ucl.png",
-      "name": "20ucl"
+      "name": "20 UCL",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/20ucl.png"
     },
     {
       "id": 246,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/up.png",
-      "name": "up"
+      "name": "UP",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/up.png"
     },
     {
       "id": 247,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/2012kh.png",
-      "name": "2012kh"
+      "name": "2012 KH",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/2012kh.png"
     },
     {
       "id": 249,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/ngt.png",
-      "name": "ngt"
+      "name": "NTG",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/ngt.png"
     },
     {
       "id": 250,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/21tots.png",
-      "name": "21tots"
+      "name": "21 TOTS",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/21tots.png"
     },
     {
       "id": 251,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/ebs.png",
-      "name": "ebs"
+      "name": "EBS",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/ebs.png"
     },
     {
       "id": 252,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/cap.png",
-      "name": "cap"
+      "name": "CAP",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/cap.png"
     },
     {
       "id": 253,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/boe21.png",
-      "name": "boe21"
+      "name": "BOE21",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/boe21.png"
     },
     {
       "id": 254,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/cfa.png",
-      "name": "cfa"
+      "name": "CFA",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/cfa.png"
     },
     {
       "id": 256,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/btb.png",
-      "name": "btb"
+      "name": "BTB",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/btb.png"
     },
     {
       "id": 257,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/21klb.png",
-      "name": "21klb"
+      "name": "21KLB",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/21klb.png"
     },
     {
       "id": 258,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/22toty.png",
-      "name": "22toty"
+      "name": "22 TOTY",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/22toty.png"
     },
     {
       "id": 259,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/22totn.png",
-      "name": "22totn"
+      "name": "22 TOTN",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/22totn.png"
     },
     {
       "id": 260,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/21ucl.png",
-      "name": "21ucl"
+      "name": "21 UCL",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/21ucl.png"
     },
     {
       "id": 261,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/22hr.png",
-      "name": "22hr"
+      "name": "22HR",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/22hr.png"
     },
     {
       "id": 262,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/21ng.png",
-      "name": "21ng"
+      "name": "21NG",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/21ng.png"
     },
     {
       "id": 264,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/fa.png",
-      "name": "fa"
+      "name": "FA",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/fa.png"
     },
     {
       "id": 265,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/lol.png",
-      "name": "lol"
+      "name": "LOL",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/lol.png"
     },
     {
       "id": 267,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/22tots.png",
-      "name": "22tots"
+      "name": "22 TOTS",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/22tots.png"
     },
     {
       "id": 268,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/ln.png",
-      "name": "ln"
+      "name": "LN",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/ln.png"
     },
     {
       "id": 270,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/spl.png",
-      "name": "spl"
+      "name": "SPL",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/spl.png"
+    },
+    {
+      "id": 272,
+      "name": "BWC",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/bwc.png"
+    },
+    {
+      "id": 273,
+      "name": "WC22",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/wc22.png"
     },
     {
       "id": 274,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/rmcf.png",
-      "name": "rmcf"
+      "name": "RMCF",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/rmcf.png"
+    },
+    {
+      "id": 293,
+      "name": "22 KFA",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/22kfa.png"
     },
     {
       "id": 294,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/21kfa.png",
-      "name": "21kfa"
+      "name": "21 KFA",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/21kfa.png"
     },
     {
       "id": 295,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/2019kfa.png",
-      "name": "2019kfa"
+      "name": "19 KFA",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/2019kfa.png"
     },
     {
       "id": 297,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/mcfc.png",
-      "name": "mcfc"
+      "name": "MCFC",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/mcfc.png"
     },
     {
       "id": 298,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/kfa.png",
-      "name": "kfa"
+      "name": "18 KFA",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/kfa.png"
     },
     {
       "id": 300,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/live.png",
-      "name": "live"
+      "name": "21 LIVE",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/live.png"
     },
     {
       "id": 317,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/17.png",
-      "name": "17"
+      "name": "17 LIVE",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/17.png"
     },
     {
       "id": 318,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/18.png",
-      "name": "18"
+      "name": "18 LIVE",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/18.png"
     },
     {
       "id": 319,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/19.png",
-      "name": "19"
+      "name": "19 LIVE",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/19.png"
     },
     {
       "id": 320,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/20.png",
-      "name": "20"
+      "name": "20 LIVE",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/20.png"
+    },
+    {
+      "id": 321,
+      "name": "21 LIVE",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/21.png"
     },
     {
       "id": 500,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/plc.png",
-      "name": "plc"
+      "name": "18 PLC–A",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/plc.png"
     },
     {
       "id": 501,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/18pls.png",
-      "name": "18pls"
+      "name": "18 PLC–S",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/18pls.png"
     },
     {
       "id": 502,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/19pla.png",
-      "name": "19pla"
+      "name": "19 PLC–A",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/19pla.png"
     },
     {
       "id": 503,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/19pls.png",
-      "name": "19pls"
+      "name": "19 PLC–S",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/19pls.png"
     },
     {
       "id": 504,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/20kl.png",
-      "name": "20kl"
+      "name": "20KLeague",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/20kl.png"
     },
     {
       "id": 506,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/20pla.png",
-      "name": "20pla"
+      "name": "20 PL",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/20pla.png"
     },
     {
       "id": 507,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/21kl.png",
-      "name": "21kl"
+      "name": "21KLeague",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/21kl.png"
     },
     {
       "id": 508,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/21pla.png",
-      "name": "21pla"
+      "name": "21 PL",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/21pla.png"
     },
     {
       "id": 510,
-      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/22kl.png",
-      "name": "22kl"
+      "name": "22KLeague",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/22kl.png"
+    },
+    {
+      "id": 511,
+      "name": "22 PL",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/22pla.png"
     }
   ]
 }
