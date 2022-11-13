@@ -5,6 +5,7 @@ export interface RatingTable extends PlayerCardStatus {
   assist: { score: number; best: boolean };
   attack: { score: number; best: boolean };
   defense: { score: number; best: boolean };
+  kipping: { score: number; best: boolean };
   matchCount: string;
 }
 

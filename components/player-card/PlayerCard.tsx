@@ -9,6 +9,15 @@ export default function PlayerCard({ unit }: PlayerCardProps) {
 
   const [size, setSize] = useState(0);
 
+  const [images, setImage] = useState(unit);
+
+  const onError = (type: string) => {
+    setImage(prev => ({
+      ...prev,
+      [type]: "/images/noneBig.png",
+    }));
+  };
+
   useEffect(() => {
     if (window.nowWidth <= 650) {
       setSize(75);
@@ -25,7 +34,14 @@ export default function PlayerCard({ unit }: PlayerCardProps) {
       style={{ width: `${size}px`, height: `${size * 1.6}px` }}
       className={style.standard}
     >
-      <img className={style.border} src={unit.border} alt="선수 테두리" />
+      <img
+        className={style.border}
+        src={images.border}
+        alt="선수 테두리"
+        onError={e => {
+          onError("bigSeason");
+        }}
+      />
       <div
         style={{
           fontSize: `${size * 0.1}px`,
@@ -34,7 +50,7 @@ export default function PlayerCard({ unit }: PlayerCardProps) {
         }}
         className={style.ovr}
       >
-        {unit.ovr}
+        {images.ovr}
       </div>
       <div
         style={{
@@ -44,7 +60,7 @@ export default function PlayerCard({ unit }: PlayerCardProps) {
         }}
         className={style.position}
       >
-        {unit.position}
+        {images.position}
       </div>
       <img
         style={{
@@ -52,8 +68,11 @@ export default function PlayerCard({ unit }: PlayerCardProps) {
           bottom: `${size * 0.41}px`,
           left: `${size * 0.3}px`,
         }}
-        src={unit.image}
+        src={images.image}
         alt="선수 이미지"
+        onError={e => {
+          onError("bigSeason");
+        }}
         className={style.image}
       />
       <img
@@ -63,18 +82,24 @@ export default function PlayerCard({ unit }: PlayerCardProps) {
           top: `${size * 0.6}px`,
         }}
         className={style.nation}
-        src={unit.nation}
+        src={images.nation}
         alt="선수 국가"
+        onError={e => {
+          onError("bigSeason");
+        }}
       />
       <img
         style={{
           width: `${size * 0.2}px`,
-          left: `${size * 0.07}px`,
+          left: `${size * 0.072}px`,
           top: `${size * 0.93}px`,
         }}
         className={style.bigSeason}
-        src={unit.bigSeason}
+        src={images.bigSeason}
         alt="선수 빅 시즌 이미지"
+        onError={e => {
+          onError("bigSeason");
+        }}
       />
       <div
         style={{
@@ -91,7 +116,10 @@ export default function PlayerCard({ unit }: PlayerCardProps) {
               marginRight: `${size * 0.02}px`,
             }}
             className={style.seasonImg}
-            src={unit.seasonImg}
+            src={images.seasonImg}
+            onError={e => {
+              onError("bigSeason");
+            }}
             alt="선수 시즌 이미지"
           />
         ) : (
@@ -103,7 +131,7 @@ export default function PlayerCard({ unit }: PlayerCardProps) {
             fontSize: `${size * 0.1}px`,
           }}
         >
-          {unit.name}
+          {images.name}
         </div>
       </div>
       <div
@@ -127,7 +155,7 @@ export default function PlayerCard({ unit }: PlayerCardProps) {
             }}
             className={style.payIn}
           >
-            {unit.salary}
+            {images.salary}
           </div>
         </div>
       </div>

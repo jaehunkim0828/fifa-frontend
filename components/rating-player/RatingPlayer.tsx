@@ -3,7 +3,7 @@ import Image from "next/image";
 import RankService from "@services/rank.api";
 import { useEffect, useState } from "react";
 import { RootState, useAppSelector } from "@store/index";
-import { calculatePower } from "@utils/grade";
+import { calculatePower, calculatePowerGK } from "@utils/grade";
 import PlayerCard from "@components/player-card/PlayerCard";
 import style from "./ratingPlayer.module.scss";
 import One from "@public/images/one.png";
@@ -45,7 +45,7 @@ export default function RatingPlayer({
           [PositionMainPart.GK]: {},
         }
       : {
-          [PositionMainPart.GK]: {},
+          [PositionMainPart.GK]: average,
         }
   );
   const [nowAvg, setNowAvg] = useState<Stats | object>(average);
@@ -103,10 +103,63 @@ export default function RatingPlayer({
     const getPlayers = async (
       players: { [spid: string]: { name: string; stats: Stats; card: Card } },
       average: any,
+      position: string,
       section?: string
     ) => {
       setPs([]);
       const powers = [];
+
+      if (position === "0") {
+        // 골키퍼
+        for (const spid in players) {
+          powers.push({
+            ...calculatePowerGK(players[spid].stats, average),
+            spid,
+            name: players[spid].name,
+            matchCount: players[spid].stats.matchCount,
+            card: players[spid].card,
+          });
+        }
+
+        // sorting
+        const sortingPlayer = (powers: any[], p: string = "attack") => {
+          return powers.sort((a, b) => b.kipping.score - a.kipping.score);
+        };
+
+        sortingPlayer(powers, section);
+
+        console.log(powers);
+
+        const getBestScore = (powers: any[], kind: string) => {
+          const item = powers
+            .map(power => power[kind].score)
+            .reduce((prev, cur: number, index, arr) => {
+              return prev < cur ? cur : prev;
+            });
+          return powers.map(e => e[kind].score).indexOf(item);
+        };
+
+        let atB = getBestScore(powers, "kipping");
+
+        for (let i = 0; i < powers.length; i += 1) {
+          let playerStandard: any = {};
+
+          const { name, matchCount, kipping, card } = powers[i];
+          playerStandard.name = name;
+          playerStandard.matchCount = matchCount;
+          playerStandard.kipping = {
+            score: kipping.score,
+            best: i === atB ? true : false,
+          };
+          playerStandard = { ...playerStandard, ...card };
+
+          setPs(prev => [...prev, playerStandard]);
+        }
+
+        setLoading(false);
+        return;
+      }
+
       for (const spid in players) {
         powers.push({
           ...calculatePower(players[spid].stats, average),
@@ -172,8 +225,8 @@ export default function RatingPlayer({
       setLoading(false);
     };
 
-    getPlayers(players, nowAvg);
-  }, [players, average, setLoading, nowAvg]);
+    getPlayers(players, nowAvg, position);
+  }, [players, average, setLoading, nowAvg, position]);
 
   return (
     <div className={style.rating}>
@@ -274,16 +327,32 @@ export default function RatingPlayer({
           <table className={style.table}>
             <thead>
               <tr>
-                <th>선수 정보</th>
-                <th>{window.nowWidth > 650 ? "공격지수" : "공격"}</th>
-                <th>{window.nowWidth > 650 ? "도움지수" : "도움"}</th>
-                <th>{window.nowWidth > 650 ? "수비지수" : "수비"}</th>
+                {position !== "0" ? (
+                  <>
+                    <th>선수 정보</th>
+                    <th>{window.nowWidth > 650 ? "공격지수" : "공격"}</th>
+                    <th>{window.nowWidth > 650 ? "도움지수" : "도움"}</th>
+                    <th>{window.nowWidth > 650 ? "수비지수" : "수비"}</th>
+                  </>
+                ) : (
+                  <>
+                    <th>선수 정보</th>
+                    <th>{window.nowWidth > 650 ? "골키퍼지수" : "골키퍼"}</th>
+                  </>
+                )}
               </tr>
             </thead>
             <tbody>
               {ps.map(
                 (
-                  { name, attack, assist, defense, seasonImg }: RatingTable,
+                  {
+                    name,
+                    attack,
+                    assist,
+                    defense,
+                    kipping,
+                    seasonImg,
+                  }: RatingTable,
                   i: number
                 ) => (
                   <tr key={i}>
@@ -302,27 +371,41 @@ export default function RatingPlayer({
                           : name.split(" ")[0]
                         : name}
                     </td>
-                    <td
-                      style={
-                        attack.best
-                          ? { color: "#FF1E1E", fontWeight: "bold" }
-                          : {}
-                      }
-                    >{`${attack.score}점`}</td>
-                    <td
-                      style={
-                        assist.best
-                          ? { color: "#FF1E1E", fontWeight: "bold" }
-                          : {}
-                      }
-                    >{`${assist.score}점`}</td>
-                    <td
-                      style={
-                        defense.best
-                          ? { color: "#FF1E1E", fontWeight: "bold" }
-                          : {}
-                      }
-                    >{`${defense.score}점`}</td>
+                    {position !== "0" ? (
+                      <>
+                        <td
+                          style={
+                            attack.best
+                              ? { color: "#FF1E1E", fontWeight: "bold" }
+                              : {}
+                          }
+                        >{`${attack.score}점`}</td>
+                        <td
+                          style={
+                            assist.best
+                              ? { color: "#FF1E1E", fontWeight: "bold" }
+                              : {}
+                          }
+                        >{`${assist.score}점`}</td>
+                        <td
+                          style={
+                            defense.best
+                              ? { color: "#FF1E1E", fontWeight: "bold" }
+                              : {}
+                          }
+                        >{`${defense.score}점`}</td>
+                      </>
+                    ) : (
+                      <>
+                        <td
+                          style={
+                            kipping.best
+                              ? { color: "#FF1E1E", fontWeight: "bold" }
+                              : {}
+                          }
+                        >{`${kipping.score}점`}</td>
+                      </>
+                    )}
                   </tr>
                 )
               )}

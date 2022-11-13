@@ -135,3 +135,29 @@ export const calculatePower = (stats: Stats, average: Stats) => {
     defense: { score: defense, grade: getGrade(defense) },
   };
 };
+
+export const calculatePowerGK = (stats: Stats, average: Stats) => {
+  const score =
+    ((stats.saving ?? 0) * 10 + +(stats.tackle * 100).toFixed(0)) * 2;
+
+  const getGrade = (score: number) => {
+    switch (true) {
+      case score >= 0 && score < 20:
+        return Grade.F;
+      case score >= 20 && score < 40:
+        return Grade.D;
+      case score >= 40 && score < 60:
+        return Grade.C;
+      case score >= 60 && score < 80:
+        return Grade.B;
+      case score >= 80 && score <= 100:
+        return Grade.A;
+      default:
+        return Grade.W;
+    }
+  };
+
+  return {
+    kipping: { score: score >= 100 ? 100 : score, grade: getGrade(score) },
+  };
+};

@@ -11,6 +11,7 @@ export interface Stats {
   passTry: number;
   shoot: number;
   tackle: number;
+  saving?: number;
   seasonImg?: string;
 }
 
