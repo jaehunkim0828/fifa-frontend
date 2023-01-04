@@ -64,24 +64,23 @@ export default function SearchBar({ open }: SearchBarProps) {
         onMouseLeave={() => setFocusInput(false)}
         className={style.searchbar}
       >
-        <div className={style.searchForm}>
+        <form
+          onSubmit={async (e: React.SyntheticEvent) => {
+            submit(e);
+            setFocusInput(false);
+          }}
+          className={style.searchForm}
+        >
           <input
             value={player.player}
             placeholder="       ex)손흥민, 박주영"
             onChange={onChangePlayer}
             className={style.input}
           />
-          <button
-            onClick={async (e: React.SyntheticEvent) => {
-              submit(e);
-              setFocusInput(false);
-            }}
-            className={style.button}
-            type="button"
-          >
+          <button className={style.button} type="submit">
             검색
           </button>
-        </div>
+        </form>
         {focusInput && (
           <More
             seasons={seasonData.seasonImg}
