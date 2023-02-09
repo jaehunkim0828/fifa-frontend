@@ -65,6 +65,16 @@ export default function Nav() {
           <div className={style.navItems}>
             <button onClick={() => routing("/")}>Home</button>
             <button
+              onClick={() =>
+                routing(
+                  "https://docs.google.com/forms/d/e/1FAIpQLSfayRXAX_iilerlyvyNPrU-iWIuUs0ip2M6NGDvIYiu4gZjcw/viewform?usp=sf_link"
+                )
+              }
+              style={{ color: "#F2921D" }}
+            >
+              선수 추천받기
+            </button>
+            <button
               onClick={() => {
                 router.push("/question");
                 dispatch(resetSpidValue());
@@ -78,12 +88,22 @@ export default function Nav() {
         )}
       </div>
       <div
-        style={isClick ? { height: "4rem" } : { height: "0" }}
+        style={isClick ? { height: "8rem" } : { height: "0" }}
         className={style.dropdown}
       >
         {isClick ? (
           <>
             <button onClick={() => routing("/")}>Home</button>
+            <button
+              onClick={() =>
+                routing(
+                  "https://docs.google.com/forms/d/e/1FAIpQLSfayRXAX_iilerlyvyNPrU-iWIuUs0ip2M6NGDvIYiu4gZjcw/viewform?usp=sf_link"
+                )
+              }
+              style={{ color: "#F2921D" }}
+            >
+              선수 추천받기
+            </button>
             <button
               onClick={() => {
                 router.push("/question");
