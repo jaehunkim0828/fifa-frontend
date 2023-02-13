@@ -8,7 +8,6 @@ interface PlayterDetailProps {
   stats: Stats;
   name: string;
   part: PositionMainPart;
-  average: Stats;
   spid: string;
   desc: string;
   isMobile: boolean;

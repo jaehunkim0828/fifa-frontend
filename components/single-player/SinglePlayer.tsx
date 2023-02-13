@@ -13,6 +13,7 @@ import { calculatePower } from "../../utils/grade";
 import { PlayerStats } from "@type/player.type";
 import { Stats } from "@type/rank.type";
 import { PositionMainPart } from "@type/position.type";
+import json from "@data/average.json";
 
 export default function SinglePlayer(props: SinglePlayerProps) {
   const { name, part, spid, desc } = props;
@@ -58,7 +59,7 @@ export default function SinglePlayer(props: SinglePlayerProps) {
         spid,
         PositionStatus.TOTAL
       );
-      const average = await rankService.getAveragestats(part);
+      const average = json.avg[part];
       setPlayerStats(makePlayerStats(name, stats, average, part));
       setPower(calculatePower(stats, average));
 
