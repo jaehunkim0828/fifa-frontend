@@ -1,0 +1,60 @@
+{
+  "avg": {
+    "FW": {
+      "assist": 0.343,
+      "block": 0.0118,
+      "dribble": 40.4559,
+      "dribbleSuccess": 9.5788,
+      "dribbleTry": 10.7722,
+      "effectiveShoot": 0.9629,
+      "goal": 0.4777,
+      "passSuccess": 12.2218,
+      "passTry": 13.4547,
+      "shoot": 1.2187,
+      "tackle": 0.2388,
+      "matchCount": 2493028
+    },
+    "MF": {
+      "assist": 0.2552,
+      "block": 0.0387,
+      "dribble": 28.2382,
+      "dribbleSuccess": 9.5965,
+      "dribbleTry": 10.3882,
+      "effectiveShoot": 0.5698,
+      "goal": 0.25,
+      "passSuccess": 12.8611,
+      "passTry": 14.0031,
+      "shoot": 0.7424,
+      "tackle": 0.5024,
+      "matchCount": 2495771
+    },
+    "DF": {
+      "assist": 0.079,
+      "block": 0.1261,
+      "dribble": 7.7373,
+      "dribbleSuccess": 4.2972,
+      "dribbleTry": 4.6209,
+      "effectiveShoot": 0.0953,
+      "goal": 0.0364,
+      "passSuccess": 6.4431,
+      "passTry": 6.9989,
+      "shoot": 0.1386,
+      "tackle": 0.7022,
+      "matchCount": 1203081
+    },
+    "GK": {
+      "assist": 0.0002,
+      "block": 0,
+      "dribble": 0.0175,
+      "dribbleSuccess": 0.2322,
+      "dribbleTry": 0.2415,
+      "effectiveShoot": 0.0008,
+      "goal": 0.0005,
+      "passSuccess": 2.4295,
+      "passTry": 2.6279,
+      "shoot": 0.001,
+      "tackle": 0.0102,
+      "matchCount": 52352
+    }
+  }
+}

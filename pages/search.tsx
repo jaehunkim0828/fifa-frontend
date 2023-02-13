@@ -23,14 +23,12 @@ interface searchProps {
     team: string;
   };
   player: PlayerInfo[];
-  average: Stats;
   path: any;
 }
 
 export default function Search({
   search: { name, season, position, nation, team },
   player,
-  average,
   path,
 }: searchProps) {
   const dispatch = useAppDispatch();
@@ -55,7 +53,6 @@ export default function Search({
         playersInitial={player}
         count={count}
         current_page={0}
-        average={average}
         search={{ name, season, position, nation, team }}
       />
     </Layout>
@@ -67,7 +64,6 @@ export const getServerSideProps: GetServerSideProps =
   wrapper.getServerSideProps(
     store => async (context: GetServerSidePropsContext) => {
       const playerService = new PlayerService();
-      const rankService = new RankService();
 
       const { query } = context;
       const { name, season, position, nation, team } = query as {
@@ -76,11 +72,6 @@ export const getServerSideProps: GetServerSideProps =
         position: string;
         nation: string;
         team: string;
-      };
-      const striker = async (position: string) => {
-        if (position === "0")
-          return await rankService.getAveragestats(PositionMainPart.GK);
-        else return await rankService.getAveragestats(PositionMainPart.FW);
       };
 
       const player: PlayerInfo[] = await playerService.getPlayers(
@@ -101,7 +92,6 @@ export const getServerSideProps: GetServerSideProps =
             team: team ?? null,
           },
           player,
-          average: await striker(position),
           path: context.resolvedUrl,
         },
       };

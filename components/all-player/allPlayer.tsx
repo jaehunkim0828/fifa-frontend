@@ -26,8 +26,6 @@ import useMore, { initialMore } from "@hooks/useMore";
 export default memo(function AllPlayer({
   playersInitial,
   count,
-  current_page,
-  average,
   search: { name, season, position, nation, team },
 }: PlayerProps) {
   const playerService = new PlayerService();
@@ -107,7 +105,6 @@ export default memo(function AllPlayer({
           stats={stats}
           showPlayerGraph={showPlayerGraph}
           ranks={playersInfo}
-          average={average}
           setdLoading={setdLoading}
           totalCount={totalCount}
           count={count}
