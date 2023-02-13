@@ -6,7 +6,6 @@ export interface PlayerInformationProps {
   setdLoading: (value: boolean) => void;
   stats: PlayerStats;
   ranks: PlayerInfo[];
-  average: Stats;
   totalCount: number;
   count: number;
   setRanks: React.Dispatch<PlayerInfo[]>;

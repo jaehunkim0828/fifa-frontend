@@ -12,7 +12,6 @@ import { useResize } from "@hooks/useResize";
 export default function PlayerInformation({
   stats,
   ranks,
-  average,
   showPlayerGraph,
   setdLoading,
   totalCount,
@@ -30,7 +29,6 @@ export default function PlayerInformation({
         {Object.keys(stats).length !== 0 ? (
           <RatingPlayer
             position={search.position}
-            average={average}
             loading={loading}
             setLoading={setLoading}
             setOpen={setOpen}

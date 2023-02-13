@@ -1,6 +1,5 @@
 import Image from "next/image";
 
-import RankService from "@services/rank.api";
 import { useEffect, useState } from "react";
 import { RootState, useAppSelector } from "@store/index";
 import { calculatePower, calculatePowerGK } from "@utils/grade";
@@ -16,39 +15,23 @@ import { Stats } from "@type/rank.type";
 import { PositionMainPart } from "@type/position.type";
 import { RatingProps, RatingTable } from "./rating.type";
 import { Card } from "@type/card.type";
+import json from "@data/average.json";
 
 export default function RatingPlayer({
-  average,
   loading,
   setOpen,
   setLoading,
   position,
 }: RatingProps) {
   const { value: players } = useAppSelector((state: RootState) => state.spid);
-  const rankService = new RankService();
 
   const regex = /[a-zA-Z]/;
   const [ps, setPs] = useState<RatingTable[]>([]);
   const [secIndex, setSecIndex] = useState(0);
-  const [averageList, setAverageList] = useState<{
-    [value in
-      | PositionMainPart.FW
-      | PositionMainPart.DF
-      | PositionMainPart.MF
-      | PositionMainPart.GK]?: Stats | object;
-  }>(
-    position !== "0"
-      ? {
-          [PositionMainPart.FW]: average,
-          [PositionMainPart.MF]: {},
-          [PositionMainPart.DF]: {},
-          [PositionMainPart.GK]: {},
-        }
-      : {
-          [PositionMainPart.GK]: average,
-        }
+
+  const [nowAvg, setNowAvg] = useState<Stats>(
+    position === "0" ? json.avg.GK : json.avg.FW
   );
-  const [nowAvg, setNowAvg] = useState<Stats | object>(average);
 
   const window = useResize();
 
@@ -81,16 +64,7 @@ export default function RatingPlayer({
 
   const getAverage = async (part: PositionMainPart, index: number) => {
     setSecIndex(index);
-    if (!Object.keys(averageList[part] ?? {}).length) {
-      const average = await rankService.getAveragestats(part);
-      setAverageList(prev => ({
-        ...prev,
-        [part]: average,
-      }));
-      setNowAvg(average);
-    } else {
-      setNowAvg(averageList[part] ?? {});
-    }
+    setNowAvg(json.avg[part]);
   };
 
   useEffect(() => {
@@ -113,7 +87,7 @@ export default function RatingPlayer({
         // 골키퍼
         for (const spid in players) {
           powers.push({
-            ...calculatePowerGK(players[spid].stats, average),
+            ...calculatePowerGK(players[spid].stats, nowAvg),
             spid,
             name: players[spid].name,
             matchCount: players[spid].stats.matchCount,
@@ -127,8 +101,6 @@ export default function RatingPlayer({
         };
 
         sortingPlayer(powers, section);
-
-        console.log(powers);
 
         const getBestScore = (powers: any[], kind: string) => {
           const item = powers
@@ -162,7 +134,7 @@ export default function RatingPlayer({
 
       for (const spid in players) {
         powers.push({
-          ...calculatePower(players[spid].stats, average),
+          ...calculatePower(players[spid].stats, nowAvg),
           spid,
           name: players[spid].name,
           matchCount: players[spid].stats.matchCount,
@@ -226,7 +198,7 @@ export default function RatingPlayer({
     };
 
     getPlayers(players, nowAvg, position);
-  }, [players, average, setLoading, nowAvg, position]);
+  }, [players, setLoading, nowAvg, position]);
 
   return (
     <div className={style.rating}>
