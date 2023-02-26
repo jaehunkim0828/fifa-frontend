@@ -286,6 +286,11 @@
       "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/23totn.png"
     },
     {
+      "id": 280,
+      "name": "22 UCL",
+      "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/22ucl.png"
+    },
+    {
       "id": 293,
       "name": "22 KFA",
       "seasonImg": "https://ssl.nexon.com/s2/game/fo4/obt/externalAssets/season/22kfa.png"
